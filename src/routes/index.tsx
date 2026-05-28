@@ -18,10 +18,10 @@ function MePage() {
   return (
     <div className="min-h-screen bg-background text-[color:var(--pink)] font-[var(--font-body)]">
       <TabNav accent="pink" />
-      <main className="px-6 md:px-12 pb-24 max-w-4xl mx-auto flex flex-col items-center text-center">
-        {/* Oval portrait */}
+      <main className="px-6 md:px-12 pt-12 md:pt-20 pb-32 max-w-2xl mx-auto flex flex-col items-center text-center">
+        {/* Oval portrait — refined scale */}
         <div
-          className="relative w-[18rem] h-[22rem] md:w-[28rem] md:h-[34rem] overflow-hidden border-2 border-[color:var(--pink)] mb-16"
+          className="relative w-44 h-56 md:w-56 md:h-72 overflow-hidden border border-[color:var(--pink)] mb-20 md:mb-24"
           style={{ borderRadius: "50%", backgroundColor: "var(--pink)" }}
         >
           <img
@@ -33,15 +33,15 @@ function MePage() {
           />
         </div>
 
-        <p className="font-[var(--font-body)] text-xl md:text-2xl leading-relaxed max-w-2xl mb-6">
-          I'm a Social Media Lead, Systems Builder and Creative Strategist based in Berlin. A strategic creative who can direct major celebrity partnerships, build infrastructure that scales, lead creative teams across countries, and measure real business impact.
+        <p className="font-[var(--font-body)] text-sm md:text-base leading-relaxed max-w-md mb-4">
+          I'm a Social Media Lead, Systems Builder and Creative Strategist based in Berlin — directing celebrity partnerships, building infrastructure that scales, and measuring real business impact.
         </p>
 
-        <p className="font-[var(--font-body)] text-lg md:text-xl leading-relaxed max-w-2xl mb-10 opacity-90">
-          Currently Social Media Lead at Yousician — directing campaigns with David Bowie, Paul McCartney and Warner Music. Previously scaled Carpe Diem Tours from zero to over a million followers across Rome, Florence, London, Barcelona and Lisbon.
+        <p className="font-[var(--font-body)] text-sm md:text-base leading-relaxed max-w-md mb-12 opacity-80">
+          Currently Social Media Lead at Yousician — campaigns with David Bowie, Paul McCartney and Warner Music. Previously scaled Carpe Diem Tours from zero to 1M+ followers across Rome, Florence, London, Barcelona and Lisbon.
         </p>
 
-        <div className="flex flex-wrap justify-center gap-3">
+        <div className="flex flex-wrap justify-center gap-2">
           {[
             ["English", "C1"],
             ["Farsi", "Native"],
@@ -49,7 +49,7 @@ function MePage() {
           ].map(([lang, level]) => (
             <span
               key={lang}
-              className="px-4 py-2 rounded-full border-2 border-[color:var(--pink)] font-[var(--font-mono)] text-[10px] uppercase tracking-widest"
+              className="px-3 py-1 rounded-full border border-[color:var(--pink)] font-[var(--font-mono)] text-[9px] uppercase tracking-widest"
             >
               {lang} · {level}
             </span>
