@@ -17,7 +17,7 @@ const tabs = [
 export function TabNav({ accent }: { accent: Accent }) {
   const color = accentVar[accent];
   return (
-    <nav className="w-full pt-8 pb-10 px-6 md:px-12 flex justify-center items-center gap-6 md:gap-16">
+    <nav className="w-full pt-8 pb-10 px-6 md:px-12 flex justify-center items-center gap-4 md:gap-8">
       {tabs.map((t) => (
         <Link
           key={t.to}
@@ -27,11 +27,13 @@ export function TabNav({ accent }: { accent: Accent }) {
         >
           {({ isActive }) => (
             <span
-              className="font-[var(--font-body)] italic font-medium text-sm md:text-base px-5 md:px-7 py-1.5 rounded-full border transition-all"
+              className="font-sans text-[11px] md:text-xs uppercase tracking-[0.18em] px-4 md:px-5 py-1.5 rounded-full border transition-all hover:opacity-70"
               style={{
-                color: isActive ? "#fff" : color,
+                color,
                 borderColor: color,
-                backgroundColor: isActive ? color : "transparent",
+                borderWidth: "1px",
+                backgroundColor: "transparent",
+                fontWeight: isActive ? 600 : 400,
               }}
             >
               {t.label}
