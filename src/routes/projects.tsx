@@ -94,31 +94,22 @@ function ProjectsPage() {
   const current = projects.find((p) => p.id === active)!;
 
   return (
-    <div className="min-h-screen bg-[color:var(--navy)] text-white font-[var(--font-body)]">
-      <TabNav variant="navy" />
+    <div className="min-h-screen bg-background text-[color:var(--navy)] font-[var(--font-body)]">
+      <TabNav accent="navy" />
 
-      <main className="px-6 md:px-12 pt-32 pb-24 max-w-6xl mx-auto">
-        <div className="flex items-center justify-between mb-12 border-b border-white/15 pb-6">
-          <h1 className="font-[var(--font-display)] font-extrabold text-4xl md:text-6xl tracking-tight">
-            Projects
-          </h1>
-          <span className="font-[var(--font-mono)] text-[10px] uppercase tracking-widest opacity-60">
-            Selected · 03
-          </span>
-        </div>
-
-        {/* Sub-tabs */}
-        <div className="flex flex-wrap gap-2 mb-12">
+      <main className="px-6 md:px-12 pb-24 max-w-6xl mx-auto">
+        {/* Sub-tabs (project filters) */}
+        <div className="flex flex-wrap justify-start md:justify-between gap-x-8 gap-y-4 mb-16 border-b border-[color:var(--navy)]/20 pb-6">
           {projects.map((p) => {
             const isActive = p.id === active;
             return (
               <button
                 key={p.id}
                 onClick={() => setActive(p.id)}
-                className={`px-5 py-2 rounded-full border font-[var(--font-mono)] text-[10px] uppercase tracking-[0.2em] transition-all ${
+                className={`font-[var(--font-body)] text-lg md:text-xl pb-1 transition-all ${
                   isActive
-                    ? "bg-white text-[color:var(--navy)] border-white"
-                    : "border-white/30 text-white/70 hover:border-white hover:text-white"
+                    ? "border-b-2 border-[color:var(--navy)] font-semibold"
+                    : "opacity-60 hover:opacity-100"
                 }`}
               >
                 {p.title}
@@ -129,7 +120,7 @@ function ProjectsPage() {
 
         <article className="grid md:grid-cols-12 gap-10 items-start">
           <div className="md:col-span-7">
-            <div className="rounded-2xl overflow-hidden border border-white/20 bg-white/5">
+            <div className="rounded-2xl overflow-hidden border-2 border-[color:var(--navy)]/15 bg-[color:var(--navy)]/5">
               <img
                 src={current.image}
                 alt={`${current.title} campaign visual`}
@@ -142,35 +133,35 @@ function ProjectsPage() {
           </div>
 
           <div className="md:col-span-5 space-y-6">
-            <div className="font-[var(--font-mono)] text-[10px] uppercase tracking-widest opacity-60">
+            <div className="font-[var(--font-mono)] text-[10px] uppercase tracking-widest opacity-70">
               {current.year}
             </div>
-            <h2 className="font-[var(--font-display)] font-extrabold leading-none tracking-tighter text-4xl md:text-5xl">
+            <h2 className="font-[var(--font-body)] font-bold leading-none tracking-tight text-4xl md:text-5xl">
               {current.title}
-              <span className="block font-[var(--font-body)] italic font-normal text-2xl md:text-3xl mt-2 opacity-80">
+              <span className="block italic font-normal text-2xl md:text-3xl mt-2 opacity-70">
                 {current.subtitle}
               </span>
             </h2>
 
-            <p className="font-[var(--font-mono)] text-[11px] uppercase tracking-widest opacity-70">
+            <p className="font-[var(--font-mono)] text-[11px] uppercase tracking-widest opacity-80">
               {current.role}
             </p>
 
             <p className="text-base md:text-lg leading-relaxed opacity-90">{current.description}</p>
 
-            <div className="grid grid-cols-3 gap-4 pt-6 border-t border-white/15">
+            <div className="grid grid-cols-3 gap-4 pt-6 border-t border-[color:var(--navy)]/20">
               {current.stats.map(([n, label]) => (
                 <div key={label}>
-                  <p className="font-[var(--font-display)] font-bold text-xl md:text-2xl leading-tight">{n}</p>
-                  <p className="font-[var(--font-mono)] text-[9px] uppercase tracking-widest opacity-60 mt-1">
+                  <p className="font-[var(--font-body)] font-bold text-xl md:text-2xl leading-tight">{n}</p>
+                  <p className="font-[var(--font-mono)] text-[9px] uppercase tracking-widest opacity-70 mt-1">
                     {label}
                   </p>
                 </div>
               ))}
             </div>
 
-            <div className="pt-6 border-t border-white/15">
-              <p className="font-[var(--font-mono)] text-[10px] uppercase tracking-widest opacity-60 mb-3">
+            <div className="pt-6 border-t border-[color:var(--navy)]/20">
+              <p className="font-[var(--font-mono)] text-[10px] uppercase tracking-widest opacity-70 mb-3">
                 Linked Accounts
               </p>
               <div className="flex flex-wrap gap-2">
@@ -180,7 +171,7 @@ function ProjectsPage() {
                     href={l.href}
                     target="_blank"
                     rel="noreferrer"
-                    className="px-3 py-2 rounded-full border border-white/30 text-xs font-[var(--font-mono)] uppercase tracking-widest hover:bg-white hover:text-[color:var(--navy)] transition-colors"
+                    className="px-3 py-2 rounded-full border border-[color:var(--navy)]/40 text-xs font-[var(--font-mono)] uppercase tracking-widest hover:bg-[color:var(--navy)] hover:text-white transition-colors"
                   >
                     {l.label} ↗
                   </a>
