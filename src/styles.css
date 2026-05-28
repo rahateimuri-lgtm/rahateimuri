@@ -25,6 +25,11 @@
   --font-body: "Fraunces", serif;
   --font-mono: "JetBrains Mono", monospace;
   --color-marker: var(--marker);
+  --color-pink: var(--pink);
+  --color-pink-soft: var(--pink-soft);
+  --color-navy: var(--navy);
+  --color-blue: var(--blue);
+  --color-blue-soft: var(--blue-soft);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -73,6 +78,11 @@
   --background: oklch(0.974 0.012 90);        /* #F9F7F2 paper */
   --foreground: oklch(0.21 0 0);              /* #1C1C1C ink */
   --marker: oklch(0.546 0.215 262);           /* #2563EB electric blue */
+  --pink: oklch(0.66 0.21 1);                 /* hot pink/magenta */
+  --pink-soft: oklch(0.93 0.06 1);            /* soft blush bg */
+  --navy: oklch(0.18 0.03 260);               /* deep navy */
+  --blue: oklch(0.62 0.18 250);               /* bright blue */
+  --blue-soft: oklch(0.95 0.04 250);          /* soft blue bg */
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.21 0 0);
   --popover: oklch(1 0 0);
