@@ -62,8 +62,8 @@ function ProjectTile({ project }: { project: Project }) {
         />
       </div>
       <div
-        className="flex items-center justify-between gap-2 px-3 md:px-4 py-2 md:py-2.5 text-white"
-        style={{ backgroundColor: project.bg }}
+        className="flex items-center justify-between gap-2 px-3 md:px-4 py-2 md:py-2.5 text-black"
+        style={{ backgroundColor: "#ffffff" }}
       >
         <div className="min-w-0">
           <p className="font-[var(--font-body)] font-semibold text-sm md:text-base leading-tight truncate">
