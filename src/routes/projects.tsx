@@ -31,8 +31,8 @@ function ProjectsPage() {
 }
 
 const tileClass: Record<Project["tile"], string> = {
-  // Bowie hero — big landscape
-  hero: "col-span-2 md:col-span-4 row-span-2 md:row-span-3",
+  // Bowie hero — full-width wide landscape (matches 1920x561 source ratio)
+  hero: "col-span-2 md:col-span-6 row-span-2 md:row-span-2",
   // McCartney — wide
   wide: "col-span-2 md:col-span-2 row-span-2 md:row-span-3",
   // 9:16 reel
