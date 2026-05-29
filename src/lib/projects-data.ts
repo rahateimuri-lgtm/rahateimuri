@@ -1,4 +1,4 @@
-import caseBowie from "@/assets/case-bowie.jpg";
+import caseBowie from "@/assets/case-bowie-new.png";
 import caseMcCartney from "@/assets/case-mccartney.jpg";
 import caseCarpeDiem from "@/assets/case-carpediem.jpg";
 
@@ -42,8 +42,8 @@ export const projects: Project[] = [
     ],
     tile: "hero",
     tag: "Campaign",
-    bg: "#F4E1D2",
-    tagBg: "#FFD84D",
+    bg: "#000000",
+    tagBg: "#00E676",
   },
   {
     id: "mccartney",
