@@ -42,8 +42,8 @@ export const projects: Project[] = [
     ],
     tile: "hero",
     tag: "Campaign",
-    bg: "#F4E1D2",
-    tagBg: "#FFD84D",
+    bg: "#000000",
+    tagBg: "#00E676",
   },
   {
     id: "mccartney",
