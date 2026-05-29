@@ -15,6 +15,10 @@ export type Project = {
   /** Tile size on the mosaic grid */
   tile: "hero" | "wide" | "portrait" | "square";
   tag: string;
+  /** Background color behind the cover image */
+  bg: string;
+  /** Pill tag background color */
+  tagBg: string;
 };
 
 export const projects: Project[] = [
@@ -38,6 +42,8 @@ export const projects: Project[] = [
     ],
     tile: "hero",
     tag: "Campaign",
+    bg: "#F4E1D2",
+    tagBg: "#FFD84D",
   },
   {
     id: "mccartney",
@@ -59,6 +65,8 @@ export const projects: Project[] = [
     ],
     tile: "wide",
     tag: "Campaign",
+    bg: "#1E1E1E",
+    tagBg: "#FF6B3D",
   },
   {
     id: "carpediem",
@@ -80,6 +88,8 @@ export const projects: Project[] = [
     ],
     tile: "portrait",
     tag: "Growth",
+    bg: "#FF5A36",
+    tagBg: "#FFFFFF",
   },
   {
     id: "reels-rome",
@@ -100,6 +110,8 @@ export const projects: Project[] = [
     ],
     tile: "portrait",
     tag: "Reels",
+    bg: "#C9B8FF",
+    tagBg: "#FFE9F1",
   },
   {
     id: "tiktok-florence",
@@ -120,6 +132,8 @@ export const projects: Project[] = [
     ],
     tile: "portrait",
     tag: "TikTok",
+    bg: "#0F1B2E",
+    tagBg: "#7DFFB0",
   },
   {
     id: "systems",
@@ -138,6 +152,8 @@ export const projects: Project[] = [
     links: [],
     tile: "square",
     tag: "Ops",
+    bg: "#E8F0E4",
+    tagBg: "#1E1E1E",
   },
 ];
 
