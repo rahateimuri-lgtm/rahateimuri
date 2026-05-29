@@ -68,7 +68,7 @@ function ProjectTile({ project }: { project: Project }) {
         style={{ backgroundColor: project.tile === "hero" ? "#ffffff" : project.bg }}
       >
         <div className="min-w-0">
-          <p className="font-[var(--font-body)] font-semibold text-sm md:text-base leading-tight truncate">
+          <p className="font-[var(--font-body)] font-semibold text-sm leading-tight truncate font-sans md:text-base">
             {project.title}
           </p>
           <p className="opacity-85 text-[11px] md:text-xs italic truncate">
