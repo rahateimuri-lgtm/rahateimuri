@@ -1,4 +1,4 @@
-import caseBowie from "@/assets/case-bowie-new.png";
+import caseBowie from "@/assets/bowie-mosaic.png";
 import caseMcCartney from "@/assets/case-mccartney.jpg";
 import caseCarpeDiem from "@/assets/case-carpediem.jpg";
 
