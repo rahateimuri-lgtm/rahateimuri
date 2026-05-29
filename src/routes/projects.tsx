@@ -46,23 +46,35 @@ function ProjectTile({ project }: { project: Project }) {
     <Link
       to="/projects/$projectId"
       params={{ projectId: project.id }}
-      className={`${tileClass[project.tile]} group relative block overflow-hidden border border-[color:var(--navy)]/20 bg-[color:var(--navy)]/5`}
+      className={`${tileClass[project.tile]} group relative flex flex-col overflow-hidden`}
     >
-      <img
-        src={project.image}
-        alt={`${project.title} cover`}
-        loading="lazy"
-        className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/0 to-black/0" />
-      <div className="absolute inset-x-0 bottom-0 p-3 md:p-4 flex items-end justify-between gap-2 text-white">
+      <div
+        className="relative flex-1 overflow-hidden"
+        style={{ backgroundColor: project.bg }}
+      >
+        <img
+          src={project.image}
+          alt={`${project.title} cover`}
+          loading="lazy"
+          className="absolute inset-0 w-full h-full object-cover mix-blend-multiply transition-transform duration-500 group-hover:scale-[1.03]"
+        />
+      </div>
+      <div
+        className="flex items-center justify-between gap-2 px-3 md:px-4 py-2 md:py-2.5 text-white"
+        style={{ backgroundColor: project.bg }}
+      >
         <div className="min-w-0">
           <p className="font-[var(--font-body)] font-semibold text-sm md:text-base leading-tight truncate">
             {project.title}
           </p>
-          <p className="opacity-80 text-[11px] md:text-xs italic truncate">{project.subtitle}</p>
+          <p className="opacity-85 text-[11px] md:text-xs italic truncate">
+            {project.subtitle}
+          </p>
         </div>
-        <span className="shrink-0 font-[var(--font-mono)] uppercase tracking-widest text-[9px] md:text-[10px] px-2 py-1 bg-white text-[color:var(--navy)]">
+        <span
+          className="shrink-0 font-[var(--font-mono)] uppercase tracking-widest text-[9px] md:text-[10px] px-2 py-1 text-[color:var(--navy)]"
+          style={{ backgroundColor: project.tagBg }}
+        >
           {project.tag}
         </span>
       </div>
