@@ -6,6 +6,14 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=JetBrains+Mono:wght@400;500&display=swap");
 
+@font-face {
+  font-family: "GT America Compressed";
+  src: url("/src/assets/fonts/GT-America-Compressed-Black-Italic-Trial.otf") format("opentype");
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
 /*
  * Design system definition.
  *
@@ -24,6 +32,7 @@
   --font-display: "Syne", sans-serif;
   --font-body: "Fraunces", serif;
   --font-mono: "JetBrains Mono", monospace;
+  --font-gt: "GT America Compressed", "Syne", sans-serif;
   --color-marker: var(--marker);
   --color-pink: var(--pink);
   --color-pink-soft: var(--pink-soft);
