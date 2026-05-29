@@ -27,13 +27,14 @@ export function TabNav({ accent }: { accent: Accent }) {
         >
           {({ isActive }) => (
             <span
-              className="font-sans text-[11px] md:text-xs uppercase tracking-[0.18em] px-4 md:px-5 py-1.5 rounded-full border transition-all hover:opacity-70"
+              className="font-sans text-sm md:text-base px-5 md:px-6 py-1 rounded-full border transition-all hover:opacity-70"
               style={{
                 color,
                 borderColor: color,
-                borderWidth: "1px",
+                borderWidth: "0.5px",
                 backgroundColor: "transparent",
-                fontWeight: isActive ? 600 : 400,
+                fontWeight: isActive ? 500 : 400,
+                letterSpacing: "0.01em",
               }}
             >
               {t.label}
