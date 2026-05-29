@@ -62,7 +62,7 @@ function ProjectTile({ project }: { project: Project }) {
         />
       </div>
       <div
-        className={`flex items-center justify-between gap-2 px-3 md:px-4 py-2 md:py-2.5 ${
+        className={`flex items-center justify-between gap-2 px-3 md:px-4 py-1 md:py-1 ${
           project.tile === "hero" ? "text-black" : "text-white"
         }`}
         style={{ backgroundColor: project.tile === "hero" ? "#ffffff" : project.bg }}
