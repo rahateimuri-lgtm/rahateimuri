@@ -24,7 +24,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     id: "bowie",
-    title: "David Bowie",
+    title: "David Bowie / warner music chappell",
     subtitle: "× Yousician",
     year: "Nov 2025",
     role: "Art Direction · Brand Concept · Social Lead",
