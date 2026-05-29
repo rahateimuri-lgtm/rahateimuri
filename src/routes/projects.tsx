@@ -56,7 +56,9 @@ function ProjectTile({ project }: { project: Project }) {
           src={project.image}
           alt={`${project.title} cover`}
           loading="lazy"
-          className="absolute inset-0 w-full h-full object-cover mix-blend-multiply transition-transform duration-500 group-hover:scale-[1.03]"
+          className={`absolute inset-0 w-full h-full transition-transform duration-500 group-hover:scale-[1.03] ${
+            project.tile === "hero" ? "object-contain" : "object-cover mix-blend-multiply"
+          }`}
         />
       </div>
       <div
