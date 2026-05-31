@@ -23,6 +23,8 @@ export type Project = {
   gallery?: { src: string; alt: string; caption?: string }[];
   /** Optional social-account table (platform, reach, link) */
   accounts?: { name: string; platform: string; followers: string; href: string; brand?: string }[];
+  /** Hide the cover image on the detail page (for projects where the cover is just a placeholder) */
+  hideCover?: boolean;
   stats: [string, string][];
   links: { label: string; href: string }[];
   /** Tile size on the mosaic grid */
@@ -195,6 +197,7 @@ export const projects: Project[] = [
     tag: "Growth",
     bg: "#FF5A36",
     tagBg: "#FFFFFF",
+    hideCover: true,
   },
 ];
 
