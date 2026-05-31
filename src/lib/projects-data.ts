@@ -1,6 +1,8 @@
 import caseBowie from "@/assets/bowie-mosaic.png";
 import caseMcCartney from "@/assets/case-mccartney.jpg";
 import caseCarpeDiem from "@/assets/case-carpediem.jpg";
+import bowieGuitarTuna from "@/assets/bowie-guitartuna-carousel.png";
+import bowieYousician from "@/assets/bowie-yousician-carousel.png";
 
 export type Project = {
   id: string;
@@ -11,6 +13,10 @@ export type Project = {
   role: string;
   image: string;
   description: string;
+  /** Optional long-form body, rendered as paragraphs */
+  body?: string[];
+  /** Optional gallery of supporting visuals */
+  gallery?: { src: string; alt: string; caption?: string }[];
   stats: [string, string][];
   links: { label: string; href: string }[];
   /** Tile size on the mosaic grid */
@@ -35,6 +41,23 @@ export const projects: Project[] = [
     image: caseBowie,
     description:
       "Brand concept and art direction inside the creative team for a campaign with the David Bowie Estate and Warner Music. Social rollout co-published with @davidbowie and Warner Chappell — every post approved by the estate.",
+    body: [
+      "I was part of the creative team that shaped the voice and visual direction of the campaign — from the early concept work through to the final rollout.",
+      "I built the concept and moodboard on a dedicated Figma board that we used to align the team and present to partners. The direction was then approved by Warner Chappell Music before going into production.",
+      "Our launch posts were co-published with the official @davidbowie page and the Warner Music social pages. I led the creative direction of both posts — from concept through briefing the designer and the content creator — making sure every frame held the estate-approved tone.",
+    ],
+    gallery: [
+      {
+        src: bowieYousician,
+        alt: "Yousician × Bowie launch carousel — 'Only on Yousician', 'It's here', 'He reinvented music', 'The best way to understand Bowie? Play him.'",
+        caption: "Yousician launch carousel — co-published with @davidbowie",
+      },
+      {
+        src: bowieGuitarTuna,
+        alt: "GuitarTuna × Bowie carousel — 'Official Bowie tabs & chords, now live in GuitarTuna'",
+        caption: "GuitarTuna rollout — official Bowie tabs & chords",
+      },
+    ],
     stats: [
       ["Co-publish", "@davidbowie"],
       ["Partner", "Warner Chappell"],
@@ -43,6 +66,18 @@ export const projects: Project[] = [
     links: [
       { label: "@davidbowie", href: "https://instagram.com/davidbowie" },
       { label: "@yousician", href: "https://instagram.com/yousician" },
+      {
+        label: "Reel — Bowie × Yousician",
+        href: "https://www.instagram.com/reel/DYCyUHgCamI/",
+      },
+      {
+        label: "Post — Warner collab",
+        href: "https://www.instagram.com/p/DXoj0xtiKZM/",
+      },
+      {
+        label: "Figma board",
+        href: "https://www.figma.com/board/Yc95CFx25XDiJPDGFlDrsb/David-Bowie?node-id=0-1",
+      },
     ],
     tile: "bowie",
     tag: "Campaign",
