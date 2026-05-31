@@ -41,7 +41,7 @@ function ProjectsPage() {
             {projects.filter(p => p.tile === "bowie").map(p => (
               <div key={p.id} className="aspect-video w-full"><ProjectTile project={p} pickerOn={pickerOn} /></div>
             ))}
-            <div className="grid grid-cols-2 gap-6 items-end">
+            <div className="grid grid-cols-2 gap-6 items-start">
               {projects.filter(p => p.tile === "paul").map(p => (
                 <div key={p.id} className="aspect-video"><ProjectTile project={p} pickerOn={pickerOn} /></div>
               ))}
