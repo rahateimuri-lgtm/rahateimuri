@@ -47,7 +47,7 @@ function ProjectsPage() {
           {/* Right column: Viral videos + Pages */}
           <div className="flex flex-col gap-3 md:gap-4 flex-1">
             {projects.filter(p => p.tile === "viral").map(p => (
-              <div key={p.id} className="aspect-[9/16] w-full max-w-[260px] mx-auto"><ProjectTile project={p} pickerOn={pickerOn} /></div>
+              <div key={p.id} className="aspect-[9/16] w-full max-w-[180px] mx-auto"><ProjectTile project={p} pickerOn={pickerOn} /></div>
             ))}
             {projects.filter(p => p.tile === "pages").map(p => (
               <div key={p.id} className="flex-1 min-h-[200px]"><ProjectTile project={p} pickerOn={pickerOn} /></div>
