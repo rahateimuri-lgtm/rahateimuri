@@ -197,6 +197,7 @@ export const projects: Project[] = [
     tag: "Growth",
     bg: "#FF5A36",
     tagBg: "#FFFFFF",
+    hideCover: true,
   },
 ];
 
