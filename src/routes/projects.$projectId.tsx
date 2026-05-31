@@ -113,6 +113,41 @@ function ProjectDetailPage() {
           </div>
         </article>
 
+        {project.body && project.body.length > 0 && (
+          <section className="mt-16 md:mt-20 max-w-3xl">
+            <p className="font-[var(--font-mono)] text-[10px] uppercase tracking-widest opacity-60 mb-5">
+              The work
+            </p>
+            <div className="space-y-5 text-base md:text-[17px] leading-relaxed opacity-90">
+              {project.body.map((para, i) => (
+                <p key={i}>{para}</p>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {project.gallery && project.gallery.length > 0 && (
+          <section className="mt-16 md:mt-20">
+            <p className="font-[var(--font-mono)] text-[10px] uppercase tracking-widest opacity-60 mb-5">
+              Selected assets
+            </p>
+            <div className="space-y-10">
+              {project.gallery.map((g) => (
+                <figure key={g.src} className="space-y-2">
+                  <div className="overflow-hidden border border-[color:var(--navy)]/15 bg-black">
+                    <img src={g.src} alt={g.alt} className="w-full h-auto object-contain" />
+                  </div>
+                  {g.caption && (
+                    <figcaption className="font-[var(--font-mono)] text-[10px] uppercase tracking-widest opacity-60">
+                      {g.caption}
+                    </figcaption>
+                  )}
+                </figure>
+              ))}
+            </div>
+          </section>
+        )}
+
         <div className="mt-20 pt-6 border-t border-[color:var(--navy)]/15 flex items-center justify-between">
           <span className="font-[var(--font-mono)] text-[10px] uppercase tracking-widest opacity-60">
             Next
