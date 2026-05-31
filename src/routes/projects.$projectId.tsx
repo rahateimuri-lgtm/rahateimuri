@@ -121,21 +121,44 @@ function ProjectDetailPage() {
 
         {/* HERO STAT SLAB — for stat-driven projects (e.g. Pages Built) */}
         {project.hideCover && (
-          <section className="mb-12 md:mb-16 border-y-2 border-[color:var(--navy)] py-8 md:py-12">
-            <div className="grid md:grid-cols-3 gap-8 md:gap-4">
-              {project.stats.map(([n, label], i) => (
-                <div
-                  key={label}
-                  className={`flex flex-col gap-2 ${i > 0 ? "md:pl-8 md:border-l border-[color:var(--navy)]/15" : ""}`}
+          <section className="mb-12 md:mb-16">
+            {/* Eye-catching hero moment: oversized headline stat */}
+            <div className="relative bg-[color:var(--navy)] text-[color:var(--pink-soft)] overflow-hidden">
+              {/* Big mono ticker across the top */}
+              <div className="flex items-center justify-between gap-4 px-5 md:px-8 pt-5 md:pt-6 font-[var(--font-mono)] text-[10px] uppercase tracking-[0.25em] opacity-70">
+                <span>Combined organic reach</span>
+                <span>2022 → Now</span>
+              </div>
+              {/* The number */}
+              <div className="px-3 md:px-6 pt-2 pb-4 md:pb-6">
+                <p
+                  className="font-[var(--font-gt)] italic leading-[0.78] tracking-[-0.04em] text-[28vw] md:text-[22vw] lg:text-[18rem] text-[color:var(--pink-soft)]"
+                  style={{ WebkitTextStroke: "0" }}
                 >
-                  <p className="font-[var(--font-body)] font-bold tracking-tight leading-[0.9] text-6xl md:text-8xl text-[color:var(--navy)]">
-                    {n}
-                  </p>
+                  {project.stats[0]?.[0] ?? "1M+"}
+                </p>
+              </div>
+              {/* Footer label + supporting stats */}
+              <div className="grid grid-cols-1 md:grid-cols-3 border-t border-[color:var(--pink-soft)]/20">
+                <div className="px-5 md:px-8 py-4 md:py-5 md:border-r border-[color:var(--pink-soft)]/20">
                   <p className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.22em] opacity-70">
-                    {label}
+                    {project.stats[0]?.[1] ?? "Followers"}
                   </p>
                 </div>
-              ))}
+                {project.stats.slice(1).map(([n, label]) => (
+                  <div
+                    key={label}
+                    className="px-5 md:px-8 py-4 md:py-5 md:border-r last:md:border-r-0 border-[color:var(--pink-soft)]/20 flex items-baseline gap-3"
+                  >
+                    <span className="font-[var(--font-body)] font-bold text-3xl md:text-4xl leading-none">
+                      {n}
+                    </span>
+                    <span className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.22em] opacity-70">
+                      {label}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
           </section>
         )}
@@ -297,118 +320,181 @@ function ProjectDetailPage() {
 }
 
 function AccountsSection({ accounts }: { accounts: NonNullable<Project["accounts"]> }) {
-  const brands = groupByBrand(accounts);
-  const featured = brands.slice(0, 3);
-  const totalFollowers = brands.reduce((sum, b) => sum + b.total, 0);
+  const current = accounts.filter((a) => a.group === "current");
+  const built = accounts.filter((a) => a.group !== "current");
+  const builtBrands = groupByBrand(built);
+  const featured = builtBrands.slice(0, 3);
+  const builtTotal = builtBrands.reduce((sum, b) => sum + b.total, 0);
 
   return (
-    <section className="mb-16 md:mb-24">
-      {/* FEATURED TOP BRANDS */}
-      {featured.length > 0 && (
-        <div className="mb-12 md:mb-16">
+    <section className="space-y-16 md:space-y-24 mb-16 md:mb-24">
+      {/* NOW MANAGING */}
+      {current.length > 0 && (
+        <div>
           <div className="flex items-end justify-between mb-6">
-            <h2 className="font-[var(--font-body)] font-bold text-2xl md:text-3xl tracking-tight">
-              Top brands by reach
-            </h2>
-            <span className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.2em] opacity-60">
-              {formatK(totalFollowers)} combined
+            <div className="flex items-center gap-3">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="absolute inline-flex h-full w-full rounded-full bg-[color:var(--pink)] opacity-60 animate-ping" />
+                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[color:var(--pink)]" />
+              </span>
+              <h2 className="font-[var(--font-body)] font-bold text-2xl md:text-3xl tracking-tight">
+                Now managing
+              </h2>
+            </div>
+            <span className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.22em] opacity-60">
+              Live · {current.length} pages
             </span>
           </div>
-          <div className="grid md:grid-cols-3 gap-4 md:gap-5">
-            {featured.map((b, i) => {
-              const accent = platformColor(b.platforms[0]?.platform ?? "Instagram");
-              return (
-                <article
-                  key={b.brand}
-                  className="relative overflow-hidden border border-[color:var(--navy)] bg-white flex flex-col"
-                  style={{ borderTop: `6px solid ${accent}` }}
-                >
-                  <div className="p-5 md:p-6 flex-1 flex flex-col gap-4">
-                    <div className="flex items-center justify-between font-[var(--font-mono)] text-[10px] uppercase tracking-[0.22em] opacity-70">
-                      <span>0{i + 1} / Brand</span>
-                      <span>{b.platforms.length} {b.platforms.length === 1 ? "channel" : "channels"}</span>
-                    </div>
-                    <h3 className="font-[var(--font-body)] font-bold text-xl md:text-2xl leading-tight">
-                      {b.brand}
-                    </h3>
-                    <p
-                      className="font-[var(--font-body)] font-bold leading-[0.9] tracking-tight text-5xl md:text-6xl"
-                      style={{ color: accent }}
-                    >
-                      {formatK(b.total)}
-                    </p>
-                    <p className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.22em] opacity-60 -mt-2">
-                      Followers, organic
-                    </p>
-                    <div className="flex flex-wrap gap-1.5 mt-auto pt-2">
-                      {b.platforms.map((p) => (
-                        <a
-                          key={p.platform + p.href}
-                          href={p.href}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.18em] px-2 py-1 border hover:bg-[color:var(--navy)] hover:text-white hover:border-[color:var(--navy)] transition-colors"
-                          style={{ borderColor: accent, color: accent }}
-                        >
-                          {p.platform} · {p.followers}
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                </article>
-              );
-            })}
+          <div className="grid sm:grid-cols-2 gap-4 md:gap-5">
+            {current.map((a) => (
+              <a
+                key={a.brand + a.platform}
+                href={a.href}
+                target="_blank"
+                rel="noreferrer"
+                className="group relative overflow-hidden border-2 border-[color:var(--navy)] bg-[color:var(--pink-soft)] p-6 md:p-7 flex flex-col gap-5 transition-transform hover:-translate-y-1 hover:-translate-x-1"
+                style={{
+                  boxShadow: "6px 6px 0 0 var(--navy)",
+                }}
+              >
+                <div className="flex items-center justify-between font-[var(--font-mono)] text-[10px] uppercase tracking-[0.22em]">
+                  <span className="px-2 py-1 bg-[color:var(--navy)] text-[color:var(--pink-soft)]">
+                    Now / Yousician
+                  </span>
+                  <span style={{ color: platformColor(a.platform) }}>{a.platform}</span>
+                </div>
+                <h3 className="font-[var(--font-body)] font-bold leading-[0.92] tracking-tight text-4xl md:text-5xl">
+                  {a.brand ?? a.name}
+                </h3>
+                <p className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.22em] opacity-70">
+                  Social Media Lead · 2025 → Now
+                </p>
+                <span className="mt-auto font-[var(--font-mono)] text-[11px] uppercase tracking-[0.22em] opacity-70 group-hover:opacity-100">
+                  Visit page ↗
+                </span>
+              </a>
+            ))}
           </div>
         </div>
       )}
 
-      {/* FULL LIST */}
-      <div className="flex items-end justify-between mb-6">
-        <h2 className="font-[var(--font-body)] font-bold text-2xl md:text-3xl tracking-tight">
-          Every account built
-        </h2>
-        <span className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.2em] opacity-60">
-          {String(accounts.length).padStart(2, "0")} pages
-        </span>
-      </div>
-      <ul className="border-t-2 border-[color:var(--navy)]">
-        {accounts.map((a, i) => {
-          const accent = platformColor(a.platform);
-          return (
-            <li
-              key={`${a.name}-${a.platform}-${i}`}
-              className="group grid grid-cols-[auto_1fr_auto] md:grid-cols-[auto_1.4fr_1fr_auto_auto] gap-x-4 md:gap-x-6 items-center px-1 py-4 border-b border-[color:var(--navy)]/15 hover:bg-[color:var(--navy)]/[0.03] transition-colors"
-            >
-              <span
-                aria-hidden
-                className="h-2.5 w-2.5 rounded-full shrink-0"
-                style={{ backgroundColor: accent }}
-              />
-              <span className="font-[var(--font-body)] font-semibold text-base md:text-lg truncate">
-                {a.brand ?? a.name}
-              </span>
-              <span
-                className="hidden md:inline font-[var(--font-mono)] text-[10px] uppercase tracking-[0.22em]"
-                style={{ color: accent }}
-              >
-                {a.platform}
-              </span>
-              <span className="font-[var(--font-body)] font-bold tabular-nums text-xl md:text-2xl text-[color:var(--navy)] justify-self-end">
-                {a.followers}
-              </span>
-              <a
-                href={a.href}
-                target="_blank"
-                rel="noreferrer"
-                aria-label={`Open ${a.brand ?? a.name} on ${a.platform}`}
-                className="col-span-3 md:col-span-1 justify-self-end font-[var(--font-mono)] text-[10px] uppercase tracking-[0.22em] opacity-60 group-hover:opacity-100 underline-offset-4 hover:underline"
-              >
-                <span className="md:hidden">{a.platform} · </span>Visit ↗
-              </a>
-            </li>
-          );
-        })}
-      </ul>
+      {/* BUILT FROM SCRATCH */}
+      {built.length > 0 && (
+        <div>
+          <div className="flex items-end justify-between mb-6">
+            <div>
+              <p className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.22em] opacity-60 mb-1">
+                Carpe Diem Tours · 2022 – 2025
+              </p>
+              <h2 className="font-[var(--font-body)] font-bold text-2xl md:text-3xl tracking-tight">
+                Built from scratch
+              </h2>
+            </div>
+            <span className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.22em] opacity-60">
+              {formatK(builtTotal)} combined
+            </span>
+          </div>
+
+          {/* Top 3 brand cards */}
+          {featured.length > 0 && (
+            <div className="grid md:grid-cols-3 gap-4 md:gap-5 mb-10">
+              {featured.map((b, i) => {
+                const accent = platformColor(b.platforms[0]?.platform ?? "Instagram");
+                return (
+                  <article
+                    key={b.brand}
+                    className="relative overflow-hidden border border-[color:var(--navy)] bg-white flex flex-col"
+                    style={{ borderTop: `6px solid ${accent}` }}
+                  >
+                    <div className="p-5 md:p-6 flex-1 flex flex-col gap-4">
+                      <div className="flex items-center justify-between font-[var(--font-mono)] text-[10px] uppercase tracking-[0.22em] opacity-70">
+                        <span>0{i + 1} / Brand</span>
+                        <span>
+                          {b.platforms.length} {b.platforms.length === 1 ? "channel" : "channels"}
+                        </span>
+                      </div>
+                      <h3 className="font-[var(--font-body)] font-bold text-xl md:text-2xl leading-tight">
+                        {b.brand}
+                      </h3>
+                      <p
+                        className="font-[var(--font-gt)] italic leading-[0.85] tracking-[-0.03em] text-6xl md:text-7xl"
+                        style={{ color: accent }}
+                      >
+                        {formatK(b.total)}
+                      </p>
+                      <p className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.22em] opacity-60 -mt-2">
+                        Followers, organic
+                      </p>
+                      <div className="flex flex-wrap gap-1.5 mt-auto pt-2">
+                        {b.platforms.map((p) => (
+                          <a
+                            key={p.platform + p.href}
+                            href={p.href}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.18em] px-2 py-1 border hover:bg-[color:var(--navy)] hover:text-white hover:border-[color:var(--navy)] transition-colors"
+                            style={{ borderColor: accent, color: accent }}
+                          >
+                            {p.platform} · {p.followers}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          )}
+
+          {/* Full list */}
+          <div className="flex items-end justify-between mb-4">
+            <h3 className="font-[var(--font-body)] font-bold text-lg md:text-xl tracking-tight opacity-80">
+              Every account
+            </h3>
+            <span className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.22em] opacity-60">
+              {String(built.length).padStart(2, "0")} pages
+            </span>
+          </div>
+          <ul className="border-t-2 border-[color:var(--navy)]">
+            {built.map((a, i) => {
+              const accent = platformColor(a.platform);
+              return (
+                <li
+                  key={`${a.name}-${a.platform}-${i}`}
+                  className="group grid grid-cols-[auto_1fr_auto] md:grid-cols-[auto_1.4fr_1fr_auto_auto] gap-x-4 md:gap-x-6 items-center px-1 py-4 border-b border-[color:var(--navy)]/15 hover:bg-[color:var(--navy)]/[0.03] transition-colors"
+                >
+                  <span
+                    aria-hidden
+                    className="h-2.5 w-2.5 rounded-full shrink-0"
+                    style={{ backgroundColor: accent }}
+                  />
+                  <span className="font-[var(--font-body)] font-semibold text-base md:text-lg truncate">
+                    {a.brand ?? a.name}
+                  </span>
+                  <span
+                    className="hidden md:inline font-[var(--font-mono)] text-[10px] uppercase tracking-[0.22em]"
+                    style={{ color: accent }}
+                  >
+                    {a.platform}
+                  </span>
+                  <span className="font-[var(--font-body)] font-bold tabular-nums text-xl md:text-2xl text-[color:var(--navy)] justify-self-end">
+                    {a.followers}
+                  </span>
+                  <a
+                    href={a.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`Open ${a.brand ?? a.name} on ${a.platform}`}
+                    className="col-span-3 md:col-span-1 justify-self-end font-[var(--font-mono)] text-[10px] uppercase tracking-[0.22em] opacity-60 group-hover:opacity-100 underline-offset-4 hover:underline"
+                  >
+                    <span className="md:hidden">{a.platform} · </span>Visit ↗
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      )}
     </section>
   );
 }
