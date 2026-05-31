@@ -110,8 +110,8 @@ export const projects: Project[] = [
     links: [],
     tile: "pages",
     tag: "Growth",
-    bg: "#E8F0E4",
-    tagBg: "#1E1E1E",
+    bg: "#FF5A36",
+    tagBg: "#FFFFFF",
   },
 ];
 
