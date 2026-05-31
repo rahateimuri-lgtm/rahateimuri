@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState, useEffect, type MouseEvent } from "react";
+import { useState, useEffect, useRef, type MouseEvent } from "react";
 import { TabNav } from "@/components/TabNav";
 import { projects, type Project } from "@/lib/projects-data";
 
@@ -17,9 +17,12 @@ export const Route = createFileRoute("/projects")({
 
 function ProjectsPage() {
   const [pickerOn, setPickerOn] = useState(false);
+  const [ratioOn, setRatioOn] = useState(false);
   useEffect(() => {
     if (typeof window !== "undefined") {
-      setPickerOn(new URLSearchParams(window.location.search).has("focal"));
+      const params = new URLSearchParams(window.location.search);
+      setPickerOn(params.has("focal"));
+      setRatioOn(params.has("ratio"));
     }
   }, []);
 
@@ -35,25 +38,30 @@ function ProjectsPage() {
             <code className="mx-1">focalPoint</code> value into <code>src/lib/projects-data.ts</code>.
           </div>
         )}
+        {ratioOn && (
+          <div className="mb-3 text-xs font-mono bg-cyan-200 text-black px-3 py-2 rounded">
+            Ratio overlay ON — each tile shows its measured width × height and aspect ratio. Append <code>?ratio</code> to the URL to toggle; remove it to hide.
+          </div>
+        )}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center justify-center p-2 md:p-6 mx-auto max-w-[1100px]">
           {/* Left column: Bowie on top, Paul + Pages row beneath */}
           <div className="flex flex-col gap-6 min-w-0">
             {projects.filter(p => p.tile === "bowie").map(p => (
-              <div key={p.id} className="aspect-video w-full"><ProjectTile project={p} pickerOn={pickerOn} /></div>
+              <div key={p.id} className="aspect-video w-full"><ProjectTile project={p} pickerOn={pickerOn} ratioOn={ratioOn} /></div>
             ))}
             <div className="grid grid-cols-2 gap-6 items-stretch">
               {projects.filter(p => p.tile === "paul").map(p => (
-                <div key={p.id} className="aspect-square"><ProjectTile project={p} pickerOn={pickerOn} /></div>
+                <div key={p.id} className="aspect-square"><ProjectTile project={p} pickerOn={pickerOn} ratioOn={ratioOn} /></div>
               ))}
               {projects.filter(p => p.tile === "pages").map(p => (
-                <div key={p.id} className="aspect-square"><ProjectTile project={p} pickerOn={pickerOn} /></div>
+                <div key={p.id} className="aspect-square"><ProjectTile project={p} pickerOn={pickerOn} ratioOn={ratioOn} /></div>
               ))}
             </div>
           </div>
           {/* Right column: Viral video — 9:16 phone, bottom-aligned, shorter than full column */}
           <div className="min-w-0 flex items-end justify-center md:justify-start">
             {projects.filter(p => p.tile === "viral").map(p => (
-              <div key={p.id} className="aspect-[9/16] h-[82%]"><ProjectTile project={p} pickerOn={pickerOn} /></div>
+              <div key={p.id} className="aspect-[9/16] h-[82%]"><ProjectTile project={p} pickerOn={pickerOn} ratioOn={ratioOn} /></div>
             ))}
           </div>
         </div>
@@ -63,8 +71,20 @@ function ProjectsPage() {
   );
 }
 
-function ProjectTile({ project, pickerOn }: { project: Project; pickerOn: boolean }) {
+function ProjectTile({ project, pickerOn, ratioOn }: { project: Project; pickerOn: boolean; ratioOn: boolean }) {
   const [focal, setFocal] = useState(project.focalPoint ?? { x: 50, y: 50 });
+  const boxRef = useRef<HTMLDivElement | null>(null);
+  const [size, setSize] = useState<{ w: number; h: number } | null>(null);
+
+  useEffect(() => {
+    if (!ratioOn || !boxRef.current) return;
+    const el = boxRef.current;
+    const update = () => setSize({ w: el.clientWidth, h: el.clientHeight });
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [ratioOn]);
 
   const handlePick = (e: MouseEvent<HTMLDivElement>) => {
     if (!pickerOn) return;
@@ -85,6 +105,7 @@ function ProjectTile({ project, pickerOn }: { project: Project; pickerOn: boolea
       className="group relative flex flex-col overflow-hidden h-full w-full"
     >
       <div
+        ref={boxRef}
         onClick={handlePick}
         className="relative overflow-hidden flex-1 min-h-0 border border-black/80"
         style={{ backgroundColor: project.bg }}
@@ -104,6 +125,15 @@ function ProjectTile({ project, pickerOn }: { project: Project; pickerOn: boolea
             />
             <div className="absolute bottom-1 left-1 text-[10px] font-mono bg-black/80 text-white px-1.5 py-0.5 rounded pointer-events-none">
               {focal.x},{focal.y}
+            </div>
+          </>
+        )}
+        {ratioOn && size && size.w > 0 && size.h > 0 && (
+          <>
+            <div className="absolute inset-0 pointer-events-none border-2 border-dashed border-cyan-400/80" />
+            <div className="absolute top-1 right-1 text-[10px] font-mono bg-cyan-400 text-black px-1.5 py-0.5 rounded pointer-events-none leading-tight text-right">
+              <div>{Math.round(size.w)} × {Math.round(size.h)}</div>
+              <div>{(size.w / size.h).toFixed(3)} : 1</div>
             </div>
           </>
         )}
