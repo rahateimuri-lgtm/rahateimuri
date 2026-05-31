@@ -2,6 +2,44 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { TabNav } from "@/components/TabNav";
 import { getProject, projects, type Project } from "@/lib/projects-data";
 
+// Platform color tokens — used for the accounts table & featured brand cards
+const PLATFORM_COLORS: Record<string, string> = {
+  Instagram: "#E1306C",
+  TikTok: "#FE2C55",
+  YouTube: "#FF0000",
+  Facebook: "#1877F2",
+};
+const platformColor = (p: string) => PLATFORM_COLORS[p] ?? "#0F1B2E";
+
+// Parse "311K", "1.7K", "1M+" into a number for sorting/aggregation
+const parseFollowers = (s: string): number => {
+  const cleaned = s.replace(/[^\d.kKmM]/g, "");
+  const num = parseFloat(cleaned);
+  if (isNaN(num)) return 0;
+  if (/m/i.test(cleaned)) return num * 1_000_000;
+  if (/k/i.test(cleaned)) return num * 1_000;
+  return num;
+};
+const formatK = (n: number) =>
+  n >= 1_000_000 ? `${(n / 1_000_000).toFixed(1)}M` : `${Math.round(n / 1_000)}K`;
+
+type Brand = {
+  brand: string;
+  total: number;
+  platforms: { platform: string; followers: string; href: string }[];
+};
+const groupByBrand = (accounts: NonNullable<Project["accounts"]>): Brand[] => {
+  const map = new Map<string, Brand>();
+  for (const a of accounts) {
+    const key = a.brand ?? a.name;
+    const entry = map.get(key) ?? { brand: key, total: 0, platforms: [] };
+    entry.total += parseFollowers(a.followers);
+    entry.platforms.push({ platform: a.platform, followers: a.followers, href: a.href });
+    map.set(key, entry);
+  }
+  return Array.from(map.values()).sort((x, y) => y.total - x.total);
+};
+
 export const Route = createFileRoute("/projects/$projectId")({
   loader: ({ params }) => {
     const project = getProject(params.projectId);
@@ -70,14 +108,37 @@ function ProjectDetailPage() {
           </div>
         </header>
 
-        {/* COVER */}
-        <div className="overflow-hidden border border-[color:var(--navy)]/15 bg-[color:var(--navy)]/5 mb-12 md:mb-16">
-          <img
-            src={project.image}
-            alt={`${project.title} campaign visual`}
-            className="w-full h-auto object-cover"
-          />
-        </div>
+        {/* COVER — hidden when the project flags no real cover */}
+        {!project.hideCover && (
+          <div className="overflow-hidden border border-[color:var(--navy)]/15 bg-[color:var(--navy)]/5 mb-12 md:mb-16">
+            <img
+              src={project.image}
+              alt={`${project.title} campaign visual`}
+              className="w-full h-auto object-cover"
+            />
+          </div>
+        )}
+
+        {/* HERO STAT SLAB — for stat-driven projects (e.g. Pages Built) */}
+        {project.hideCover && (
+          <section className="mb-12 md:mb-16 border-y-2 border-[color:var(--navy)] py-8 md:py-12">
+            <div className="grid md:grid-cols-3 gap-8 md:gap-4">
+              {project.stats.map(([n, label], i) => (
+                <div
+                  key={label}
+                  className={`flex flex-col gap-2 ${i > 0 ? "md:pl-8 md:border-l border-[color:var(--navy)]/15" : ""}`}
+                >
+                  <p className="font-[var(--font-body)] font-bold tracking-tight leading-[0.9] text-6xl md:text-8xl text-[color:var(--navy)]">
+                    {n}
+                  </p>
+                  <p className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.22em] opacity-70">
+                    {label}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* OVERVIEW + STATS */}
         <section className="grid md:grid-cols-12 gap-10 md:gap-16 mb-16 md:mb-24">
@@ -105,18 +166,20 @@ function ProjectDetailPage() {
           </div>
 
           <aside className="md:col-span-5 space-y-8 md:pl-6 md:border-l border-[color:var(--navy)]/15">
-            <div className="grid grid-cols-3 gap-4">
-              {project.stats.map(([n, label]) => (
-                <div key={label}>
-                  <p className="font-[var(--font-body)] font-bold text-lg md:text-xl leading-tight">
-                    {n}
-                  </p>
-                  <p className="font-[var(--font-mono)] text-[9px] uppercase tracking-[0.18em] opacity-70 mt-1.5">
-                    {label}
-                  </p>
-                </div>
-              ))}
-            </div>
+            {!project.hideCover && (
+              <div className="grid grid-cols-3 gap-4">
+                {project.stats.map(([n, label]) => (
+                  <div key={label}>
+                    <p className="font-[var(--font-body)] font-bold text-lg md:text-xl leading-tight">
+                      {n}
+                    </p>
+                    <p className="font-[var(--font-mono)] text-[9px] uppercase tracking-[0.18em] opacity-70 mt-1.5">
+                      {label}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
 
             {project.links.length > 0 && (
               <div>
