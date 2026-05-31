@@ -35,15 +35,15 @@ function ProjectsPage() {
             <code className="mx-1">focalPoint</code> value into <code>src/lib/projects-data.ts</code>.
           </div>
         )}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch p-2 md:p-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch p-2 md:p-6 max-w-[820px] mx-auto">
           {/* Left column: Bowie on top, Paul + Pages row beneath */}
           <div className="flex flex-col gap-6 min-w-0">
             {projects.filter(p => p.tile === "bowie").map(p => (
               <div key={p.id} className="aspect-video w-full"><ProjectTile project={p} pickerOn={pickerOn} /></div>
             ))}
-            <div className="grid grid-cols-2 gap-6 items-stretch">
+            <div className="grid grid-cols-2 gap-6 items-end">
               {projects.filter(p => p.tile === "paul").map(p => (
-                <div key={p.id} className="aspect-square"><ProjectTile project={p} pickerOn={pickerOn} /></div>
+                <div key={p.id} className="aspect-video"><ProjectTile project={p} pickerOn={pickerOn} /></div>
               ))}
               {projects.filter(p => p.tile === "pages").map(p => (
                 <div key={p.id} className="aspect-square"><ProjectTile project={p} pickerOn={pickerOn} /></div>
@@ -51,7 +51,7 @@ function ProjectsPage() {
             </div>
           </div>
           {/* Right column: Viral video — 9:16 phone, bottom-aligned, shorter than full column */}
-          <div className="min-w-0 flex items-end justify-center md:justify-start">
+          <div className="min-w-0 flex items-end justify-center">
             {projects.filter(p => p.tile === "viral").map(p => (
               <div key={p.id} className="aspect-[9/16] h-[82%]"><ProjectTile project={p} pickerOn={pickerOn} /></div>
             ))}
