@@ -24,7 +24,7 @@ function ProjectsPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[color:var(--blue-soft)] text-[color:var(--navy)] font-[var(--font-body)]">
+    <div className="min-h-screen bg-[color:var(--navy-soft)] text-[color:var(--navy)] font-[var(--font-body)]">
       <TabNav accent="navy" />
 
       <main className="px-4 md:px-8 pt-4 md:pt-6 pb-12 max-w-[1400px] mx-auto">
