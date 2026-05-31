@@ -34,23 +34,23 @@ function ProjectsPage() {
             <code className="mx-1">focalPoint</code> value into <code>src/lib/projects-data.ts</code>.
           </div>
         )}
-        <div className="flex flex-col md:flex-row gap-3 md:gap-4 h-[calc(100vh-7rem)] min-h-[640px]">
+        <div className="flex flex-col md:flex-row gap-3 md:gap-4 items-stretch">
           {/* Left column: Bowie + Paul */}
           <div className="flex flex-col gap-3 md:gap-4 flex-1 md:flex-[1.6]">
             {projects.filter(p => p.tile === "bowie").map(p => (
-              <div key={p.id} className="flex-1 min-h-0"><ProjectTile project={p} pickerOn={pickerOn} /></div>
+              <div key={p.id} className="aspect-video w-full"><ProjectTile project={p} pickerOn={pickerOn} /></div>
             ))}
             {projects.filter(p => p.tile === "paul").map(p => (
-              <div key={p.id} className="flex-[1.3] min-h-0"><ProjectTile project={p} pickerOn={pickerOn} /></div>
+              <div key={p.id} className="flex-1 min-h-[260px]"><ProjectTile project={p} pickerOn={pickerOn} /></div>
             ))}
           </div>
           {/* Right column: Viral videos + Pages */}
           <div className="flex flex-col gap-3 md:gap-4 flex-1">
             {projects.filter(p => p.tile === "viral").map(p => (
-              <div key={p.id} className="flex-[2] min-h-0"><ProjectTile project={p} pickerOn={pickerOn} /></div>
+              <div key={p.id} className="aspect-[9/16] w-full"><ProjectTile project={p} pickerOn={pickerOn} /></div>
             ))}
             {projects.filter(p => p.tile === "pages").map(p => (
-              <div key={p.id} className="flex-1 min-h-0"><ProjectTile project={p} pickerOn={pickerOn} /></div>
+              <div key={p.id} className="flex-1 min-h-[200px]"><ProjectTile project={p} pickerOn={pickerOn} /></div>
             ))}
           </div>
         </div>
