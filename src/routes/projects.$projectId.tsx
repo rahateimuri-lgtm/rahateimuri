@@ -326,6 +326,22 @@ function AccountsSection({ accounts }: { accounts: NonNullable<Project["accounts
   const featured = builtBrands.slice(0, 3);
   const builtTotal = builtBrands.reduce((sum, b) => sum + b.total, 0);
 
+  // Group current accounts by brand so multi-platform brands collapse into one card.
+  const currentBrands = Array.from(
+    current.reduce((map, a) => {
+      const key = a.brand ?? a.name;
+      const entry = map.get(key) ?? {
+        brand: key,
+        logo: a.logo,
+        channels: [] as { platform: string; href: string }[],
+      };
+      if (!entry.logo && a.logo) entry.logo = a.logo;
+      entry.channels.push({ platform: a.platform, href: a.href });
+      map.set(key, entry);
+      return map;
+    }, new Map<string, { brand: string; logo?: string; channels: { platform: string; href: string }[] }>()).values()
+  );
+
   return (
     <section className="space-y-16 md:space-y-24 mb-16 md:mb-24">
       {/* NOW MANAGING */}
@@ -346,33 +362,48 @@ function AccountsSection({ accounts }: { accounts: NonNullable<Project["accounts
             </span>
           </div>
           <div className="grid sm:grid-cols-2 gap-4 md:gap-5">
-            {current.map((a) => (
-              <a
-                key={a.brand + a.platform}
-                href={a.href}
-                target="_blank"
-                rel="noreferrer"
-                className="group relative overflow-hidden border-2 border-[color:var(--navy)] bg-[color:var(--pink-soft)] p-6 md:p-7 flex flex-col gap-5 transition-transform hover:-translate-y-1 hover:-translate-x-1"
-                style={{
-                  boxShadow: "6px 6px 0 0 var(--navy)",
-                }}
+            {currentBrands.map((b) => (
+              <article
+                key={b.brand}
+                className="relative overflow-hidden border-2 border-[color:var(--navy)] bg-[color:var(--pink-soft)] p-6 md:p-7 flex flex-col gap-5"
+                style={{ boxShadow: "6px 6px 0 0 var(--navy)" }}
               >
-                <div className="flex items-center justify-between font-[var(--font-mono)] text-[10px] uppercase tracking-[0.22em]">
-                  <span className="px-2 py-1 bg-[color:var(--navy)] text-[color:var(--pink-soft)]">
-                    Now / Yousician
+                <div className="flex items-start justify-between gap-4">
+                  <span className="px-2 py-1 bg-[color:var(--navy)] text-[color:var(--pink-soft)] font-[var(--font-mono)] text-[10px] uppercase tracking-[0.22em]">
+                    Now @ Yousician
                   </span>
-                  <span style={{ color: platformColor(a.platform) }}>{a.platform}</span>
+                  {b.logo && (
+                    <img
+                      src={b.logo}
+                      alt={`${b.brand} logo`}
+                      className="h-14 w-14 md:h-16 md:w-16 object-contain shrink-0"
+                    />
+                  )}
                 </div>
                 <h3 className="font-[var(--font-body)] font-bold leading-[0.92] tracking-tight text-4xl md:text-5xl">
-                  {a.brand ?? a.name}
+                  {b.brand}
                 </h3>
                 <p className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.22em] opacity-70">
                   Social Media Lead · 2025 → Now
                 </p>
-                <span className="mt-auto font-[var(--font-mono)] text-[11px] uppercase tracking-[0.22em] opacity-70 group-hover:opacity-100">
-                  Visit page ↗
-                </span>
-              </a>
+                <div className="flex flex-wrap gap-1.5 mt-auto pt-2">
+                  {b.channels.map((c) => {
+                    const accent = platformColor(c.platform);
+                    return (
+                      <a
+                        key={c.platform + c.href}
+                        href={c.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.2em] px-2.5 py-1 border-2 hover:bg-[color:var(--navy)] hover:text-[color:var(--pink-soft)] hover:border-[color:var(--navy)] transition-colors"
+                        style={{ borderColor: accent, color: accent }}
+                      >
+                        {c.platform} ↗
+                      </a>
+                    );
+                  })}
+                </div>
+              </article>
             ))}
           </div>
         </div>
