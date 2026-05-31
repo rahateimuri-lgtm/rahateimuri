@@ -5,6 +5,7 @@ import caseCarpeDiem from "@/assets/case-carpediem.jpg";
 export type Project = {
   id: string;
   title: string;
+  shortTitle?: string;
   subtitle: string;
   year: string;
   role: string;
@@ -27,6 +28,7 @@ export const projects: Project[] = [
   {
     id: "bowie",
     title: "David Bowie / warner music chappell",
+    shortTitle: "David Bowie",
     subtitle: "× Yousician",
     year: "Nov 2025",
     role: "Art Direction · Brand Concept · Social Lead",
@@ -50,6 +52,7 @@ export const projects: Project[] = [
   {
     id: "mccartney",
     title: "Paul McCartney",
+    shortTitle: "Paul Maccartney",
     subtitle: "& Wings × Yousician",
     year: "Nov 2025",
     role: "Creative Direction · Social Lead · Partnership",
@@ -73,6 +76,7 @@ export const projects: Project[] = [
   {
     id: "viral-videos",
     title: "Viral Videos",
+    shortTitle: "viral videos",
     subtitle: "Carpe Diem Tours · 50M+ views",
     year: "2020 – 2025",
     role: "Concept · Direction · Edit",
@@ -96,6 +100,7 @@ export const projects: Project[] = [
   {
     id: "pages",
     title: "Pages Built",
+    shortTitle: "Social Pages",
     subtitle: "Multi-account growth",
     year: "2022 – 2025",
     role: "Social Lead · Team Manager",

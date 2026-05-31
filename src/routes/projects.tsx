@@ -34,23 +34,25 @@ function ProjectsPage() {
             <code className="mx-1">focalPoint</code> value into <code>src/lib/projects-data.ts</code>.
           </div>
         )}
-        <div className="flex flex-col md:flex-row gap-3 md:gap-4 items-stretch">
-          {/* Left column: Bowie + Paul */}
-          <div className="flex flex-col gap-3 md:gap-4 flex-1 md:flex-[1.6]">
+        <div className="flex flex-col md:flex-row gap-3 md:gap-4 items-start">
+          {/* Left column: Bowie on top, then Paul + Pages row */}
+          <div className="flex flex-col gap-3 md:gap-4 flex-1 md:flex-[2]">
             {projects.filter(p => p.tile === "bowie").map(p => (
               <div key={p.id} className="aspect-video w-full"><ProjectTile project={p} pickerOn={pickerOn} /></div>
             ))}
-            {projects.filter(p => p.tile === "paul").map(p => (
-              <div key={p.id} className="flex-1 min-h-[260px]"><ProjectTile project={p} pickerOn={pickerOn} /></div>
-            ))}
+            <div className="flex flex-row gap-3 md:gap-4 items-stretch">
+              {projects.filter(p => p.tile === "paul").map(p => (
+                <div key={p.id} className="flex-[1.5] aspect-[4/3]"><ProjectTile project={p} pickerOn={pickerOn} /></div>
+              ))}
+              {projects.filter(p => p.tile === "pages").map(p => (
+                <div key={p.id} className="flex-1 aspect-square"><ProjectTile project={p} pickerOn={pickerOn} /></div>
+              ))}
+            </div>
           </div>
-          {/* Right column: Viral videos + Pages */}
-          <div className="flex flex-col gap-3 md:gap-4 flex-1">
+          {/* Right column: Viral video, 9:16, narrow */}
+          <div className="flex flex-col gap-3 md:gap-4 w-full md:w-[220px] shrink-0">
             {projects.filter(p => p.tile === "viral").map(p => (
-              <div key={p.id} className="aspect-[9/16] w-full max-w-[180px] mx-auto"><ProjectTile project={p} pickerOn={pickerOn} /></div>
-            ))}
-            {projects.filter(p => p.tile === "pages").map(p => (
-              <div key={p.id} className="flex-1 min-h-[200px]"><ProjectTile project={p} pickerOn={pickerOn} /></div>
+              <div key={p.id} className="aspect-[9/16] w-full"><ProjectTile project={p} pickerOn={pickerOn} /></div>
             ))}
           </div>
         </div>
@@ -82,7 +84,7 @@ function ProjectTile({ project, pickerOn }: { project: Project; pickerOn: boolea
     >
       <div
         onClick={handlePick}
-        className="relative overflow-hidden flex-1 min-h-0"
+        className="relative overflow-hidden flex-1 min-h-0 border border-black/80"
         style={{ backgroundColor: project.bg }}
       >
         <img
@@ -104,24 +106,15 @@ function ProjectTile({ project, pickerOn }: { project: Project; pickerOn: boolea
           </>
         )}
       </div>
-      <div
-        className="gap-2 px-3 md:px-4 py-1.5 flex items-center justify-between font-sans text-white shrink-0"
-        style={{ backgroundColor: project.bg }}
-      >
-        <div className="min-w-0">
-          <p className="font-[var(--font-body)] font-semibold text-sm leading-tight truncate font-sans md:text-base">
-            {project.title}
-          </p>
-          <p className="opacity-85 text-[11px] md:text-xs italic truncate">
-            {project.subtitle}
-          </p>
-        </div>
-        <span
-          className="shrink-0 font-[var(--font-mono)] uppercase tracking-widest text-[9px] md:text-[10px] px-2 py-1 text-[color:var(--navy)]"
-          style={{ backgroundColor: project.tagBg }}
-        >
-          {project.tag}
-        </span>
+      <div className="gap-2 px-3 py-1.5 flex items-center justify-between bg-white border border-black/80 border-t-0 shrink-0">
+        <p className="font-[var(--font-mono)] text-[11px] md:text-xs text-black truncate">
+          {project.shortTitle ?? project.title}
+        </p>
+        {project.tile === "viral" && (
+          <span className="shrink-0 font-[var(--font-mono)] uppercase tracking-widest text-[9px] px-1.5 py-0.5 text-black border border-black/80">
+            {project.tag}
+          </span>
+        )}
       </div>
     </Link>
   );
