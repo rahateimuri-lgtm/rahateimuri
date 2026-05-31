@@ -24,17 +24,18 @@ function ProjectsPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background text-[color:var(--navy)] font-[var(--font-body)]">
+    <div className="min-h-screen bg-[color:var(--pink-soft)] text-[color:var(--navy)] font-[var(--font-body)]">
       <TabNav accent="navy" />
 
-      <main className="px-4 md:px-8 pt-4 md:pt-6 pb-24 max-w-[1400px] mx-auto">
+      <main className="px-4 md:px-8 pt-4 md:pt-6 pb-12 max-w-[1400px] mx-auto">
+       <div className="bg-white p-4 md:p-6">
         {pickerOn && (
           <div className="mb-3 text-xs font-mono bg-yellow-200 text-black px-3 py-2 rounded">
             Focal picker ON — click any tile to set its focal point. Copy the printed
             <code className="mx-1">focalPoint</code> value into <code>src/lib/projects-data.ts</code>.
           </div>
         )}
-        <div className="flex flex-col md:flex-row gap-3 md:gap-4 items-start">
+        <div className="flex flex-col md:flex-row gap-3 md:gap-4 items-stretch">
           {/* Left column: Bowie on top, then Paul + Pages row */}
           <div className="flex flex-col gap-3 md:gap-4 flex-1 md:flex-[2]">
             {projects.filter(p => p.tile === "bowie").map(p => (
@@ -49,13 +50,14 @@ function ProjectsPage() {
               ))}
             </div>
           </div>
-          {/* Right column: Viral video, 9:16, narrow */}
+          {/* Right column: Viral video — stretches to full height of left column */}
           <div className="flex flex-col gap-3 md:gap-4 w-full md:w-[220px] shrink-0">
             {projects.filter(p => p.tile === "viral").map(p => (
-              <div key={p.id} className="aspect-[9/16] w-full"><ProjectTile project={p} pickerOn={pickerOn} /></div>
+              <div key={p.id} className="w-full flex-1 flex"><ProjectTile project={p} pickerOn={pickerOn} /></div>
             ))}
           </div>
         </div>
+       </div>
       </main>
     </div>
   );
