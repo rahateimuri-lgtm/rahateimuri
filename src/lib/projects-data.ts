@@ -15,6 +15,10 @@ export type Project = {
   description: string;
   /** Optional long-form body, rendered as paragraphs */
   body?: string[];
+  /** Optional bullet highlights — concise, scannable */
+  bullets?: string[];
+  /** Optional embedded videos / reels */
+  videos?: { title: string; href: string; embed?: string; poster?: string }[];
   /** Optional gallery of supporting visuals */
   gallery?: { src: string; alt: string; caption?: string }[];
   stats: [string, string][];
@@ -41,21 +45,34 @@ export const projects: Project[] = [
     image: caseBowie,
     description:
       "Brand concept and art direction inside the creative team for a campaign with the David Bowie Estate and Warner Music. Social rollout co-published with @davidbowie and Warner Chappell — every post approved by the estate.",
-    body: [
-      "I was part of the creative team that shaped the voice and visual direction of the campaign — from the early concept work through to the final rollout.",
-      "I built the concept and moodboard on a dedicated Figma board that we used to align the team and present to partners. The direction was then approved by Warner Chappell Music before going into production.",
-      "Our launch posts were co-published with the official @davidbowie page and the Warner Music social pages. I led the creative direction of both posts — from concept through briefing the designer and the content creator — making sure every frame held the estate-approved tone.",
+    bullets: [
+      "Shaped the voice and visual direction inside the creative team — from first concept to final rollout.",
+      "Built the master concept on a dedicated Figma board to align the team and pitch the campaign.",
+      "Direction signed off by Warner Chappell Music before production.",
+      "Led creative direction of both launch posts end-to-end — concept, designer brief, and creator brief.",
+    ],
+    videos: [
+      {
+        title: "Reel — Bowie × Yousician",
+        href: "https://www.instagram.com/reel/DYCyUHgCamI/",
+        embed: "https://www.instagram.com/reel/DYCyUHgCamI/embed",
+      },
+      {
+        title: "Post — Warner collab",
+        href: "https://www.instagram.com/p/DXoj0xtiKZM/",
+        embed: "https://www.instagram.com/p/DXoj0xtiKZM/embed",
+      },
     ],
     gallery: [
       {
         src: bowieYousician,
-        alt: "Yousician × Bowie launch carousel — 'Only on Yousician', 'It's here', 'He reinvented music', 'The best way to understand Bowie? Play him.'",
-        caption: "Yousician launch carousel — co-published with @davidbowie",
+        alt: "Yousician × Bowie launch carousel",
+        caption: "Yousician launch carousel",
       },
       {
         src: bowieGuitarTuna,
-        alt: "GuitarTuna × Bowie carousel — 'Official Bowie tabs & chords, now live in GuitarTuna'",
-        caption: "GuitarTuna rollout — official Bowie tabs & chords",
+        alt: "GuitarTuna × Bowie carousel",
+        caption: "GuitarTuna rollout — tabs & chords",
       },
     ],
     stats: [
@@ -64,20 +81,12 @@ export const projects: Project[] = [
       ["Approval", "Estate-cleared"],
     ],
     links: [
-      { label: "@davidbowie", href: "https://instagram.com/davidbowie" },
-      { label: "@yousician", href: "https://instagram.com/yousician" },
-      {
-        label: "Reel — Bowie × Yousician",
-        href: "https://www.instagram.com/reel/DYCyUHgCamI/",
-      },
-      {
-        label: "Post — Warner collab",
-        href: "https://www.instagram.com/p/DXoj0xtiKZM/",
-      },
       {
         label: "Figma board",
         href: "https://www.figma.com/board/Yc95CFx25XDiJPDGFlDrsb/David-Bowie?node-id=0-1",
       },
+      { label: "@davidbowie", href: "https://instagram.com/davidbowie" },
+      { label: "@yousician", href: "https://instagram.com/yousician" },
     ],
     tile: "bowie",
     tag: "Campaign",
