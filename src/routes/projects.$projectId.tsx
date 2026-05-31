@@ -130,11 +130,8 @@ function ProjectDetailPage() {
                 <span>2022 → Now</span>
               </div>
               {/* The number */}
-              <div className="px-3 md:px-6 pt-2 pb-4 md:pb-6">
-                <p
-                  className="font-[var(--font-gt)] italic leading-[0.78] tracking-[-0.04em] text-[28vw] md:text-[22vw] lg:text-[18rem] text-[color:var(--pink-soft)]"
-                  style={{ WebkitTextStroke: "0" }}
-                >
+              <div className="px-5 md:px-8 pt-3 pb-5 md:pb-7">
+                <p className="font-[var(--font-gt)] italic leading-[0.82] tracking-[-0.03em] text-[13vw] md:text-[9vw] lg:text-[7rem] text-[color:var(--pink-soft)]">
                   {project.stats[0]?.[0] ?? "1M+"}
                 </p>
               </div>
