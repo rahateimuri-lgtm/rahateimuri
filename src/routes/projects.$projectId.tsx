@@ -276,50 +276,7 @@ function ProjectDetailPage() {
 
         {/* ACCOUNTS */}
         {project.accounts && project.accounts.length > 0 && (
-          <section className="mb-16 md:mb-24">
-            <div className="flex items-end justify-between mb-6">
-              <h2 className="font-[var(--font-body)] font-bold text-2xl md:text-3xl tracking-tight">
-                Accounts built & managed
-              </h2>
-              <span className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.2em] opacity-60">
-                {String(project.accounts.length).padStart(2, "0")} pages
-              </span>
-            </div>
-            <div className="border border-[color:var(--navy)]/15 overflow-hidden">
-              <div className="hidden md:grid grid-cols-[1.4fr_1fr_0.8fr_0.6fr] gap-4 px-5 py-3 bg-[color:var(--navy)]/[0.04] font-[var(--font-mono)] text-[10px] uppercase tracking-[0.2em] opacity-70">
-                <span>Account</span>
-                <span>Platform</span>
-                <span className="text-right md:text-left">Followers</span>
-                <span className="text-right">Link</span>
-              </div>
-              <ul>
-                {project.accounts.map((a, i) => (
-                  <li
-                    key={`${a.name}-${a.platform}-${i}`}
-                    className="grid grid-cols-[1fr_auto] md:grid-cols-[1.4fr_1fr_0.8fr_0.6fr] gap-x-4 gap-y-1 items-center px-5 py-3 border-t border-[color:var(--navy)]/10 hover:bg-[color:var(--navy)]/[0.03] transition-colors"
-                  >
-                    <span className="font-[var(--font-body)] font-semibold text-sm md:text-base truncate">
-                      {a.brand ?? a.name}
-                    </span>
-                    <span className="font-[var(--font-mono)] text-[11px] uppercase tracking-[0.18em] opacity-75 md:opacity-90 text-right md:text-left">
-                      {a.platform}
-                    </span>
-                    <span className="col-span-2 md:col-span-1 font-[var(--font-body)] tabular-nums text-sm opacity-80 md:text-left">
-                      {a.followers}
-                    </span>
-                    <a
-                      href={a.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="col-span-2 md:col-span-1 justify-self-start md:justify-self-end font-[var(--font-mono)] text-[10px] uppercase tracking-[0.2em] opacity-70 hover:opacity-100 underline-offset-4 hover:underline"
-                    >
-                      Visit ↗
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </section>
+          <AccountsSection accounts={project.accounts} />
         )}
 
         <div className="mt-12 pt-6 border-t border-[color:var(--navy)]/15 flex items-center justify-between">
