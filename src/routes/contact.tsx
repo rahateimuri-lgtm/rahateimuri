@@ -15,10 +15,11 @@ export const Route = createFileRoute("/contact")({
 
 function ContactPage() {
   return (
-    <div className="min-h-screen bg-background text-[color:var(--blue)] font-[var(--font-body)] flex flex-col">
+    <div className="min-h-screen bg-[color:var(--pink-soft)] text-[color:var(--blue)] font-[var(--font-body)] flex flex-col">
       <TabNav accent="blue" />
 
-      <main className="flex-1 px-6 md:px-12 pt-12 md:pt-20 pb-16 max-w-5xl mx-auto w-full grid md:grid-cols-2 gap-16 md:gap-12 items-center">
+      <main className="flex-1 px-4 md:px-8 pt-4 md:pt-6 pb-12 max-w-[1400px] mx-auto w-full">
+       <div className="bg-white px-6 md:px-12 pt-12 md:pt-20 pb-16 grid md:grid-cols-2 gap-16 md:gap-12 items-center">
         {/* Left — headline + email */}
         <div className="space-y-8">
           <h1 className="font-[var(--font-body)] italic font-normal tracking-tight leading-[1] text-4xl md:text-5xl">
@@ -56,6 +57,7 @@ function ContactPage() {
             </a>
           ))}
         </div>
+       </div>
       </main>
 
       {/* Footer ribbon */}
