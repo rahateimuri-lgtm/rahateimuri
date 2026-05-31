@@ -121,21 +121,44 @@ function ProjectDetailPage() {
 
         {/* HERO STAT SLAB — for stat-driven projects (e.g. Pages Built) */}
         {project.hideCover && (
-          <section className="mb-12 md:mb-16 border-y-2 border-[color:var(--navy)] py-8 md:py-12">
-            <div className="grid md:grid-cols-3 gap-8 md:gap-4">
-              {project.stats.map(([n, label], i) => (
-                <div
-                  key={label}
-                  className={`flex flex-col gap-2 ${i > 0 ? "md:pl-8 md:border-l border-[color:var(--navy)]/15" : ""}`}
+          <section className="mb-12 md:mb-16">
+            {/* Eye-catching hero moment: oversized headline stat */}
+            <div className="relative bg-[color:var(--navy)] text-[color:var(--pink-soft)] overflow-hidden">
+              {/* Big mono ticker across the top */}
+              <div className="flex items-center justify-between gap-4 px-5 md:px-8 pt-5 md:pt-6 font-[var(--font-mono)] text-[10px] uppercase tracking-[0.25em] opacity-70">
+                <span>Combined organic reach</span>
+                <span>2022 → Now</span>
+              </div>
+              {/* The number */}
+              <div className="px-3 md:px-6 pt-2 pb-4 md:pb-6">
+                <p
+                  className="font-[var(--font-gt)] italic leading-[0.78] tracking-[-0.04em] text-[28vw] md:text-[22vw] lg:text-[18rem] text-[color:var(--pink-soft)]"
+                  style={{ WebkitTextStroke: "0" }}
                 >
-                  <p className="font-[var(--font-body)] font-bold tracking-tight leading-[0.9] text-6xl md:text-8xl text-[color:var(--navy)]">
-                    {n}
-                  </p>
+                  {project.stats[0]?.[0] ?? "1M+"}
+                </p>
+              </div>
+              {/* Footer label + supporting stats */}
+              <div className="grid grid-cols-1 md:grid-cols-3 border-t border-[color:var(--pink-soft)]/20">
+                <div className="px-5 md:px-8 py-4 md:py-5 md:border-r border-[color:var(--pink-soft)]/20">
                   <p className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.22em] opacity-70">
-                    {label}
+                    {project.stats[0]?.[1] ?? "Followers"}
                   </p>
                 </div>
-              ))}
+                {project.stats.slice(1).map(([n, label]) => (
+                  <div
+                    key={label}
+                    className="px-5 md:px-8 py-4 md:py-5 md:border-r last:md:border-r-0 border-[color:var(--pink-soft)]/20 flex items-baseline gap-3"
+                  >
+                    <span className="font-[var(--font-body)] font-bold text-3xl md:text-4xl leading-none">
+                      {n}
+                    </span>
+                    <span className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.22em] opacity-70">
+                      {label}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
           </section>
         )}
