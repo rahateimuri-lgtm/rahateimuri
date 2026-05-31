@@ -108,12 +108,12 @@ function ProjectTile({ project, pickerOn }: { project: Project; pickerOn: boolea
           </>
         )}
       </div>
-      <div className="gap-2 px-3 py-1.5 bg-white border border-black/80 border-t-0 shrink-0 flex items-center justify-between">
+      <div className="gap-2 px-3 py-1.5 bg-white border border-black/80 border-t-0 shrink-0 flex items-center justify-center text-center relative">
         <p className="font-[var(--font-mono)] text-[11px] md:text-xs text-black truncate">
           {project.shortTitle ?? project.title}
         </p>
         {project.tile === "viral" && (
-          <span className="shrink-0 font-[var(--font-mono)] uppercase tracking-widest text-[9px] px-1.5 py-0.5 text-black border border-black/80">
+          <span className="absolute right-3 shrink-0 font-[var(--font-mono)] uppercase tracking-widest text-[9px] px-1.5 py-0.5 text-black border border-black/80">
             {project.tag}
           </span>
         )}
