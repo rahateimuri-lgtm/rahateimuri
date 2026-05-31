@@ -22,7 +22,15 @@ export type Project = {
   /** Optional gallery of supporting visuals */
   gallery?: { src: string; alt: string; caption?: string }[];
   /** Optional social-account table (platform, reach, link) */
-  accounts?: { name: string; platform: string; followers: string; href: string; brand?: string }[];
+  accounts?: {
+    name: string;
+    platform: string;
+    followers: string;
+    href: string;
+    brand?: string;
+    /** Group label — e.g. "current" for pages I'm running now, "built" for ones I built from scratch */
+    group?: "current" | "built";
+  }[];
   /** Hide the cover image on the detail page (for projects where the cover is just a placeholder) */
   hideCover?: boolean;
   stats: [string, string][];
