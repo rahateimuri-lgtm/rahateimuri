@@ -50,10 +50,10 @@ function ProjectsPage() {
               ))}
             </div>
           </div>
-          {/* Right column: Viral video — spans full height of left column */}
-          <div className="flex min-w-0">
+          {/* Right column: Viral video — 9:16 phone, top-aligned */}
+          <div className="min-w-0 flex justify-center md:justify-start">
             {projects.filter(p => p.tile === "viral").map(p => (
-              <div key={p.id} className="w-full flex"><ProjectTile project={p} pickerOn={pickerOn} /></div>
+              <div key={p.id} className="aspect-[9/16] h-full max-h-full"><ProjectTile project={p} pickerOn={pickerOn} /></div>
             ))}
           </div>
         </div>
