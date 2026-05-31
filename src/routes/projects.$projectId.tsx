@@ -36,7 +36,7 @@ function ProjectDetailPage() {
   const next = projects[(idx + 1) % projects.length];
 
   return (
-    <div className="min-h-screen bg-background text-[color:var(--navy)] font-[var(--font-body)]">
+    <div className="min-h-screen bg-[color:var(--navy-soft)] text-[color:var(--navy)] font-[var(--font-body)]">
       <TabNav accent="navy" />
 
       <main className="px-6 md:px-12 pb-24 max-w-5xl mx-auto">
