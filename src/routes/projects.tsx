@@ -35,25 +35,25 @@ function ProjectsPage() {
             <code className="mx-1">focalPoint</code> value into <code>src/lib/projects-data.ts</code>.
           </div>
         )}
-        <div className="flex flex-col md:flex-row gap-3 md:gap-4 items-stretch">
-          {/* Left column: Bowie on top, then Paul + Pages row */}
-          <div className="flex flex-col gap-3 md:gap-4 flex-1 md:flex-[2]">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch p-2 md:p-6">
+          {/* Left column: Bowie on top, Paul + Pages row beneath */}
+          <div className="flex flex-col gap-6 min-w-0">
             {projects.filter(p => p.tile === "bowie").map(p => (
               <div key={p.id} className="aspect-video w-full"><ProjectTile project={p} pickerOn={pickerOn} /></div>
             ))}
-            <div className="flex flex-row gap-3 md:gap-4 items-stretch">
+            <div className="grid grid-cols-2 gap-6 items-stretch">
               {projects.filter(p => p.tile === "paul").map(p => (
-                <div key={p.id} className="flex-[1.5] aspect-[4/3]"><ProjectTile project={p} pickerOn={pickerOn} /></div>
+                <div key={p.id} className="aspect-square"><ProjectTile project={p} pickerOn={pickerOn} /></div>
               ))}
               {projects.filter(p => p.tile === "pages").map(p => (
-                <div key={p.id} className="flex-1 aspect-square"><ProjectTile project={p} pickerOn={pickerOn} /></div>
+                <div key={p.id} className="aspect-square"><ProjectTile project={p} pickerOn={pickerOn} /></div>
               ))}
             </div>
           </div>
-          {/* Right column: Viral video — stretches to full height of left column */}
-          <div className="flex flex-col gap-3 md:gap-4 w-full md:w-[220px] shrink-0">
+          {/* Right column: Viral video — spans full height of left column */}
+          <div className="flex min-w-0">
             {projects.filter(p => p.tile === "viral").map(p => (
-              <div key={p.id} className="w-full flex-1 flex"><ProjectTile project={p} pickerOn={pickerOn} /></div>
+              <div key={p.id} className="w-full flex"><ProjectTile project={p} pickerOn={pickerOn} /></div>
             ))}
           </div>
         </div>
