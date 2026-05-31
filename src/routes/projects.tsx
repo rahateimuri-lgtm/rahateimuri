@@ -87,7 +87,7 @@ function ProjectTile({ project, pickerOn }: { project: Project; pickerOn: boolea
           loading="lazy"
           style={{ objectPosition: `${focal.x}% ${focal.y}%` }}
           className={`absolute inset-0 w-full h-full transition-transform duration-500 group-hover:scale-[1.03] ${
-            project.tile === "hero" ? "object-cover" : "object-cover mix-blend-multiply"
+            project.tile === "hero" ? "object-contain" : "object-cover mix-blend-multiply"
           }`}
         />
         {pickerOn && (
