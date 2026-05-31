@@ -35,7 +35,7 @@ function ProjectsPage() {
             <code className="mx-1">focalPoint</code> value into <code>src/lib/projects-data.ts</code>.
           </div>
         )}
-        <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 items-stretch p-2 md:p-6 max-w-[1200px] mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 items-stretch p-2 md:p-6 max-w-[960px] mx-auto">
           {/* Left column: Bowie on top, Paul + Pages row beneath */}
           <div className="flex flex-col gap-6 min-w-0">
             {projects.filter(p => p.tile === "bowie").map(p => (
