@@ -5,6 +5,7 @@ import caseCarpeDiem from "@/assets/case-carpediem.jpg";
 export type Project = {
   id: string;
   title: string;
+  shortTitle?: string;
   subtitle: string;
   year: string;
   role: string;
