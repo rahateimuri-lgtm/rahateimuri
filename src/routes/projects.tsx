@@ -34,26 +34,30 @@ function ProjectsPage() {
             <code className="mx-1">focalPoint</code> value into <code>src/lib/projects-data.ts</code>.
           </div>
         )}
-        <div className="grid grid-cols-2 md:grid-cols-6 auto-rows-[140px] md:auto-rows-[180px] gap-3 md:gap-4">
-          {projects.map((p) => (
-            <ProjectTile key={p.id} project={p} pickerOn={pickerOn} />
-          ))}
+        <div className="flex flex-col md:flex-row gap-3 md:gap-4 h-[calc(100vh-7rem)] min-h-[640px]">
+          {/* Left column: Bowie + Paul */}
+          <div className="flex flex-col gap-3 md:gap-4 flex-1 md:flex-[1.6]">
+            {projects.filter(p => p.tile === "bowie").map(p => (
+              <div key={p.id} className="flex-1 min-h-0"><ProjectTile project={p} pickerOn={pickerOn} /></div>
+            ))}
+            {projects.filter(p => p.tile === "paul").map(p => (
+              <div key={p.id} className="flex-[1.3] min-h-0"><ProjectTile project={p} pickerOn={pickerOn} /></div>
+            ))}
+          </div>
+          {/* Right column: Viral videos + Pages */}
+          <div className="flex flex-col gap-3 md:gap-4 flex-1">
+            {projects.filter(p => p.tile === "viral").map(p => (
+              <div key={p.id} className="flex-[2] min-h-0"><ProjectTile project={p} pickerOn={pickerOn} /></div>
+            ))}
+            {projects.filter(p => p.tile === "pages").map(p => (
+              <div key={p.id} className="flex-1 min-h-0"><ProjectTile project={p} pickerOn={pickerOn} /></div>
+            ))}
+          </div>
         </div>
       </main>
     </div>
   );
 }
-
-const tileClass: Record<Project["tile"], string> = {
-  // Bowie hero — full-width wide landscape (matches 1920x561 source ratio)
-  hero: "col-span-2 md:col-span-6",
-  // McCartney — wide
-  wide: "col-span-2 md:col-span-2 row-span-2 md:row-span-3",
-  // 9:16 reel
-  portrait: "col-span-1 md:col-span-2 row-span-2 md:row-span-3",
-  // square
-  square: "col-span-1 md:col-span-2 row-span-2 md:row-span-2",
-};
 
 function ProjectTile({ project, pickerOn }: { project: Project; pickerOn: boolean }) {
   const [focal, setFocal] = useState(project.focalPoint ?? { x: 50, y: 50 });
@@ -74,11 +78,11 @@ function ProjectTile({ project, pickerOn }: { project: Project; pickerOn: boolea
     <Link
       to="/projects/$projectId"
       params={{ projectId: project.id }}
-      className={`${tileClass[project.tile]} group relative flex flex-col overflow-hidden`}
+      className="group relative flex flex-col overflow-hidden h-full w-full"
     >
       <div
         onClick={handlePick}
-        className={`relative overflow-hidden ${project.tile === "hero" ? "aspect-[1200/630]" : "flex-1"}`}
+        className="relative overflow-hidden flex-1 min-h-0"
         style={{ backgroundColor: project.bg }}
       >
         <img
@@ -86,11 +90,7 @@ function ProjectTile({ project, pickerOn }: { project: Project; pickerOn: boolea
           alt={`${project.title} cover`}
           loading="lazy"
           style={{ objectPosition: `${focal.x}% ${focal.y}%` }}
-          className={`transition-transform duration-500 ${
-            project.tile === "hero"
-              ? "absolute inset-0 w-full h-full object-cover"
-              : "absolute inset-0 w-full h-full object-cover mix-blend-multiply group-hover:scale-[1.03]"
-          }`}
+          className="absolute inset-0 w-full h-full object-contain transition-transform duration-500 group-hover:scale-[1.03]"
         />
         {pickerOn && (
           <>
@@ -105,10 +105,8 @@ function ProjectTile({ project, pickerOn }: { project: Project; pickerOn: boolea
         )}
       </div>
       <div
-        className={`gap-2 px-3 md:px-4 py-1 md:py-1 flex items-center justify-between font-sans ${
-          project.tile === "hero" ? "text-black" : "text-white"
-        }`}
-        style={{ backgroundColor: project.tile === "hero" ? "#ffffff" : project.bg }}
+        className="gap-2 px-3 md:px-4 py-1.5 flex items-center justify-between font-sans text-white shrink-0"
+        style={{ backgroundColor: project.bg }}
       >
         <div className="min-w-0">
           <p className="font-[var(--font-body)] font-semibold text-sm leading-tight truncate font-sans md:text-base">
