@@ -46,7 +46,7 @@ function ProjectsPage() {
 
 const tileClass: Record<Project["tile"], string> = {
   // Bowie hero — full-width wide landscape (matches 1920x561 source ratio)
-  hero: "col-span-2 md:col-span-6 row-span-auto md:row-span-auto",
+  hero: "col-span-2 md:col-span-6",
   // McCartney — wide
   wide: "col-span-2 md:col-span-2 row-span-2 md:row-span-3",
   // 9:16 reel
@@ -78,7 +78,7 @@ function ProjectTile({ project, pickerOn }: { project: Project; pickerOn: boolea
     >
       <div
         onClick={handlePick}
-        className={`relative overflow-hidden ${project.tile === "hero" ? "aspect-[1920/561]" : "flex-1"}`}
+        className={`relative overflow-hidden ${project.tile === "hero" ? "" : "flex-1"}`}
         style={{ backgroundColor: project.bg }}
       >
         <img
@@ -86,8 +86,10 @@ function ProjectTile({ project, pickerOn }: { project: Project; pickerOn: boolea
           alt={`${project.title} cover`}
           loading="lazy"
           style={{ objectPosition: `${focal.x}% ${focal.y}%` }}
-          className={`absolute inset-0 w-full h-full transition-transform duration-500 group-hover:scale-[1.03] ${
-            project.tile === "hero" ? "object-contain" : "object-cover mix-blend-multiply"
+          className={`transition-transform duration-500 ${
+            project.tile === "hero"
+              ? "block w-full h-auto object-contain"
+              : "absolute inset-0 w-full h-full object-cover mix-blend-multiply group-hover:scale-[1.03]"
           }`}
         />
         {pickerOn && (
