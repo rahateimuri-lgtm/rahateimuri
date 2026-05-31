@@ -21,6 +21,8 @@ export type Project = {
   videos?: { title: string; href: string; embed?: string; poster?: string }[];
   /** Optional gallery of supporting visuals */
   gallery?: { src: string; alt: string; caption?: string }[];
+  /** Optional social-account table (platform, reach, link) */
+  accounts?: { name: string; platform: string; followers: string; href: string; brand?: string }[];
   stats: [string, string][];
   links: { label: string; href: string }[];
   /** Tile size on the mosaic grid */
