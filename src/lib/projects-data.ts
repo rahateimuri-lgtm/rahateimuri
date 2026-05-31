@@ -19,6 +19,8 @@ export type Project = {
   bg: string;
   /** Pill tag background color */
   tagBg: string;
+  /** Focal point for object-position (0-100). Defaults to center (50/50). */
+  focalPoint?: { x: number; y: number };
 };
 
 export const projects: Project[] = [
