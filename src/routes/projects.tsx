@@ -34,23 +34,25 @@ function ProjectsPage() {
             <code className="mx-1">focalPoint</code> value into <code>src/lib/projects-data.ts</code>.
           </div>
         )}
-        <div className="flex flex-col md:flex-row gap-3 md:gap-4 items-stretch">
-          {/* Left column: Bowie + Paul */}
-          <div className="flex flex-col gap-3 md:gap-4 flex-1 md:flex-[1.6]">
+        <div className="flex flex-col md:flex-row gap-3 md:gap-4 items-start">
+          {/* Left column: Bowie on top, then Paul + Pages row */}
+          <div className="flex flex-col gap-3 md:gap-4 flex-1 md:flex-[2]">
             {projects.filter(p => p.tile === "bowie").map(p => (
               <div key={p.id} className="aspect-video w-full"><ProjectTile project={p} pickerOn={pickerOn} /></div>
             ))}
-            {projects.filter(p => p.tile === "paul").map(p => (
-              <div key={p.id} className="flex-1 min-h-[260px]"><ProjectTile project={p} pickerOn={pickerOn} /></div>
-            ))}
+            <div className="flex flex-row gap-3 md:gap-4 items-stretch">
+              {projects.filter(p => p.tile === "paul").map(p => (
+                <div key={p.id} className="flex-[1.5] aspect-[4/3]"><ProjectTile project={p} pickerOn={pickerOn} /></div>
+              ))}
+              {projects.filter(p => p.tile === "pages").map(p => (
+                <div key={p.id} className="flex-1 aspect-square"><ProjectTile project={p} pickerOn={pickerOn} /></div>
+              ))}
+            </div>
           </div>
-          {/* Right column: Viral videos + Pages */}
-          <div className="flex flex-col gap-3 md:gap-4 flex-1">
+          {/* Right column: Viral video, 9:16, narrow */}
+          <div className="flex flex-col gap-3 md:gap-4 w-full md:w-[220px] shrink-0">
             {projects.filter(p => p.tile === "viral").map(p => (
-              <div key={p.id} className="aspect-[9/16] w-full max-w-[180px] mx-auto"><ProjectTile project={p} pickerOn={pickerOn} /></div>
-            ))}
-            {projects.filter(p => p.tile === "pages").map(p => (
-              <div key={p.id} className="flex-1 min-h-[200px]"><ProjectTile project={p} pickerOn={pickerOn} /></div>
+              <div key={p.id} className="aspect-[9/16] w-full"><ProjectTile project={p} pickerOn={pickerOn} /></div>
             ))}
           </div>
         </div>
