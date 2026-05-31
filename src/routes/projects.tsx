@@ -84,7 +84,7 @@ function ProjectTile({ project, pickerOn }: { project: Project; pickerOn: boolea
     >
       <div
         onClick={handlePick}
-        className="relative overflow-hidden flex-1 min-h-0"
+        className="relative overflow-hidden flex-1 min-h-0 border border-black/80"
         style={{ backgroundColor: project.bg }}
       >
         <img
@@ -108,7 +108,7 @@ function ProjectTile({ project, pickerOn }: { project: Project; pickerOn: boolea
       </div>
       <div className="gap-2 px-3 py-1.5 flex items-center justify-between bg-white border border-black/80 border-t-0 shrink-0">
         <p className="font-[var(--font-mono)] text-[11px] md:text-xs text-black truncate">
-          {project.title}
+          {project.shortTitle ?? project.title}
         </p>
         {project.tile === "viral" && (
           <span className="shrink-0 font-[var(--font-mono)] uppercase tracking-widest text-[9px] px-1.5 py-0.5 text-black border border-black/80">
