@@ -32,7 +32,7 @@ function ProjectsPage() {
 
 const tileClass: Record<Project["tile"], string> = {
   // Bowie hero — full-width wide landscape (matches 1920x561 source ratio)
-  hero: "col-span-2 md:col-span-6 row-span-2 md:row-span-2",
+  hero: "col-span-2 md:col-span-6 row-span-auto md:row-span-auto",
   // McCartney — wide
   wide: "col-span-2 md:col-span-2 row-span-2 md:row-span-3",
   // 9:16 reel
@@ -49,7 +49,7 @@ function ProjectTile({ project }: { project: Project }) {
       className={`${tileClass[project.tile]} group relative flex flex-col overflow-hidden`}
     >
       <div
-        className="relative flex-1 overflow-hidden"
+        className={`relative overflow-hidden ${project.tile === "hero" ? "aspect-[1920/561]" : "flex-1"}`}
         style={{ backgroundColor: project.bg }}
       >
         <img
