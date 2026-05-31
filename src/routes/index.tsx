@@ -16,9 +16,10 @@ export const Route = createFileRoute("/")({
 
 function MePage() {
   return (
-    <div className="min-h-screen bg-background text-[color:var(--pink)] font-[var(--font-body)]">
+    <div className="min-h-screen bg-[color:var(--pink-soft)] text-[color:var(--pink)] font-[var(--font-body)]">
       <TabNav accent="pink" />
-      <main className="px-6 md:px-12 pt-12 md:pt-20 pb-32 max-w-2xl mx-auto flex flex-col items-center text-center">
+      <main className="px-4 md:px-8 pt-4 md:pt-6 pb-12 max-w-[1400px] mx-auto">
+       <div className="bg-white px-6 md:px-12 pt-12 md:pt-20 pb-32 flex flex-col items-center text-center">
         {/* Oval portrait — refined scale */}
         <div
           className="relative w-44 h-56 md:w-56 md:h-72 overflow-hidden border border-[color:var(--pink)] mb-20 md:mb-24"
