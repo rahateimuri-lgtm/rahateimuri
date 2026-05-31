@@ -78,7 +78,7 @@ function ProjectTile({ project, pickerOn }: { project: Project; pickerOn: boolea
     >
       <div
         onClick={handlePick}
-        className={`relative overflow-hidden ${project.tile === "hero" ? "" : "flex-1"}`}
+        className={`relative overflow-hidden ${project.tile === "hero" ? "aspect-[1200/630]" : "flex-1"}`}
         style={{ backgroundColor: project.bg }}
       >
         <img
@@ -88,7 +88,7 @@ function ProjectTile({ project, pickerOn }: { project: Project; pickerOn: boolea
           style={{ objectPosition: `${focal.x}% ${focal.y}%` }}
           className={`transition-transform duration-500 ${
             project.tile === "hero"
-              ? "block w-full h-auto object-contain"
+              ? "absolute inset-0 w-full h-full object-cover"
               : "absolute inset-0 w-full h-full object-cover mix-blend-multiply group-hover:scale-[1.03]"
           }`}
         />
