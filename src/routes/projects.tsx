@@ -108,7 +108,7 @@ function ProjectTile({ project, pickerOn }: { project: Project; pickerOn: boolea
           </>
         )}
       </div>
-      <div className="gap-2 px-3 py-1.5 flex items-center justify-between bg-white border border-black/80 border-t-0 shrink-0">
+      <div className="gap-2 px-3 py-1.5 bg-white border border-black/80 border-t-0 shrink-0 flex items-center justify-between">
         <p className="font-[var(--font-mono)] text-[11px] md:text-xs text-black truncate">
           {project.shortTitle ?? project.title}
         </p>
