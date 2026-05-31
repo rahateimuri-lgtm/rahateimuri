@@ -15,7 +15,7 @@ export const Route = createFileRoute("/contact")({
 
 function ContactPage() {
   return (
-    <div className="min-h-screen bg-[color:var(--pink-soft)] text-[color:var(--blue)] font-[var(--font-body)] flex flex-col">
+    <div className="min-h-screen bg-[color:var(--blue-soft)] text-[color:var(--blue)] font-[var(--font-body)] flex flex-col">
       <TabNav accent="blue" />
 
       <main className="flex-1 px-4 md:px-8 pt-4 md:pt-6 pb-12 max-w-[1400px] mx-auto w-full">
