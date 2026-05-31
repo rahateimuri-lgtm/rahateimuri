@@ -57,12 +57,12 @@ function ProjectTile({ project }: { project: Project }) {
           alt={`${project.title} cover`}
           loading="lazy"
           className={`absolute inset-0 w-full h-full transition-transform duration-500 group-hover:scale-[1.03] ${
-            project.tile === "hero" ? "object-contain bg-slate-50" : "object-cover mix-blend-multiply"
+            project.tile === "hero" ? "object-contain bg-slate-50 border-0" : "object-cover mix-blend-multiply"
           }`}
         />
       </div>
       <div
-        className={`flex items-center justify-between gap-2 px-3 md:px-4 py-1 md:py-1 ${
+        className={`gap-2 px-3 md:px-4 py-1 md:py-1 flex items-center justify-between font-sans ${
           project.tile === "hero" ? "text-black" : "text-white"
         }`}
         style={{ backgroundColor: project.tile === "hero" ? "#ffffff" : project.bg }}
