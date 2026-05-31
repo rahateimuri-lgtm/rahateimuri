@@ -13,7 +13,7 @@ export type Project = {
   stats: [string, string][];
   links: { label: string; href: string }[];
   /** Tile size on the mosaic grid */
-  tile: "hero" | "wide" | "portrait" | "square";
+  tile: "bowie" | "paul" | "viral" | "pages";
   tag: string;
   /** Background color behind the cover image */
   bg: string;
@@ -42,7 +42,7 @@ export const projects: Project[] = [
       { label: "@davidbowie", href: "https://instagram.com/davidbowie" },
       { label: "@yousician", href: "https://instagram.com/yousician" },
     ],
-    tile: "hero",
+    tile: "bowie",
     tag: "Campaign",
     bg: "#000000",
     tagBg: "#00E676",
@@ -65,95 +65,51 @@ export const projects: Project[] = [
       { label: "@paulmccartney", href: "https://instagram.com/paulmccartney" },
       { label: "@yousician", href: "https://instagram.com/yousician" },
     ],
-    tile: "wide",
+    tile: "paul",
     tag: "Campaign",
     bg: "#1E1E1E",
     tagBg: "#FF6B3D",
   },
   {
-    id: "carpediem",
-    title: "Carpe Diem Tours",
-    subtitle: "0 → 1M+",
+    id: "viral-videos",
+    title: "Viral Videos",
+    subtitle: "Carpe Diem Tours · 50M+ views",
     year: "2020 – 2025",
-    role: "Social Lead · Team Manager · Systems Builder",
+    role: "Concept · Direction · Edit",
     image: caseCarpeDiem,
     description:
-      "Built and scaled a multi-account social presence from zero across Rome, Florence, London, Barcelona and Lisbon. Directed 500+ videos, led 4 social managers, designed the workflow stack on Monday & Miro.",
+      "Short-form series shot across Rome, Florence, London, Barcelona and Lisbon — concepted, directed and edited for TikTok and Instagram Reels.",
     stats: [
-      ["1M+", "Followers, organic"],
+      ["500+", "Videos shipped"],
       ["50M", "Cross-platform views"],
-      ["€80K", "Attributed bookings"],
+      ["9.2%", "Avg. engagement"],
     ],
     links: [
       { label: "@carpediemtours", href: "https://instagram.com/carpediemtours" },
       { label: "TikTok", href: "https://tiktok.com/@carpediemtours" },
     ],
-    tile: "portrait",
-    tag: "Growth",
-    bg: "#FF5A36",
-    tagBg: "#FFFFFF",
-  },
-  {
-    id: "reels-rome",
-    title: "Rome Reels",
-    subtitle: "Short-form series",
-    year: "2024",
-    role: "Concept · Direction · Edit",
-    image: caseCarpeDiem,
-    description:
-      "Vertical short-form series shot across Rome — concepted, directed and edited for TikTok and Instagram Reels. Drove the bulk of organic growth for the Rome account.",
-    stats: [
-      ["120+", "Reels shipped"],
-      ["18M", "Views"],
-      ["9.2%", "Avg. engagement"],
-    ],
-    links: [
-      { label: "TikTok", href: "https://tiktok.com/@carpediemtours" },
-    ],
-    tile: "portrait",
+    tile: "viral",
     tag: "Reels",
-    bg: "#C9B8FF",
-    tagBg: "#FFE9F1",
-  },
-  {
-    id: "tiktok-florence",
-    title: "Florence on TikTok",
-    subtitle: "Account from 0 → 220k",
-    year: "2023",
-    role: "Social Lead",
-    image: caseCarpeDiem,
-    description:
-      "Built the Florence TikTok account from a cold start to 220k followers in 11 months through a tight content cadence and a repeatable hook system.",
-    stats: [
-      ["220k", "Followers"],
-      ["11 mo", "0 → 220k"],
-      ["Daily", "Cadence"],
-    ],
-    links: [
-      { label: "TikTok", href: "https://tiktok.com/@carpediemtours" },
-    ],
-    tile: "portrait",
-    tag: "TikTok",
     bg: "#0F1B2E",
     tagBg: "#7DFFB0",
   },
   {
-    id: "systems",
-    title: "Workflow Stack",
-    subtitle: "Monday × Miro × Notion",
+    id: "pages",
+    title: "Pages Built",
+    subtitle: "Multi-account growth",
     year: "2022 – 2025",
-    role: "Systems Builder",
+    role: "Social Lead · Team Manager",
     image: caseMcCartney,
     description:
-      "Designed the operations stack that lets a small social team ship hundreds of videos a month without dropping the ball — pipelines on Monday, briefs on Miro, knowledge on Notion.",
+      "Built and scaled a multi-account social presence from zero across five cities. Led 4 social managers and designed the workflow stack on Monday & Miro.",
     stats: [
-      ["4", "Social managers"],
-      ["500+", "Videos / yr"],
-      ["1", "Source of truth"],
+      ["1M+", "Followers, organic"],
+      ["5", "City accounts"],
+      ["€80K", "Attributed bookings"],
     ],
     links: [],
-    tile: "square",
-    tag: "Ops",
+    tile: "pages",
+    tag: "Growth",
     bg: "#E8F0E4",
     tagBg: "#1E1E1E",
   },
