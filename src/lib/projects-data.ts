@@ -21,6 +21,8 @@ export type Project = {
   videos?: { title: string; href: string; embed?: string; poster?: string }[];
   /** Optional gallery of supporting visuals */
   gallery?: { src: string; alt: string; caption?: string }[];
+  /** Optional social-account table (platform, reach, link) */
+  accounts?: { name: string; platform: string; followers: string; href: string; brand?: string }[];
   stats: [string, string][];
   links: { label: string; href: string }[];
   /** Tile size on the mosaic grid */
@@ -127,10 +129,21 @@ export const projects: Project[] = [
     image: caseCarpeDiem,
     description:
       "Short-form series shot across Rome, Florence, London, Barcelona and Lisbon — concepted, directed and edited for TikTok and Instagram Reels.",
+    bullets: [
+      "Concepted, directed and edited short-form videos that consistently turned views into direct tour bookings.",
+      "Two standout TikToks alone drove €40K+ in attributable bookings within weeks of release.",
+      "Built a repeatable hook/payoff format adapted across Rome, Florence, London, Barcelona and Lisbon.",
+      "A single featured campaign crossed 50M views across TikTok and Instagram.",
+    ],
+    videos: [
+      { title: "TikTok · €17K booked · 2.5M views", href: "https://vm.tiktok.com/ZNdUxJ6bu/" },
+      { title: "TikTok · €23K booked · 3.1M views", href: "https://vm.tiktok.com/ZNdUx899b/" },
+      { title: "Featured campaign · 50M views", href: "https://vm.tiktok.com/ZNdU9wsjN/" },
+    ],
     stats: [
-      ["500+", "Videos shipped"],
       ["50M", "Cross-platform views"],
-      ["9.2%", "Avg. engagement"],
+      ["€40K+", "Direct bookings"],
+      ["3", "Featured virals"],
     ],
     links: [
       { label: "@carpediemtours", href: "https://instagram.com/carpediemtours" },
@@ -145,16 +158,37 @@ export const projects: Project[] = [
     id: "pages",
     title: "Pages Built",
     shortTitle: "Social Pages",
-    subtitle: "Multi-account growth",
+    subtitle: "Carpe Diem Tours · 2022 – 2025",
     year: "2022 – 2025",
     role: "Social Lead · Team Manager",
     image: caseMcCartney,
     description:
-      "Built and scaled a multi-account social presence from zero across five cities. Led 4 social managers and designed the workflow stack on Monday & Miro.",
+      "Social lead at Carpe Diem Tours (2022–2025). Built and scaled a multi-brand, multi-city social presence from the ground up — 13 accounts across Instagram, TikTok, YouTube and Facebook, all grown organically.",
+    bullets: [
+      "Owned content strategy, voice and growth across 5 brands and 4 cities.",
+      "Grew the flagship Rome Italy Travel account past 850K combined followers across IG, TikTok, YT and FB.",
+      "Led a team of 4 social managers; designed the workflow stack on Monday & Miro.",
+      "Every account below was built and scaled organically — no paid follower growth.",
+    ],
+    accounts: [
+      { name: "Rome Italy Travel", brand: "Rome Italy Travel", platform: "Instagram", followers: "311K", href: "https://www.instagram.com/romeitalytravel" },
+      { name: "Rome Italy Travel", brand: "Rome Italy Travel", platform: "TikTok", followers: "447K", href: "https://www.tiktok.com/@romeitalytravel" },
+      { name: "Rome Italy Travel", brand: "Rome Italy Travel", platform: "YouTube", followers: "88.2K", href: "https://www.youtube.com/@romeitalytravel" },
+      { name: "Rome Italy Travel", brand: "Rome Italy Travel", platform: "Facebook", followers: "88.1K", href: "https://www.facebook.com/groups/romeitalytravel/" },
+      { name: "Carpediem Tours", brand: "Carpediem Tours", platform: "Instagram", followers: "11.6K", href: "https://www.instagram.com/carpediemtourss/" },
+      { name: "Carpediem Tours", brand: "Carpediem Tours", platform: "TikTok", followers: "2.7K", href: "https://www.tiktok.com/@carpediemtours" },
+      { name: "Carpediem Tours", brand: "Carpediem Tours", platform: "YouTube", followers: "1.7K", href: "https://www.youtube.com/@Carpediemtours" },
+      { name: "Tipsy Tours", brand: "Tipsy Tours", platform: "Instagram", followers: "64.3K", href: "https://www.instagram.com/thetipsytour" },
+      { name: "Tipsy Tours", brand: "Tipsy Tours", platform: "TikTok", followers: "34.9K", href: "https://www.tiktok.com/@thetipsytour" },
+      { name: "Rome With Chef", brand: "Rome With Chef", platform: "Instagram", followers: "12.8K", href: "https://www.instagram.com/romewithchef" },
+      { name: "Rome With Chef", brand: "Rome With Chef", platform: "TikTok", followers: "4.2K", href: "https://www.tiktok.com/@rome.withchef" },
+      { name: "Barcelona Carpe Diem", brand: "Barcelona", platform: "Instagram", followers: "11.9K", href: "https://www.instagram.com/barcelonacarpediem/" },
+      { name: "London City Travels", brand: "London", platform: "Instagram", followers: "32.8K", href: "https://www.instagram.com/londoncitytravels/" },
+    ],
     stats: [
       ["1M+", "Followers, organic"],
-      ["5", "City accounts"],
-      ["€80K", "Attributed bookings"],
+      ["13", "Accounts built"],
+      ["4", "Social managers led"],
     ],
     links: [],
     tile: "pages",
