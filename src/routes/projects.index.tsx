@@ -3,7 +3,7 @@ import { useState, useEffect, type MouseEvent } from "react";
 import { TabNav } from "@/components/TabNav";
 import { projects, type Project } from "@/lib/projects-data";
 
-export const Route = createFileRoute("/projects")({
+export const Route = createFileRoute("/projects/")({
   head: () => ({
     meta: [
       { title: "Projects — Raha Teimuri" },
