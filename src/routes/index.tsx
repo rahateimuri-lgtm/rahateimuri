@@ -56,6 +56,7 @@ function MePage() {
             </span>
           ))}
         </div>
+       </div>
       </main>
     </div>
   );
