@@ -3,6 +3,7 @@ import caseMcCartney from "@/assets/case-mccartney.jpg";
 import caseCarpeDiem from "@/assets/case-carpediem.jpg";
 import bowieGuitarTuna from "@/assets/bowie-guitartuna-carousel.png";
 import bowieYousician from "@/assets/bowie-yousician-carousel.png";
+import yousicianLogo from "@/assets/yousician-logo.png";
 
 export type Project = {
   id: string;
@@ -28,6 +29,8 @@ export type Project = {
     followers: string;
     href: string;
     brand?: string;
+    /** Optional brand logo (used in the "Now managing" cards) */
+    logo?: string;
     /** Group label — e.g. "current" for pages I'm running now, "built" for ones I built from scratch */
     group?: "current" | "built";
   }[];
@@ -182,8 +185,11 @@ export const projects: Project[] = [
       "Every Carpe Diem account was scaled organically — no paid follower growth.",
     ],
     accounts: [
-      // Currently managing — Yousician
-      { group: "current", name: "Yousician", brand: "Yousician", platform: "Instagram", followers: "—", href: "https://www.instagram.com/yousician" },
+      // Currently managing — Yousician (multi-platform)
+      { group: "current", name: "Yousician", brand: "Yousician", logo: yousicianLogo, platform: "Instagram", followers: "—", href: "https://www.instagram.com/yousician/" },
+      { group: "current", name: "Yousician", brand: "Yousician", logo: yousicianLogo, platform: "TikTok", followers: "—", href: "https://www.tiktok.com/@yousician" },
+      { group: "current", name: "Yousician", brand: "Yousician", logo: yousicianLogo, platform: "YouTube", followers: "—", href: "https://www.youtube.com/c/yousician" },
+      // Currently managing — GuitarTuna
       { group: "current", name: "GuitarTuna", brand: "GuitarTuna", platform: "Instagram", followers: "—", href: "https://www.instagram.com/guitartuna" },
       // Built from scratch — Carpe Diem
       { group: "built", name: "Rome Italy Travel", brand: "Rome Italy Travel", platform: "Instagram", followers: "311K", href: "https://www.instagram.com/romeitalytravel" },
