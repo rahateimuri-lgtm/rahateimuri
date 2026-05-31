@@ -93,6 +93,7 @@
   --navy: oklch(0.18 0.03 260);               /* deep navy */
   --blue: oklch(0.62 0.18 250);               /* bright blue */
   --blue-soft: oklch(0.95 0.04 250);          /* soft blue bg */
+  --navy-soft: oklch(0.94 0.02 260);          /* soft navy bg */
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.21 0 0);
   --popover: oklch(1 0 0);
