@@ -618,11 +618,12 @@ function PagesDarkLayout({ next }: { next: Project }) {
                 bg={YOUSICIAN_GREEN}
                 title="Yousician"
                 role="Social Media Lead"
-                stat="Strategy · voice · rollout"
-                statLabel="Multi-platform"
+                stat="2.1M+ followers"
+                statLabel="Combined reach"
                 channels={[
                   { p: "Instagram", href: "https://www.instagram.com/yousician/" },
                   { p: "TikTok", href: "https://www.tiktok.com/@yousician" },
+                  { p: "YouTube", href: "https://www.youtube.com/@yousician" },
                 ]}
               />
               <ManageCard
@@ -630,8 +631,8 @@ function PagesDarkLayout({ next }: { next: Project }) {
                 bg={GUITARTUNA_LIME}
                 title="GuitarTuna"
                 role="Social Media Strategist"
-                stat="Content · growth strategy"
-                statLabel="Flagship channel"
+                stat="450K+ followers"
+                statLabel="Combined reach"
                 channels={[
                   { p: "Instagram", href: "https://www.instagram.com/guitartuna" },
                 ]}
@@ -850,21 +851,28 @@ function BuiltFromScratchHero() {
           </span>
           {/* Circular badge holding the number */}
           <div
-            className="aspect-square w-[78%] md:w-[88%] max-w-[360px] rounded-full grid place-items-center"
+            className="relative aspect-square w-[78%] md:w-[88%] max-w-[360px] rounded-full grid place-items-center"
             style={{
               background: "#ffffff",
               boxShadow: "inset 0 0 0 1px #1d1d1b10",
             }}
           >
             <p
-              className="font-[var(--font-display)] font-semibold leading-none tracking-[-0.04em] text-[18vw] md:text-[7.5vw] lg:text-[6.5rem]"
+              className="font-[var(--font-display)] font-black leading-none tracking-[-0.06em] text-[20vw] md:text-[8.5vw] lg:text-[7.25rem]"
               style={{ color: INK }}
             >
               1.1M<span style={{ color: MINT }}>+</span>
             </p>
+            {/* small follower caption inside circle */}
+            <span
+              className="absolute bottom-[14%] font-[var(--font-mono)] text-[10px] uppercase tracking-[0.32em]"
+              style={{ color: ACCENT }}
+            >
+              followers
+            </span>
           </div>
-          <p className="text-base md:text-lg leading-snug opacity-80 max-w-[36ch]">
-            One brand — <strong>Carpe Diem</strong> — across many cities, all organic.
+          <p className="text-base md:text-lg leading-snug opacity-85 max-w-[36ch]">
+            Proof I can take an unknown brand and turn it into the <strong>#1 community in its niche</strong> — no ads, no shortcuts.
           </p>
           <span
             className="text-[11px] uppercase tracking-[0.3em]"
