@@ -552,16 +552,14 @@ function PlatformIcon({ name, className }: { name: string; className?: string })
 
 function PagesDarkLayout({ next }: { next: Project }) {
   const CYAN = "#00d9ff";
-  const BG = "#1a1a1a";
 
   return (
-    <div
-      className="min-h-screen text-white font-[var(--font-body)]"
-      style={{ backgroundColor: BG }}
-    >
-      <TabNav accent="pink" />
+    <div className="min-h-screen bg-[color:var(--pink-soft)] text-[color:var(--navy)] font-[var(--font-body)]">
+      <TabNav accent="navy" />
 
-      <main className="mx-auto max-w-[1400px] px-6 md:px-10 py-10 md:py-14">
+      <main className="px-4 md:px-8 pt-4 md:pt-6 pb-12 max-w-[1400px] mx-auto">
+       <div className="bg-white px-6 md:px-10 pt-8 md:pt-12 pb-16 md:pb-20">
+        <div className="bg-[#1a1a1a] text-white px-6 md:px-10 py-10 md:py-14">
         <Link
           to="/projects"
           className="inline-block font-[var(--font-mono)] text-[10px] uppercase tracking-[0.25em] text-white/60 hover:text-white mb-10"
@@ -751,6 +749,8 @@ function PagesDarkLayout({ next }: { next: Project }) {
             {next.title} →
           </Link>
         </div>
+        </div>
+       </div>
       </main>
     </div>
   );
