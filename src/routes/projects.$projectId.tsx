@@ -951,3 +951,233 @@ function BuiltFromScratchHero() {
     </div>
   );
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Viral Videos — same minimal-chic system as PagesDarkLayout
+// ─────────────────────────────────────────────────────────────────────────────
+
+const VIRAL_STRENGTHS = [
+  "Created, managed and creatively directed every viral piece — hook to final cut.",
+  "Now brief freelancers, UGC creators, apps and AI tools to superscale output without losing the hook.",
+  "Sharp on keywords, sounds and trends — I read the market in real time and adapt direction fast.",
+  "Fluent with AI workflows (generation, editing, repurposing) to multiply volume while keeping the brand voice.",
+];
+
+function tiktokEmbed(url: string) {
+  const match = url.match(/\/([A-Za-z0-9]+)\/?$/);
+  const id = match?.[1];
+  return id ? `https://www.tiktok.com/embed/v2/${id}` : url;
+}
+
+function ViralVideosLayout({ project, next }: { project: Project; next: Project }) {
+  return (
+    <div
+      className="min-h-screen font-[var(--font-body)]"
+      style={{ backgroundColor: BONE, color: INK }}
+    >
+      <TabNav accent="navy" />
+
+      <main className="px-4 md:px-8 pt-4 md:pt-6 pb-12 max-w-[1400px] mx-auto">
+        <div className="bg-white rounded-3xl px-6 md:px-12 pt-10 md:pt-14 pb-16 md:pb-20">
+          <Link
+            to="/projects"
+            className="inline-block font-[var(--font-mono)] text-[10px] uppercase tracking-[0.25em] opacity-60 hover:opacity-100 mb-10"
+          >
+            ← All projects
+          </Link>
+
+          {/* PAGE HEADER */}
+          <header className="mb-14 md:mb-20 flex flex-col gap-3">
+            <span
+              className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.3em]"
+              style={{ color: ACCENT }}
+            >
+              Short-form Video · 2020 → 2025
+            </span>
+            <h1 className="font-[var(--font-body)] font-bold tracking-tight leading-[0.95] text-5xl md:text-7xl">
+              Viral videos, by design.
+            </h1>
+            <p className="opacity-60 text-sm md:text-base max-w-[60ch]">
+              {project.subtitle}
+            </p>
+          </header>
+
+          {/* ───── SECTION 1 — REACH + STRENGTHS ───── */}
+          <section className="mb-16 md:mb-24">
+            <SectionHead
+              kicker="01"
+              title="Viral Reach"
+              sub="One playbook · five cities · all organic"
+            />
+
+            <div
+              className="rounded-3xl overflow-hidden"
+              style={{ backgroundColor: SAND, color: INK }}
+            >
+              <div className="grid md:grid-cols-[1.15fr_1fr]">
+                {/* LEFT — number */}
+                <div
+                  className="p-8 md:p-12 flex flex-col justify-center items-center md:items-start gap-5 border-b md:border-b-0 md:border-r text-center md:text-left"
+                  style={{ borderColor: "#1d1d1b15" }}
+                >
+                  <span
+                    className="text-[11px] uppercase tracking-[0.32em]"
+                    style={{ color: ACCENT }}
+                  >
+                    Cross-platform reach
+                  </span>
+                  <div
+                    className="relative aspect-square w-[78%] md:w-[88%] max-w-[360px] rounded-full grid place-items-center"
+                    style={{ background: "#ffffff", boxShadow: "inset 0 0 0 1px #1d1d1b10" }}
+                  >
+                    <p
+                      className="font-[var(--font-display)] font-black leading-none tracking-[-0.06em] text-[20vw] md:text-[8.5vw] lg:text-[7.25rem]"
+                      style={{ color: INK }}
+                    >
+                      50M<span style={{ color: MINT }}>+</span>
+                    </p>
+                    <span
+                      className="absolute bottom-[14%] font-[var(--font-mono)] text-[10px] uppercase tracking-[0.32em]"
+                      style={{ color: ACCENT }}
+                    >
+                      reach
+                    </span>
+                  </div>
+                  <p className="text-base md:text-lg leading-snug opacity-85 max-w-[36ch]">
+                    Short-form that turned views into <strong>€40K+ in direct bookings</strong> — repeatable hook, repeatable payoff.
+                  </p>
+                  <span
+                    className="text-[11px] uppercase tracking-[0.3em]"
+                    style={{ color: ACCENT }}
+                  >
+                    2020 → 2025
+                  </span>
+                </div>
+
+                {/* RIGHT — what I do */}
+                <div className="p-8 md:p-12 flex flex-col gap-6">
+                  <span
+                    className="text-[11px] uppercase tracking-[0.32em]"
+                    style={{ color: ACCENT }}
+                  >
+                    What I do
+                  </span>
+                  <ul className="flex flex-col gap-3.5">
+                    {VIRAL_STRENGTHS.map((s, i) => (
+                      <li key={i} className="flex gap-3.5 items-start">
+                        <span
+                          aria-hidden
+                          className="mt-2 h-1.5 w-1.5 rounded-full shrink-0"
+                          style={{ backgroundColor: MINT }}
+                        />
+                        <span className="text-[15px] md:text-base leading-snug">{s}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* ───── SECTION 2 — WATCH THE WORK ───── */}
+          {project.videos && project.videos.length > 0 && (
+            <section className="mb-16 md:mb-24">
+              <SectionHead
+                kicker="02 / Watch The Work"
+                title="Watch the Work"
+                sub={`${String(project.videos.length).padStart(2, "0")} pieces · TikTok`}
+              />
+
+              <div className="grid md:grid-cols-3 gap-4 md:gap-5">
+                {project.videos.map((v, i) => (
+                  <article
+                    key={v.href}
+                    className="rounded-3xl p-5 md:p-6 flex flex-col gap-4 overflow-hidden"
+                    style={{ backgroundColor: SAND, color: INK }}
+                  >
+                    <div className="flex items-center justify-between font-[var(--font-mono)] text-[10px] uppercase tracking-[0.28em]" style={{ color: ACCENT }}>
+                      <span>0{i + 1} / Reel</span>
+                      <span>TikTok</span>
+                    </div>
+                    <div className="relative aspect-[9/14] rounded-2xl overflow-hidden bg-black">
+                      <iframe
+                        src={tiktokEmbed(v.href)}
+                        title={v.title}
+                        loading="lazy"
+                        allow="encrypted-media"
+                        scrolling="no"
+                        className="absolute inset-0 w-full h-full"
+                      />
+                    </div>
+                    <p className="font-[var(--font-body)] text-base md:text-lg leading-snug">
+                      {v.title}
+                    </p>
+                    <a
+                      href={v.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="mt-auto inline-flex items-center justify-between gap-2 rounded-full px-3.5 py-2 text-[12px] font-[var(--font-mono)] uppercase tracking-[0.2em] transition-colors hover:bg-[#1d1d1b] hover:text-white"
+                      style={{ backgroundColor: "#ffffff80", color: INK }}
+                    >
+                      Open on TikTok ↗
+                    </a>
+                  </article>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* ───── SECTION 3 — HOW I SCALE ───── */}
+          <section className="mb-12 md:mb-16">
+            <SectionHead
+              kicker="03 / How I Scale"
+              title="How I Scale Now"
+              sub="Creative direction · freelancers · UGC · AI"
+            />
+
+            <div className="grid md:grid-cols-3 gap-4 md:gap-5">
+              {[
+                "Brief and direct freelancers, editors and UGC creators across parallel campaigns.",
+                "Stack AI tools for generation, editing and repurposing — more output, same brand voice.",
+                "Read trends, sounds and keywords daily and adapt the creative direction in hours, not weeks.",
+              ].map((line, i) => (
+                <div
+                  key={i}
+                  className="rounded-2xl p-6 md:p-7 flex flex-col gap-4 min-h-[180px]"
+                  style={{ backgroundColor: SAND }}
+                >
+                  <span
+                    className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.3em] tabular-nums"
+                    style={{ color: ACCENT }}
+                  >
+                    0{i + 1}
+                  </span>
+                  <p className="font-[var(--font-body)] text-base md:text-lg leading-snug">
+                    {line}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* NEXT */}
+          <div
+            className="mt-12 pt-6 border-t flex items-center justify-between"
+            style={{ borderColor: "#1d1d1b20" }}
+          >
+            <span className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.28em] opacity-50">
+              Next
+            </span>
+            <Link
+              to="/projects/$projectId"
+              params={{ projectId: next.id }}
+              className="font-[var(--font-body)] italic text-lg md:text-xl hover:opacity-70"
+            >
+              {next.title} →
+            </Link>
+          </div>
+        </div>
+      </main>
+    </div>
+  );
+}
