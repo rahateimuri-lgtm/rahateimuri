@@ -788,13 +788,13 @@ function ManageCard({
 // Built-from-scratch hero — Carpe Diem umbrella, scannable strengths
 // ─────────────────────────────────────────────────────────────────────────────
 
-const SUB_BRANDS: { name: string; reach: string; channels: string; logo?: string; tint: string }[] = [
-  { name: "Rome Italy Travel", reach: "934K", channels: "IG · TT · YT · FB", logo: romeLogo.url, tint: "#1d1d1b" },
-  { name: "Tipsy Tours", reach: "99K", channels: "IG · TT", tint: "#E07A5F" },
-  { name: "London City Travels", reach: "33K", channels: "IG", tint: "#3D5A80" },
-  { name: "Rome With Chef", reach: "17K", channels: "IG · TT", tint: "#9B7E4A" },
-  { name: "Carpediem Tours", reach: "16K", channels: "IG · TT · YT", tint: "#5B8C5A" },
-  { name: "Barcelona Carpe Diem", reach: "12K", channels: "IG", tint: "#C44536" },
+const SUB_BRANDS: { name: string; reach: string; channels: string; logo?: string; tint: string; href: string }[] = [
+  { name: "Rome Italy Travel", reach: "934K", channels: "IG · TT · YT · FB", logo: romeLogo.url, tint: "#1d1d1b", href: "https://www.instagram.com/romeitalytravel/" },
+  { name: "Tipsy Tours", reach: "99K", channels: "IG · TT", tint: "#E07A5F", href: "https://www.instagram.com/tipsytours/" },
+  { name: "London City Travels", reach: "33K", channels: "IG", tint: "#3D5A80", href: "https://www.instagram.com/londoncitytravels/" },
+  { name: "Rome With Chef", reach: "17K", channels: "IG · TT", tint: "#9B7E4A", href: "https://www.instagram.com/romewithchef/" },
+  { name: "Carpediem Tours", reach: "16K", channels: "IG · TT · YT", tint: "#5B8C5A", href: "https://www.instagram.com/carpediemtours/" },
+  { name: "Barcelona Carpe Diem", reach: "12K", channels: "IG", tint: "#C44536", href: "https://www.instagram.com/barcelonacarpediem/" },
 ];
 
 const STRENGTHS = [
@@ -921,9 +921,13 @@ function BuiltFromScratchHero() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2.5">
           {SUB_BRANDS.map((b) => (
-            <div
+            <a
               key={b.name}
-              className="rounded-2xl px-3 py-2.5 flex items-center gap-3"
+              href={b.href}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`Open ${b.name}`}
+              className="rounded-2xl px-3 py-2.5 flex items-center gap-3 transition-transform hover:-translate-y-0.5 hover:shadow-sm"
               style={{ backgroundColor: "#ffffff" }}
             >
               <BrandAvatar name={b.name} logo={b.logo} tint={b.tint} />
@@ -936,7 +940,7 @@ function BuiltFromScratchHero() {
               <span className="font-medium tabular-nums text-sm shrink-0">
                 {b.reach}
               </span>
-            </div>
+            </a>
           ))}
         </div>
       </div>
