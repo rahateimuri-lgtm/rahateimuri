@@ -2,6 +2,9 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { TabNav } from "@/components/TabNav";
 import { getProject, projects, type Project } from "@/lib/projects-data";
 import { Instagram, Music2, Youtube, Facebook } from "lucide-react";
+import romeLogo from "@/assets/rome-italy-travel.png.asset.json";
+import guitarTunaLogo from "@/assets/guitartuna.png.asset.json";
+import yousicianLogoAsset from "@/assets/yousician.png.asset.json";
 
 // Platform color tokens — used for the accounts table & featured brand cards
 const PLATFORM_COLORS: Record<string, string> = {
@@ -592,7 +595,7 @@ function PagesDarkLayout({ next }: { next: Project }) {
             <SectionHead
               kicker="01 / Built from Scratch"
               title="Built from Scratch"
-              sub="Created from zero • Organic growth • 2022 — 2025"
+              sub="One brand · many cities · all organic · 2022 — 2025"
             />
 
             <a
@@ -602,67 +605,51 @@ function PagesDarkLayout({ next }: { next: Project }) {
               className="group block relative overflow-hidden rounded-3xl transition-transform hover:-translate-y-0.5"
               style={{ backgroundColor: INK, color: BONE }}
             >
-              <div className="grid md:grid-cols-[1.1fr_1fr]">
-                {/* LEFT — big number */}
-                <div
-                  className="p-8 md:p-12 flex flex-col justify-between gap-8 border-b md:border-b-0 md:border-r"
-                  style={{ borderColor: "#ffffff15" }}
-                >
-                  <span
-                    className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.3em] opacity-70"
-                  >
-                    Flagship · Rome Italy Travel
+              <div className="p-8 md:p-12 grid md:grid-cols-[1.3fr_1fr] gap-8 md:gap-10 items-center">
+                {/* LEFT — the headline number */}
+                <div className="flex flex-col gap-4">
+                  <span className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.3em] opacity-70">
+                    Carpe Diem · all cities combined
                   </span>
-                  <div>
-                    <p className="font-[var(--font-body)] font-bold leading-[0.85] tracking-[-0.04em] text-[22vw] md:text-[11vw] lg:text-[9.5rem]">
-                      934K
-                    </p>
-                    <p className="mt-3 font-[var(--font-mono)] text-[11px] uppercase tracking-[0.28em] opacity-70">
-                      Followers · Organic
-                    </p>
-                  </div>
+                  <p className="font-[var(--font-body)] font-bold leading-[0.82] tracking-[-0.05em] text-[26vw] md:text-[15vw] lg:text-[12rem]">
+                    1.1M+
+                  </p>
+                  <p className="font-[var(--font-body)] text-base md:text-lg leading-snug opacity-80 max-w-[34ch]">
+                    Followers grown organically across one brand, six sub-accounts, four cities — no paid follower growth.
+                  </p>
                 </div>
 
-                {/* RIGHT — meta */}
-                <div className="p-8 md:p-12 flex flex-col justify-between gap-6">
-                  <div>
-                    <h3 className="font-[var(--font-body)] font-bold text-3xl md:text-4xl tracking-tight">
-                      Rome Italy Travel
-                    </h3>
-                    <p className="mt-2 opacity-70 text-sm md:text-base leading-relaxed">
-                      Created from zero. Scaled organically across four platforms into the city's largest independent travel community.
-                    </p>
-                  </div>
-
-                  <div className="space-y-3">
-                    <p className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.28em] opacity-60">
-                      4 channels
-                    </p>
-                    <div className="grid grid-cols-2 gap-2.5">
-                      {[
-                        { p: "Instagram", n: "311K" },
-                        { p: "TikTok", n: "447K" },
-                        { p: "YouTube", n: "88.2K" },
-                        { p: "Facebook", n: "88.1K" },
-                      ].map((c) => (
-                        <div
-                          key={c.p}
-                          className="flex items-center gap-3 rounded-xl px-3.5 py-2.5"
-                          style={{ backgroundColor: "#ffffff10" }}
-                        >
-                          <PlatformIcon name={c.p} className="h-4 w-4 opacity-80" />
-                          <div className="flex flex-col leading-tight">
-                            <span className="font-[var(--font-mono)] text-[9px] uppercase tracking-[0.22em] opacity-60">
-                              {c.p}
-                            </span>
-                            <span className="font-[var(--font-body)] font-bold text-base tabular-nums">
-                              {c.n}
-                            </span>
-                          </div>
+                {/* RIGHT — sub-brand breakdown */}
+                <div className="flex flex-col gap-3">
+                  <p className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.28em] opacity-60">
+                    Sub-brands · 6 accounts
+                  </p>
+                  <ul className="flex flex-col divide-y" style={{ borderColor: "#ffffff15" }}>
+                    {[
+                      { name: "Rome Italy Travel", reach: "934K", channels: "IG · TT · YT · FB" },
+                      { name: "Tipsy Tours", reach: "99K", channels: "IG · TT" },
+                      { name: "London City Travels", reach: "33K", channels: "IG" },
+                      { name: "Rome With Chef", reach: "17K", channels: "IG · TT" },
+                      { name: "Carpediem Tours", reach: "16K", channels: "IG · TT · YT" },
+                      { name: "Barcelona Carpe Diem", reach: "12K", channels: "IG" },
+                    ].map((b) => (
+                      <li
+                        key={b.name}
+                        className="flex items-baseline justify-between gap-4 py-2.5 border-t first:border-t-0"
+                        style={{ borderColor: "#ffffff15" }}
+                      >
+                        <div className="flex flex-col leading-tight">
+                          <span className="text-sm md:text-base font-[var(--font-body)]">{b.name}</span>
+                          <span className="font-[var(--font-mono)] text-[9px] uppercase tracking-[0.22em] opacity-50 mt-0.5">
+                            {b.channels}
+                          </span>
                         </div>
-                      ))}
-                    </div>
-                  </div>
+                        <span className="font-[var(--font-body)] font-bold tabular-nums text-base md:text-lg">
+                          {b.reach}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </a>
@@ -678,6 +665,7 @@ function PagesDarkLayout({ next }: { next: Project }) {
 
             <div className="grid md:grid-cols-2 gap-5 md:gap-6">
               <ManageCard
+                logo={yousicianLogoAsset.url}
                 title="Yousician"
                 role="Social Media Lead"
                 stat="Strategy · voice · rollout"
@@ -685,10 +673,10 @@ function PagesDarkLayout({ next }: { next: Project }) {
                 channels={[
                   { p: "Instagram", href: "https://www.instagram.com/yousician/" },
                   { p: "TikTok", href: "https://www.tiktok.com/@yousician" },
-                  { p: "YouTube", href: "https://www.youtube.com/c/yousician" },
                 ]}
               />
               <ManageCard
+                logo={guitarTunaLogo.url}
                 title="GuitarTuna"
                 role="Social Media Strategist"
                 stat="Content · growth strategy"
@@ -773,12 +761,14 @@ function SectionHead({ kicker, title, sub }: { kicker: string; title: string; su
 }
 
 function ManageCard({
+  logo,
   title,
   role,
   stat,
   statLabel,
   channels,
 }: {
+  logo?: string;
   title: string;
   role: string;
   stat: string;
@@ -791,7 +781,15 @@ function ManageCard({
       style={{ backgroundColor: SAND, color: INK }}
     >
       <div className="flex items-start justify-between gap-4">
-        <div>
+        <div className="flex items-center gap-4">
+          {logo && (
+            <img
+              src={logo}
+              alt={`${title} logo`}
+              className="h-14 w-14 md:h-16 md:w-16 rounded-2xl object-cover shrink-0"
+            />
+          )}
+          <div>
           <h3 className="font-[var(--font-body)] font-bold text-3xl md:text-4xl tracking-tight">
             {title}
           </h3>
@@ -801,6 +799,7 @@ function ManageCard({
           >
             {role}
           </p>
+          </div>
         </div>
         <div className="flex gap-2">
           {channels.map((c) => (
