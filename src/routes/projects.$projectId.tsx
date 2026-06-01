@@ -596,7 +596,7 @@ function PagesDarkLayout({ next }: { next: Project }) {
           {/* ───── SECTION 1 — BUILT FROM SCRATCH ───── */}
           <section className="mb-16 md:mb-24">
             <SectionHead
-              kicker="01 / Built from Scratch"
+              kicker="01"
               title="Built from Scratch"
               sub="One brand · many cities · all organic · 2022 — 2025"
             />
@@ -798,8 +798,8 @@ const SUB_BRANDS: { name: string; reach: string; channels: string; logo?: string
 
 const STRENGTHS = [
   "Grew 1.1M+ followers across 6 accounts — 100% organic.",
+  "€40K+ direct tour bookings from short-form video alone.",
   "Turned a niche tour brand into the city's biggest travel community.",
-  "Built a repeatable hook/payoff format that consistently went viral.",
   "Led a team of 4 social managers across 4 cities.",
 ];
 
@@ -839,7 +839,7 @@ function BuiltFromScratchHero() {
       <div className="grid md:grid-cols-[1.15fr_1fr]">
         {/* LEFT — the number */}
         <div
-          className="p-8 md:p-12 flex flex-col justify-center gap-5 border-b md:border-b-0 md:border-r"
+          className="p-8 md:p-12 flex flex-col justify-center items-center md:items-start gap-5 border-b md:border-b-0 md:border-r text-center md:text-left"
           style={{ borderColor: "#1d1d1b15" }}
         >
           <span
@@ -848,33 +848,40 @@ function BuiltFromScratchHero() {
           >
             Combined organic reach
           </span>
-          <p
-            className="font-[var(--font-display)] font-semibold leading-[0.85] tracking-[-0.04em] text-[28vw] md:text-[14vw] lg:text-[11rem]"
-            style={{ color: INK }}
+          {/* Circular badge holding the number */}
+          <div
+            className="aspect-square w-[78%] md:w-[88%] max-w-[360px] rounded-full grid place-items-center"
+            style={{
+              background: "#ffffff",
+              boxShadow: "inset 0 0 0 1px #1d1d1b10",
+            }}
           >
-            1.1M<span style={{ color: MINT }}>+</span>
+            <p
+              className="font-[var(--font-display)] font-semibold leading-none tracking-[-0.04em] text-[18vw] md:text-[7.5vw] lg:text-[6.5rem]"
+              style={{ color: INK }}
+            >
+              1.1M<span style={{ color: MINT }}>+</span>
+            </p>
+          </div>
+          <p className="text-base md:text-lg leading-snug opacity-80 max-w-[36ch]">
+            One brand — <strong>Carpe Diem</strong> — across many cities, all organic.
           </p>
-          <p className="text-base md:text-lg leading-snug opacity-80 max-w-[40ch]">
-            Followers grown across <strong>one brand — Carpe Diem</strong> — six city accounts, four cities. Zero paid follows.
-          </p>
+          <span
+            className="text-[11px] uppercase tracking-[0.3em]"
+            style={{ color: ACCENT }}
+          >
+            2022 → 2025
+          </span>
         </div>
 
         {/* RIGHT — year + strengths */}
         <div className="p-8 md:p-12 flex flex-col gap-6">
-          <div className="flex items-center justify-between gap-4">
-            <span
-              className="text-[11px] uppercase tracking-[0.32em]"
-              style={{ color: ACCENT }}
-            >
-              What I did
-            </span>
-            <span
-              className="rounded-full px-3 py-1 text-[11px] uppercase tracking-[0.2em] font-medium"
-              style={{ backgroundColor: INK, color: BONE }}
-            >
-              2022 → 2025
-            </span>
-          </div>
+          <span
+            className="text-[11px] uppercase tracking-[0.32em]"
+            style={{ color: ACCENT }}
+          >
+            What I did
+          </span>
 
           <ul className="flex flex-col gap-3.5">
             {STRENGTHS.map((s, i) => (
@@ -894,7 +901,7 @@ function BuiltFromScratchHero() {
       {/* BOTTOM — sub-brand chip grid with round logos */}
       <div
         className="px-5 md:px-8 py-5 md:py-6 border-t"
-        style={{ borderColor: "#1d1d1b15", backgroundColor: "#ffffff90" }}
+        style={{ borderColor: "#1d1d1b15", backgroundColor: "#E4EBDB" }}
       >
         <div className="flex items-center justify-between mb-3.5">
           <p className="text-[11px] uppercase tracking-[0.28em] opacity-55">
@@ -909,7 +916,7 @@ function BuiltFromScratchHero() {
             <div
               key={b.name}
               className="rounded-2xl px-3 py-2.5 flex items-center gap-3"
-              style={{ backgroundColor: BONE }}
+              style={{ backgroundColor: "#ffffff" }}
             >
               <BrandAvatar name={b.name} logo={b.logo} tint={b.tint} />
               <div className="flex flex-col leading-tight min-w-0 flex-1">
