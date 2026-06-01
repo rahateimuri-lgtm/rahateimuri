@@ -618,11 +618,12 @@ function PagesDarkLayout({ next }: { next: Project }) {
                 bg={YOUSICIAN_GREEN}
                 title="Yousician"
                 role="Social Media Lead"
-                stat="Strategy · voice · rollout"
-                statLabel="Multi-platform"
+                stat="2.1M+ followers"
+                statLabel="Combined reach"
                 channels={[
                   { p: "Instagram", href: "https://www.instagram.com/yousician/" },
                   { p: "TikTok", href: "https://www.tiktok.com/@yousician" },
+                  { p: "YouTube", href: "https://www.youtube.com/@yousician" },
                 ]}
               />
               <ManageCard
@@ -630,8 +631,8 @@ function PagesDarkLayout({ next }: { next: Project }) {
                 bg={GUITARTUNA_LIME}
                 title="GuitarTuna"
                 role="Social Media Strategist"
-                stat="Content · growth strategy"
-                statLabel="Flagship channel"
+                stat="450K+ followers"
+                statLabel="Combined reach"
                 channels={[
                   { p: "Instagram", href: "https://www.instagram.com/guitartuna" },
                 ]}
