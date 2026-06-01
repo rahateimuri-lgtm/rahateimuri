@@ -550,7 +550,6 @@ function PlatformIcon({ name, className }: { name: string; className?: string })
   return <Icon className={className} strokeWidth={1.75} />;
 }
 
-function PagesDarkLayout({ next }: { next: Project }) {
 // Minimal-chic palette
 const INK = "#1d1d1b";           // body text / dark fill
 const BONE = "#ECE8E1";          // warm bone frame
