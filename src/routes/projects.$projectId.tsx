@@ -74,10 +74,11 @@ function ProjectDetailPage() {
   const next = projects[(idx + 1) % projects.length];
 
   return (
-    <div className="min-h-screen bg-background text-[color:var(--navy)] font-[var(--font-body)]">
+    <div className="min-h-screen bg-[color:var(--pink-soft)] text-[color:var(--navy)] font-[var(--font-body)]">
       <TabNav accent="navy" />
 
-      <main className="px-6 md:px-12 pb-24 max-w-6xl mx-auto">
+      <main className="px-4 md:px-8 pt-4 md:pt-6 pb-12 max-w-[1400px] mx-auto">
+       <div className="bg-white px-6 md:px-12 pt-10 md:pt-14 pb-20 md:pb-24">
         <Link
           to="/projects"
           className="inline-block font-[var(--font-mono)] text-[10px] uppercase tracking-widest opacity-70 hover:opacity-100 mb-8"
@@ -311,6 +312,7 @@ function ProjectDetailPage() {
             {next.title} →
           </Link>
         </div>
+       </div>
       </main>
     </div>
   );
