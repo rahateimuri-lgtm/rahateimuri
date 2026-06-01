@@ -2,7 +2,6 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { TabNav } from "@/components/TabNav";
 import { getProject, projects, type Project } from "@/lib/projects-data";
 import { Instagram, Music2, Youtube, Facebook } from "lucide-react";
-import romeLogo from "@/assets/rome-italy-travel.png.asset.json";
 import guitarTunaLogo from "@/assets/guitartuna.png.asset.json";
 import yousicianLogoAsset from "@/assets/yousician.png.asset.json";
 
