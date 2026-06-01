@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { TabNav } from "@/components/TabNav";
 import { getProject, projects, type Project } from "@/lib/projects-data";
+import { Instagram, Music2, Youtube, Facebook } from "lucide-react";
 
 // Platform color tokens — used for the accounts table & featured brand cards
 const PLATFORM_COLORS: Record<string, string> = {
@@ -72,6 +73,10 @@ function ProjectDetailPage() {
   const { project } = Route.useLoaderData() as { project: Project };
   const idx = projects.findIndex((p) => p.id === project.id);
   const next = projects[(idx + 1) % projects.length];
+
+  if (project.id === "pages") {
+    return <PagesDarkLayout next={next} />;
+  }
 
   return (
     <div className="min-h-screen bg-[color:var(--pink-soft)] text-[color:var(--navy)] font-[var(--font-body)]">
