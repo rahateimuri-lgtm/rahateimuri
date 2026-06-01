@@ -674,6 +674,7 @@ function PagesDarkLayout({ next }: { next: Project }) {
             <div className="grid md:grid-cols-2 gap-5 md:gap-6">
               <ManageCard
                 logo={yousicianLogoAsset.url}
+                bg={YOUSICIAN_GREEN}
                 title="Yousician"
                 role="Social Media Lead"
                 stat="Strategy · voice · rollout"
@@ -685,6 +686,7 @@ function PagesDarkLayout({ next }: { next: Project }) {
               />
               <ManageCard
                 logo={guitarTunaLogo.url}
+                bg={GUITARTUNA_LIME}
                 title="GuitarTuna"
                 role="Social Media Strategist"
                 stat="Content · growth strategy"
@@ -770,6 +772,7 @@ function SectionHead({ kicker, title, sub }: { kicker: string; title: string; su
 
 function ManageCard({
   logo,
+  bg,
   title,
   role,
   stat,
@@ -777,6 +780,7 @@ function ManageCard({
   channels,
 }: {
   logo?: string;
+  bg: string;
   title: string;
   role: string;
   stat: string;
@@ -785,57 +789,54 @@ function ManageCard({
 }) {
   return (
     <article
-      className="relative rounded-3xl p-7 md:p-9 flex flex-col gap-6 transition-transform hover:-translate-y-0.5"
-      style={{ backgroundColor: SAND, color: INK }}
+      className="relative rounded-3xl p-7 md:p-9 flex flex-col gap-7 transition-transform hover:-translate-y-0.5 overflow-hidden"
+      style={{ backgroundColor: bg, color: INK }}
     >
-      <div className="flex items-start justify-between gap-4">
-        <div className="flex items-center gap-4">
-          {logo && (
-            <img
-              src={logo}
-              alt={`${title} logo`}
-              className="h-14 w-14 md:h-16 md:w-16 rounded-2xl object-cover shrink-0"
-            />
-          )}
-          <div>
-          <h3 className="font-[var(--font-body)] font-bold text-3xl md:text-4xl tracking-tight">
+      {/* TOP — logo + title */}
+      <div className="flex items-center gap-4">
+        {logo && (
+          <img
+            src={logo}
+            alt={`${title} logo`}
+            className="h-16 w-16 md:h-20 md:w-20 rounded-2xl object-cover shrink-0 bg-white/40"
+          />
+        )}
+        <div className="min-w-0">
+          <h3 className="font-[var(--font-body)] font-semibold text-3xl md:text-4xl tracking-tight leading-none">
             {title}
           </h3>
-          <p
-            className="mt-1.5 font-[var(--font-mono)] text-[10px] uppercase tracking-[0.28em]"
-            style={{ color: ACCENT }}
-          >
+          <p className="mt-2 font-[var(--font-mono)] text-[10px] uppercase tracking-[0.28em] opacity-70">
             {role}
           </p>
-          </div>
-        </div>
-        <div className="flex gap-2">
-          {channels.map((c) => (
-            <a
-              key={c.p}
-              href={c.href}
-              target="_blank"
-              rel="noreferrer"
-              aria-label={`${title} on ${c.p}`}
-              className="h-10 w-10 grid place-items-center rounded-full transition-colors"
-              style={{ backgroundColor: SAND_DEEP, color: INK }}
-            >
-              <PlatformIcon name={c.p} className="h-4 w-4" />
-            </a>
-          ))}
         </div>
       </div>
 
-      <div
-        className="mt-auto pt-5 border-t"
-        style={{ borderColor: "#1d1d1b20" }}
-      >
+      {/* MIDDLE — what I do */}
+      <div>
         <p className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.28em] opacity-60">
           {statLabel}
         </p>
         <p className="mt-1.5 font-[var(--font-body)] text-lg md:text-xl">
           {stat}
         </p>
+      </div>
+
+      {/* BOTTOM — channels as filled pills inside the card */}
+      <div className="mt-auto flex flex-wrap gap-2 pt-5 border-t" style={{ borderColor: "#1d1d1b20" }}>
+        {channels.map((c) => (
+          <a
+            key={c.p}
+            href={c.href}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={`${title} on ${c.p}`}
+            className="inline-flex items-center gap-2 rounded-full px-3.5 py-2 text-[12px] font-[var(--font-mono)] uppercase tracking-[0.2em] transition-colors hover:bg-[#1d1d1b] hover:text-white"
+            style={{ backgroundColor: "#ffffff80", color: INK }}
+          >
+            <PlatformIcon name={c.p} className="h-3.5 w-3.5" />
+            {c.p}
+          </a>
+        ))}
       </div>
     </article>
   );
