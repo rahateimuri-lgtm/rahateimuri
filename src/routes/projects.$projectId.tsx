@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { TabNav } from "@/components/TabNav";
 import { getProject, projects, type Project } from "@/lib/projects-data";
 import { Instagram, Music2, Youtube, Facebook } from "lucide-react";
+import romeLogo from "@/assets/rome-italy-travel.png.asset.json";
 import guitarTunaLogo from "@/assets/guitartuna.png.asset.json";
 import yousicianLogoAsset from "@/assets/yousician.png.asset.json";
 
@@ -558,6 +559,9 @@ const BONE = "#ECE8E1";          // warm bone frame
 const SAND = "#E2DCD0";          // filled card surface
 const SAND_DEEP = "#D4CCBC";     // hover / inner chips
 const ACCENT = "#5B5648";        // muted olive-stone accent
+const MINT = "#2BD9A5";          // Rome Italy Travel mint accent
+const YOUSICIAN_GREEN = "#5BC68F";
+const GUITARTUNA_LIME = "#D7EA63";
 
 function PagesDarkLayout({ next }: { next: Project }) {
   return (
@@ -597,61 +601,66 @@ function PagesDarkLayout({ next }: { next: Project }) {
               sub="One brand · many cities · all organic · 2022 — 2025"
             />
 
-            <a
-              href="https://www.instagram.com/romeitalytravel"
-              target="_blank"
-              rel="noreferrer"
-              className="group block relative overflow-hidden rounded-3xl transition-transform hover:-translate-y-0.5"
-              style={{ backgroundColor: INK, color: BONE }}
-            >
-              <div className="p-8 md:p-12 grid md:grid-cols-[1.3fr_1fr] gap-8 md:gap-10 items-center">
-                {/* LEFT — the headline number */}
-                <div className="flex flex-col gap-4">
-                  <span className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.3em] opacity-70">
-                    Carpe Diem · all cities combined
+            <div className="rounded-3xl overflow-hidden" style={{ backgroundColor: SAND }}>
+              {/* TOP — the headline number */}
+              <div className="px-7 md:px-12 pt-8 md:pt-12 pb-6 md:pb-10 flex flex-col gap-5">
+                <div className="flex items-center gap-4">
+                  <img
+                    src={romeLogo.url}
+                    alt="Carpe Diem"
+                    className="h-12 w-12 md:h-14 md:w-14 rounded-2xl object-cover shrink-0"
+                  />
+                  <span className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.3em]" style={{ color: ACCENT }}>
+                    Carpe Diem · all cities, all platforms
                   </span>
-                  <p className="font-[var(--font-body)] font-bold leading-[0.82] tracking-[-0.05em] text-[26vw] md:text-[15vw] lg:text-[12rem]">
-                    1.1M+
-                  </p>
-                  <p className="font-[var(--font-body)] text-base md:text-lg leading-snug opacity-80 max-w-[34ch]">
-                    Followers grown organically across one brand, six sub-accounts, four cities — no paid follower growth.
-                  </p>
                 </div>
+                <p
+                  className="font-[var(--font-body)] font-bold leading-[0.82] tracking-[-0.05em] text-[24vw] md:text-[14vw] lg:text-[11rem]"
+                  style={{ color: INK }}
+                >
+                  1.1M<span style={{ color: MINT }}>+</span>
+                </p>
+                <p className="font-[var(--font-body)] text-base md:text-lg leading-snug opacity-80 max-w-[52ch]">
+                  Followers grown organically across <strong>one brand</strong>, six city accounts, four cities — no paid follower growth.
+                </p>
+              </div>
 
-                {/* RIGHT — sub-brand breakdown */}
-                <div className="flex flex-col gap-3">
-                  <p className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.28em] opacity-60">
-                    Sub-brands · 6 accounts
-                  </p>
-                  <ul className="flex flex-col divide-y" style={{ borderColor: "#ffffff15" }}>
-                    {[
-                      { name: "Rome Italy Travel", reach: "934K", channels: "IG · TT · YT · FB" },
-                      { name: "Tipsy Tours", reach: "99K", channels: "IG · TT" },
-                      { name: "London City Travels", reach: "33K", channels: "IG" },
-                      { name: "Rome With Chef", reach: "17K", channels: "IG · TT" },
-                      { name: "Carpediem Tours", reach: "16K", channels: "IG · TT · YT" },
-                      { name: "Barcelona Carpe Diem", reach: "12K", channels: "IG" },
-                    ].map((b) => (
-                      <li
-                        key={b.name}
-                        className="flex items-baseline justify-between gap-4 py-2.5 border-t first:border-t-0"
-                        style={{ borderColor: "#ffffff15" }}
-                      >
-                        <div className="flex flex-col leading-tight">
-                          <span className="text-sm md:text-base font-[var(--font-body)]">{b.name}</span>
-                          <span className="font-[var(--font-mono)] text-[9px] uppercase tracking-[0.22em] opacity-50 mt-0.5">
-                            {b.channels}
-                          </span>
-                        </div>
-                        <span className="font-[var(--font-body)] font-bold tabular-nums text-base md:text-lg">
-                          {b.reach}
+              {/* BOTTOM — sub-brand chip grid */}
+              <div
+                className="px-5 md:px-8 py-5 md:py-6 border-t"
+                style={{ borderColor: "#1d1d1b15", backgroundColor: "#ffffff80" }}
+              >
+                <p className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.28em] opacity-55 mb-3">
+                  6 sub-brands · contribution
+                </p>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-2.5">
+                  {[
+                    { name: "Rome Italy Travel", reach: "934K", channels: "IG · TT · YT · FB" },
+                    { name: "Tipsy Tours", reach: "99K", channels: "IG · TT" },
+                    { name: "London City Travels", reach: "33K", channels: "IG" },
+                    { name: "Rome With Chef", reach: "17K", channels: "IG · TT" },
+                    { name: "Carpediem Tours", reach: "16K", channels: "IG · TT · YT" },
+                    { name: "Barcelona Carpe Diem", reach: "12K", channels: "IG" },
+                  ].map((b) => (
+                    <div
+                      key={b.name}
+                      className="rounded-2xl px-3.5 py-3 flex items-center justify-between gap-3"
+                      style={{ backgroundColor: BONE }}
+                    >
+                      <div className="flex flex-col leading-tight min-w-0">
+                        <span className="text-[13px] md:text-sm truncate">{b.name}</span>
+                        <span className="font-[var(--font-mono)] text-[9px] uppercase tracking-[0.2em] opacity-50 mt-0.5">
+                          {b.channels}
                         </span>
-                      </li>
-                    ))}
-                  </ul>
+                      </div>
+                      <span className="font-[var(--font-body)] font-bold tabular-nums text-sm md:text-base shrink-0">
+                        {b.reach}
+                      </span>
+                    </div>
+                  ))}
                 </div>
               </div>
-            </a>
+            </div>
           </section>
 
           {/* ───── SECTION 2 — CURRENTLY MANAGING ───── */}
