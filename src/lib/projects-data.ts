@@ -141,22 +141,24 @@ export const projects: Project[] = [
     role: "Concept · Direction · Edit",
     image: caseCarpeDiem,
     description:
-      "Short-form series shot across Rome, Florence, London, Barcelona and Lisbon — concepted, directed and edited for TikTok and Instagram Reels.",
+      "Short-form series across Rome, Florence, London, Barcelona and Lisbon — created, managed and creatively directed end-to-end. Today I run the same playbook by briefing freelancers, UGC creators and AI tools to superscale output without losing the hook.",
     bullets: [
-      "Concepted, directed and edited short-form videos that consistently turned views into direct tour bookings.",
+      "Created, managed and creatively directed every viral piece — from first hook to final cut.",
+      "Now I brief and orchestrate freelancers, UGC creators, apps and AI tools to superscale content output.",
+      "Sharp on keywords, sounds and what's trending — I read the market in real time and adapt creative direction fast.",
+      "Fluent with AI workflows (generation, editing, repurposing) to multiply output without losing the brand voice.",
       "Two standout TikToks alone drove €40K+ in attributable bookings within weeks of release.",
-      "Built a repeatable hook/payoff format adapted across Rome, Florence, London, Barcelona and Lisbon.",
-      "A single featured campaign crossed 50M views across TikTok and Instagram.",
+      "A single featured campaign crossed 50M reach / 24.77M views across TikTok and Instagram.",
     ],
     videos: [
-      { title: "TikTok · €17K booked · 2.5M views", href: "https://vm.tiktok.com/ZNdUxJ6bu/" },
-      { title: "TikTok · €23K booked · 3.1M views", href: "https://vm.tiktok.com/ZNdUx899b/" },
-      { title: "Featured campaign · 50M views", href: "https://vm.tiktok.com/ZNdU9wsjN/" },
+      { title: "€17K booked · 2.5M views", href: "https://vm.tiktok.com/ZNdUxJ6bu/" },
+      { title: "€23K booked · 3.1M views", href: "https://vm.tiktok.com/ZNdUx899b/" },
+      { title: "Featured viral campaign · 50M+ reach · 24.77M views", href: "https://vm.tiktok.com/ZNdU9wsjN/" },
     ],
     stats: [
-      ["50M", "Cross-platform views"],
+      ["50M+", "Cross-platform reach"],
       ["€40K+", "Direct bookings"],
-      ["3", "Featured virals"],
+      ["24.77M", "Views on featured"],
     ],
     links: [
       { label: "@carpediemtours", href: "https://instagram.com/carpediemtours" },
@@ -166,6 +168,7 @@ export const projects: Project[] = [
     tag: "Reels",
     bg: "#0F1B2E",
     tagBg: "#7DFFB0",
+    hideCover: true,
   },
   {
     id: "pages",
