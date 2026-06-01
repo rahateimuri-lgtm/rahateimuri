@@ -731,17 +731,21 @@ function PagesDarkLayout({ next }: { next: Project }) {
 
 function SectionHead({ kicker, title, sub }: { kicker: string; title: string; sub: string }) {
   return (
-    <div className="mb-8 md:mb-10 flex flex-col gap-2">
+    <div className="mb-8 md:mb-10 flex flex-col gap-2 relative">
       <span
-        className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.3em]"
-        style={{ color: ACCENT }}
+        className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.3em] inline-flex items-center gap-2"
+        style={{ color: "#0a0a0a" }}
       >
+        <span className="inline-block h-1.5 w-6" style={{ background: MINT }} />
         {kicker}
       </span>
-      <h2 className="font-[var(--font-body)] font-bold text-3xl md:text-[42px] leading-[1.05] tracking-tight">
+      <h2
+        className="font-[var(--font-display)] font-black uppercase text-4xl md:text-[58px] leading-[0.9] tracking-[-0.02em]"
+        style={{ color: "#0a0a0a" }}
+      >
         {title}
       </h2>
-      <p className="opacity-60 text-sm md:text-base">{sub}</p>
+      <p className="opacity-70 text-sm md:text-base">{sub}</p>
     </div>
   );
 }
