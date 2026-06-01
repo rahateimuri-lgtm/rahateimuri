@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { TabNav } from "@/components/TabNav";
 import { getProject, projects, type Project } from "@/lib/projects-data";
+import { Instagram, Music2, Youtube, Facebook } from "lucide-react";
 
 // Platform color tokens — used for the accounts table & featured brand cards
 const PLATFORM_COLORS: Record<string, string> = {
@@ -72,6 +73,10 @@ function ProjectDetailPage() {
   const { project } = Route.useLoaderData() as { project: Project };
   const idx = projects.findIndex((p) => p.id === project.id);
   const next = projects[(idx + 1) % projects.length];
+
+  if (project.id === "pages") {
+    return <PagesDarkLayout next={next} />;
+  }
 
   return (
     <div className="min-h-screen bg-[color:var(--pink-soft)] text-[color:var(--navy)] font-[var(--font-body)]">
@@ -526,5 +531,315 @@ function AccountsSection({ accounts }: { accounts: NonNullable<Project["accounts
         </div>
       )}
     </section>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Dark editorial layout — only for the "pages" project (social management)
+// ─────────────────────────────────────────────────────────────────────────────
+
+const PLATFORM_ICONS: Record<string, typeof Instagram> = {
+  Instagram: Instagram,
+  TikTok: Music2,
+  YouTube: Youtube,
+  Facebook: Facebook,
+};
+
+function PlatformIcon({ name, className }: { name: string; className?: string }) {
+  const Icon = PLATFORM_ICONS[name] ?? Instagram;
+  return <Icon className={className} strokeWidth={1.75} />;
+}
+
+function PagesDarkLayout({ next }: { next: Project }) {
+  const CYAN = "#00d9ff";
+  const BG = "#1a1a1a";
+
+  return (
+    <div
+      className="min-h-screen text-white font-[var(--font-body)]"
+      style={{ backgroundColor: BG }}
+    >
+      <TabNav accent="pink" />
+
+      <main className="mx-auto max-w-[1400px] px-6 md:px-10 py-10 md:py-14">
+        <Link
+          to="/projects"
+          className="inline-block font-[var(--font-mono)] text-[10px] uppercase tracking-[0.25em] text-white/60 hover:text-white mb-10"
+        >
+          ← All projects
+        </Link>
+
+        {/* PAGE HEADER */}
+        <header className="mb-16 md:mb-20 flex flex-col gap-3">
+          <span
+            className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.3em]"
+            style={{ color: CYAN }}
+          >
+            Social Media Management · 2022 → Now
+          </span>
+          <h1 className="font-[var(--font-body)] font-bold tracking-tight leading-[0.95] text-5xl md:text-7xl">
+            Pages, built &amp; managed.
+          </h1>
+        </header>
+
+        {/* ───── SECTION 1 — BUILT FROM SCRATCH ───── */}
+        <section className="mb-20 md:mb-28">
+          <SectionHead
+            cyan={CYAN}
+            kicker="01 / Built from Scratch"
+            title="Built from Scratch"
+            sub="Created from zero • Organic growth • 2022 — 2025"
+          />
+
+          <a
+            href="https://www.instagram.com/romeitalytravel"
+            target="_blank"
+            rel="noreferrer"
+            className="group block relative overflow-hidden border-2 transition-colors"
+            style={{ borderColor: CYAN, backgroundColor: "#111" }}
+          >
+            <div className="grid md:grid-cols-2 md:aspect-[2/1]">
+              {/* LEFT — big number */}
+              <div className="p-8 md:p-12 flex flex-col justify-between border-b-2 md:border-b-0 md:border-r-2" style={{ borderColor: `${CYAN}40` }}>
+                <span
+                  className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.3em]"
+                  style={{ color: CYAN }}
+                >
+                  Flagship · Rome Italy Travel
+                </span>
+                <div>
+                  <p
+                    className="font-[var(--font-body)] font-bold leading-[0.85] tracking-[-0.04em] text-[22vw] md:text-[12vw] lg:text-[11rem]"
+                    style={{ color: CYAN }}
+                  >
+                    934K
+                  </p>
+                  <p className="mt-3 font-[var(--font-mono)] text-[11px] uppercase tracking-[0.28em] text-white/70">
+                    Followers · Organic
+                  </p>
+                </div>
+              </div>
+
+              {/* RIGHT — meta */}
+              <div className="p-8 md:p-12 flex flex-col justify-between gap-6">
+                <div>
+                  <h3 className="font-[var(--font-body)] font-bold text-3xl md:text-4xl tracking-tight">
+                    Rome Italy Travel
+                  </h3>
+                  <p className="mt-2 text-white/60 text-sm md:text-base">
+                    Created from zero. Scaled organically across four platforms into the city's largest independent travel community.
+                  </p>
+                </div>
+
+                <div className="space-y-4">
+                  <p className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.28em] text-white/50">
+                    4 channels
+                  </p>
+                  <div className="grid grid-cols-2 gap-3">
+                    {[
+                      { p: "Instagram", n: "311K" },
+                      { p: "TikTok", n: "447K" },
+                      { p: "YouTube", n: "88.2K" },
+                      { p: "Facebook", n: "88.1K" },
+                    ].map((c) => (
+                      <div
+                        key={c.p}
+                        className="flex items-center gap-3 border px-3 py-2.5"
+                        style={{ borderColor: `${CYAN}50` }}
+                      >
+                        <PlatformIcon name={c.p} className="h-4 w-4" />
+                        <div className="flex flex-col leading-tight">
+                          <span className="font-[var(--font-mono)] text-[9px] uppercase tracking-[0.22em] text-white/55">
+                            {c.p}
+                          </span>
+                          <span className="font-[var(--font-body)] font-bold text-base tabular-nums">
+                            {c.n}
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </section>
+
+        {/* ───── SECTION 2 — CURRENTLY MANAGING ───── */}
+        <section className="mb-20 md:mb-28">
+          <SectionHead
+            cyan={CYAN}
+            kicker="02 / Currently Managing"
+            title="Currently Managing"
+            sub="Live · 2025 → Now"
+          />
+
+          <div className="grid md:grid-cols-2 gap-5 md:gap-6">
+            <ManageCard
+              cyan={CYAN}
+              title="Yousician"
+              role="Social Media Lead"
+              stat="Strategy · voice · rollout"
+              statLabel="Multi-platform"
+              channels={[
+                { p: "Instagram", href: "https://www.instagram.com/yousician/" },
+                { p: "TikTok", href: "https://www.tiktok.com/@yousician" },
+                { p: "YouTube", href: "https://www.youtube.com/c/yousician" },
+              ]}
+            />
+            <ManageCard
+              cyan={CYAN}
+              title="GuitarTuna"
+              role="Social Media Strategist"
+              stat="Content · growth strategy"
+              statLabel="Flagship channel"
+              channels={[
+                { p: "Instagram", href: "https://www.instagram.com/guitartuna" },
+              ]}
+            />
+          </div>
+        </section>
+
+        {/* ───── SECTION 3 — HOW I SCALE ───── */}
+        <section className="mb-20 md:mb-28">
+          <SectionHead
+            cyan={CYAN}
+            kicker="03 / How I Scale"
+            title="How I Scale"
+            sub="Building partnerships that grow"
+          />
+
+          <ol className="border-t" style={{ borderColor: `${CYAN}30` }}>
+            {[
+              "Built a system connecting brands with 50+ vetted influencers.",
+              "Manage freelancer workflows across multiple parallel campaigns.",
+              "Scaled account growth through strategic partnerships, not paid follows.",
+            ].map((line, i) => (
+              <li
+                key={i}
+                className="grid grid-cols-[auto_1fr] gap-6 md:gap-10 py-6 md:py-8 border-b items-baseline"
+                style={{ borderColor: `${CYAN}30` }}
+              >
+                <span
+                  className="font-[var(--font-mono)] text-xs md:text-sm uppercase tracking-[0.28em] tabular-nums"
+                  style={{ color: CYAN }}
+                >
+                  0{i + 1}
+                </span>
+                <p className="font-[var(--font-body)] text-xl md:text-2xl leading-snug text-white/90 max-w-[60ch]">
+                  {line}
+                </p>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        {/* NEXT */}
+        <div
+          className="mt-16 pt-6 border-t flex items-center justify-between"
+          style={{ borderColor: `${CYAN}40` }}
+        >
+          <span className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.28em] text-white/50">
+            Next
+          </span>
+          <Link
+            to="/projects/$projectId"
+            params={{ projectId: next.id }}
+            className="font-[var(--font-body)] italic text-lg md:text-xl hover:opacity-70"
+            style={{ color: CYAN }}
+          >
+            {next.title} →
+          </Link>
+        </div>
+      </main>
+    </div>
+  );
+}
+
+function SectionHead({
+  cyan,
+  kicker,
+  title,
+  sub,
+}: {
+  cyan: string;
+  kicker: string;
+  title: string;
+  sub: string;
+}) {
+  return (
+    <div className="mb-8 md:mb-10 flex flex-col gap-2">
+      <span
+        className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.3em]"
+        style={{ color: cyan }}
+      >
+        {kicker}
+      </span>
+      <h2 className="font-[var(--font-body)] font-bold text-3xl md:text-[44px] leading-[1.05] tracking-tight">
+        {title}
+      </h2>
+      <p className="text-white/60 text-sm md:text-base">{sub}</p>
+    </div>
+  );
+}
+
+function ManageCard({
+  cyan,
+  title,
+  role,
+  stat,
+  statLabel,
+  channels,
+}: {
+  cyan: string;
+  title: string;
+  role: string;
+  stat: string;
+  statLabel: string;
+  channels: { p: string; href: string }[];
+}) {
+  return (
+    <article
+      className="relative border-2 p-7 md:p-9 flex flex-col gap-6"
+      style={{ borderColor: cyan, backgroundColor: "#111" }}
+    >
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <h3 className="font-[var(--font-body)] font-bold text-3xl md:text-4xl tracking-tight">
+            {title}
+          </h3>
+          <p
+            className="mt-1.5 font-[var(--font-mono)] text-[10px] uppercase tracking-[0.28em]"
+            style={{ color: cyan }}
+          >
+            {role}
+          </p>
+        </div>
+        <div className="flex gap-2">
+          {channels.map((c) => (
+            <a
+              key={c.p}
+              href={c.href}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`${title} on ${c.p}`}
+              className="h-9 w-9 grid place-items-center border hover:bg-white hover:text-black transition-colors"
+              style={{ borderColor: `${cyan}80`, color: cyan }}
+            >
+              <PlatformIcon name={c.p} className="h-4 w-4" />
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-auto pt-6 border-t" style={{ borderColor: `${cyan}30` }}>
+        <p className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.28em] text-white/50">
+          {statLabel}
+        </p>
+        <p className="mt-1.5 font-[var(--font-body)] text-lg md:text-xl text-white/90">
+          {stat}
+        </p>
+      </div>
+    </article>
   );
 }
