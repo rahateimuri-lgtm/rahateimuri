@@ -782,3 +782,149 @@ function ManageCard({
     </article>
   );
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Built-from-scratch hero — Carpe Diem umbrella, scannable strengths
+// ─────────────────────────────────────────────────────────────────────────────
+
+const SUB_BRANDS: { name: string; reach: string; channels: string; logo?: string; tint: string }[] = [
+  { name: "Rome Italy Travel", reach: "934K", channels: "IG · TT · YT · FB", logo: romeLogo.url, tint: "#1d1d1b" },
+  { name: "Tipsy Tours", reach: "99K", channels: "IG · TT", tint: "#E07A5F" },
+  { name: "London City Travels", reach: "33K", channels: "IG", tint: "#3D5A80" },
+  { name: "Rome With Chef", reach: "17K", channels: "IG · TT", tint: "#9B7E4A" },
+  { name: "Carpediem Tours", reach: "16K", channels: "IG · TT · YT", tint: "#5B8C5A" },
+  { name: "Barcelona Carpe Diem", reach: "12K", channels: "IG", tint: "#C44536" },
+];
+
+const STRENGTHS = [
+  "Grew 1.1M+ followers across 6 accounts — 100% organic.",
+  "Turned a niche tour brand into the city's biggest travel community.",
+  "Built a repeatable hook/payoff format that consistently went viral.",
+  "Led a team of 4 social managers across 4 cities.",
+];
+
+function BrandAvatar({ name, logo, tint }: { name: string; logo?: string; tint: string }) {
+  const initial = name
+    .split(" ")
+    .map((w) => w[0])
+    .slice(0, 2)
+    .join("");
+  if (logo) {
+    return (
+      <img
+        src={logo}
+        alt={`${name} logo`}
+        className="h-10 w-10 rounded-full object-cover shrink-0 ring-2 ring-white"
+      />
+    );
+  }
+  return (
+    <div
+      aria-label={`${name} placeholder logo`}
+      className="h-10 w-10 rounded-full shrink-0 grid place-items-center text-white text-[11px] font-[var(--font-mono)] tracking-wider ring-2 ring-white"
+      style={{ backgroundColor: tint }}
+    >
+      {initial}
+    </div>
+  );
+}
+
+function BuiltFromScratchHero() {
+  return (
+    <div
+      className="rounded-3xl overflow-hidden"
+      style={{ backgroundColor: SAND, color: INK }}
+    >
+      {/* TOP — the headline split: big number ↔ strengths */}
+      <div className="grid md:grid-cols-[1.15fr_1fr]">
+        {/* LEFT — the number */}
+        <div
+          className="p-8 md:p-12 flex flex-col justify-center gap-5 border-b md:border-b-0 md:border-r"
+          style={{ borderColor: "#1d1d1b15" }}
+        >
+          <span
+            className="text-[11px] uppercase tracking-[0.32em]"
+            style={{ color: ACCENT }}
+          >
+            Combined organic reach
+          </span>
+          <p
+            className="font-[var(--font-display)] font-semibold leading-[0.85] tracking-[-0.04em] text-[28vw] md:text-[14vw] lg:text-[11rem]"
+            style={{ color: INK }}
+          >
+            1.1M<span style={{ color: MINT }}>+</span>
+          </p>
+          <p className="text-base md:text-lg leading-snug opacity-80 max-w-[40ch]">
+            Followers grown across <strong>one brand — Carpe Diem</strong> — six city accounts, four cities. Zero paid follows.
+          </p>
+        </div>
+
+        {/* RIGHT — year + strengths */}
+        <div className="p-8 md:p-12 flex flex-col gap-6">
+          <div className="flex items-center justify-between gap-4">
+            <span
+              className="text-[11px] uppercase tracking-[0.32em]"
+              style={{ color: ACCENT }}
+            >
+              What I did
+            </span>
+            <span
+              className="rounded-full px-3 py-1 text-[11px] uppercase tracking-[0.2em] font-medium"
+              style={{ backgroundColor: INK, color: BONE }}
+            >
+              2022 → 2025
+            </span>
+          </div>
+
+          <ul className="flex flex-col gap-3.5">
+            {STRENGTHS.map((s, i) => (
+              <li key={i} className="flex gap-3.5 items-start">
+                <span
+                  aria-hidden
+                  className="mt-2 h-1.5 w-1.5 rounded-full shrink-0"
+                  style={{ backgroundColor: MINT }}
+                />
+                <span className="text-[15px] md:text-base leading-snug">{s}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      {/* BOTTOM — sub-brand chip grid with round logos */}
+      <div
+        className="px-5 md:px-8 py-5 md:py-6 border-t"
+        style={{ borderColor: "#1d1d1b15", backgroundColor: "#ffffff90" }}
+      >
+        <div className="flex items-center justify-between mb-3.5">
+          <p className="text-[11px] uppercase tracking-[0.28em] opacity-55">
+            6 sub-brands · contribution
+          </p>
+          <p className="text-[11px] uppercase tracking-[0.28em] opacity-40">
+            Followers
+          </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2.5">
+          {SUB_BRANDS.map((b) => (
+            <div
+              key={b.name}
+              className="rounded-2xl px-3 py-2.5 flex items-center gap-3"
+              style={{ backgroundColor: BONE }}
+            >
+              <BrandAvatar name={b.name} logo={b.logo} tint={b.tint} />
+              <div className="flex flex-col leading-tight min-w-0 flex-1">
+                <span className="text-[14px] truncate">{b.name}</span>
+                <span className="text-[10px] uppercase tracking-[0.22em] opacity-50 mt-0.5">
+                  {b.channels}
+                </span>
+              </div>
+              <span className="font-medium tabular-nums text-sm shrink-0">
+                {b.reach}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
