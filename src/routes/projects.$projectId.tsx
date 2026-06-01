@@ -618,7 +618,7 @@ function PagesDarkLayout({ next }: { next: Project }) {
                 bg={YOUSICIAN_GREEN}
                 title="Yousician"
                 role="Social Media Lead"
-                stat="2.1M+ followers"
+                stat="127k followers"
                 statLabel="Combined reach"
                 channels={[
                   { p: "Instagram", href: "https://www.instagram.com/yousician/" },
@@ -631,7 +631,7 @@ function PagesDarkLayout({ next }: { next: Project }) {
                 bg={GUITARTUNA_LIME}
                 title="GuitarTuna"
                 role="Social Media Strategist"
-                stat="450K+ followers"
+                stat="20k followers"
                 statLabel="Combined reach"
                 channels={[
                   { p: "Instagram", href: "https://www.instagram.com/guitartuna" },
