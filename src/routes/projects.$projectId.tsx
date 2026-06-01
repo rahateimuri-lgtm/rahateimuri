@@ -601,66 +601,7 @@ function PagesDarkLayout({ next }: { next: Project }) {
               sub="One brand · many cities · all organic · 2022 — 2025"
             />
 
-            <div className="rounded-3xl overflow-hidden" style={{ backgroundColor: SAND }}>
-              {/* TOP — the headline number */}
-              <div className="px-7 md:px-12 pt-8 md:pt-12 pb-6 md:pb-10 flex flex-col gap-5">
-                <div className="flex items-center gap-4">
-                  <img
-                    src={romeLogo.url}
-                    alt="Carpe Diem"
-                    className="h-12 w-12 md:h-14 md:w-14 rounded-2xl object-cover shrink-0"
-                  />
-                  <span className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.3em]" style={{ color: ACCENT }}>
-                    Carpe Diem · all cities, all platforms
-                  </span>
-                </div>
-                <p
-                  className="font-[var(--font-body)] font-bold leading-[0.82] tracking-[-0.05em] text-[24vw] md:text-[14vw] lg:text-[11rem]"
-                  style={{ color: INK }}
-                >
-                  1.1M<span style={{ color: MINT }}>+</span>
-                </p>
-                <p className="font-[var(--font-body)] text-base md:text-lg leading-snug opacity-80 max-w-[52ch]">
-                  Followers grown organically across <strong>one brand</strong>, six city accounts, four cities — no paid follower growth.
-                </p>
-              </div>
-
-              {/* BOTTOM — sub-brand chip grid */}
-              <div
-                className="px-5 md:px-8 py-5 md:py-6 border-t"
-                style={{ borderColor: "#1d1d1b15", backgroundColor: "#ffffff80" }}
-              >
-                <p className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.28em] opacity-55 mb-3">
-                  6 sub-brands · contribution
-                </p>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-2.5">
-                  {[
-                    { name: "Rome Italy Travel", reach: "934K", channels: "IG · TT · YT · FB" },
-                    { name: "Tipsy Tours", reach: "99K", channels: "IG · TT" },
-                    { name: "London City Travels", reach: "33K", channels: "IG" },
-                    { name: "Rome With Chef", reach: "17K", channels: "IG · TT" },
-                    { name: "Carpediem Tours", reach: "16K", channels: "IG · TT · YT" },
-                    { name: "Barcelona Carpe Diem", reach: "12K", channels: "IG" },
-                  ].map((b) => (
-                    <div
-                      key={b.name}
-                      className="rounded-2xl px-3.5 py-3 flex items-center justify-between gap-3"
-                      style={{ backgroundColor: BONE }}
-                    >
-                      <div className="flex flex-col leading-tight min-w-0">
-                        <span className="text-[13px] md:text-sm truncate">{b.name}</span>
-                        <span className="font-[var(--font-mono)] text-[9px] uppercase tracking-[0.2em] opacity-50 mt-0.5">
-                          {b.channels}
-                        </span>
-                      </div>
-                      <span className="font-[var(--font-body)] font-bold tabular-nums text-sm md:text-base shrink-0">
-                        {b.reach}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+            <BuiltFromScratchHero />
           </section>
 
           {/* ───── SECTION 2 — CURRENTLY MANAGING ───── */}
