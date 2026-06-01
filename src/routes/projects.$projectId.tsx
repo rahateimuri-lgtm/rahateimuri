@@ -312,6 +312,7 @@ function ProjectDetailPage() {
             {next.title} →
           </Link>
         </div>
+       </div>
       </main>
     </div>
   );
