@@ -81,6 +81,10 @@ function ProjectDetailPage() {
     return <PagesDarkLayout next={next} />;
   }
 
+  if (project.id === "viral-videos") {
+    return <ViralVideosLayout project={project} next={next} />;
+  }
+
   return (
     <div className="min-h-screen bg-[color:var(--pink-soft)] text-[color:var(--navy)] font-[var(--font-body)]">
       <TabNav accent="navy" />
