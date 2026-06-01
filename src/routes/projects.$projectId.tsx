@@ -554,43 +554,77 @@ function PlatformIcon({ name, className }: { name: string; className?: string })
 }
 
 // Minimal-chic palette
-const INK = "#1d1d1b";           // body text / dark fill
-const BONE = "#ECE8E1";          // warm bone frame
-const SAND = "#E2DCD0";          // filled card surface
-const SAND_DEEP = "#D4CCBC";     // hover / inner chips
-const ACCENT = "#5B5648";        // muted olive-stone accent
-const MINT = "#2BD9A5";          // Rome Italy Travel mint accent
+// Oatly-inspired chalkboard palette
+const INK = "#0a0a0a";           // page background — chalkboard black
+const PAPER = "#ffffff";         // card surface — white
+const CHALK = "#f4f1ea";         // off-white chalky text on black
+const ACCENT = "#9a9488";        // muted chalk accent
+const SAND = "#ECE8E1";          // soft bone for inner blocks
+const SAND_DEEP = "#D4CCBC";
+const MINT = "#FF3B30";          // hot pop accent (chalkboard red)
 const YOUSICIAN_GREEN = "#5BC68F";
 const GUITARTUNA_LIME = "#D7EA63";
+
+// Chalkboard noise — subtle SVG grain layered over the black background
+const CHALK_NOISE =
+  "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.08 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>\")";
+
+// Tiny inline sparkle, used as decorative accent (Oatly-style)
+function Sparkle({ className = "", color = PAPER }: { className?: string; color?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill={color} aria-hidden>
+      <path d="M12 0c.6 5 2 6.4 7 7-5 .6-6.4 2-7 7-.6-5-2-6.4-7-7 5-.6 6.4-2 7-7z" />
+    </svg>
+  );
+}
 
 function PagesDarkLayout({ next }: { next: Project }) {
   return (
     <div
-      className="min-h-screen font-[var(--font-body)]"
-      style={{ backgroundColor: BONE, color: INK }}
+      className="min-h-screen font-[var(--font-body)] relative"
+      style={{ backgroundColor: INK, color: CHALK, backgroundImage: CHALK_NOISE }}
     >
       <TabNav accent="navy" />
 
-      <main className="px-4 md:px-8 pt-4 md:pt-6 pb-12 max-w-[1400px] mx-auto">
-        <div className="bg-white rounded-3xl px-6 md:px-12 pt-10 md:pt-14 pb-16 md:pb-20">
+      {/* Decorative chalk accents on the dark canvas */}
+      <Sparkle className="hidden md:block absolute top-24 right-10 h-10 w-10 opacity-80" />
+      <Sparkle className="hidden md:block absolute top-[55%] left-6 h-6 w-6 opacity-60" />
+      <Sparkle className="hidden md:block absolute bottom-32 right-16 h-8 w-8 opacity-70" />
+
+      <main className="px-4 md:px-8 pt-4 md:pt-6 pb-12 max-w-[1400px] mx-auto relative">
+        {/* White-framed card — the signature Oatly "poster inside a poster" */}
+        <div
+          className="relative px-6 md:px-12 pt-10 md:pt-14 pb-16 md:pb-20"
+          style={{
+            backgroundColor: PAPER,
+            color: "#0a0a0a",
+            border: "10px solid #ffffff",
+            outline: "1px solid #0a0a0a10",
+          }}
+        >
           <Link
             to="/projects"
-            className="inline-block font-[var(--font-mono)] text-[10px] uppercase tracking-[0.25em] opacity-60 hover:opacity-100 mb-10"
+            className="inline-block font-[var(--font-mono)] text-[10px] uppercase tracking-[0.25em] opacity-70 hover:opacity-100 mb-10"
           >
             ← All projects
           </Link>
 
           {/* PAGE HEADER */}
-          <header className="mb-14 md:mb-20 flex flex-col gap-3">
+          <header className="mb-14 md:mb-20 flex flex-col gap-3 relative">
             <span
-              className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.3em]"
-              style={{ color: ACCENT }}
+              className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.3em] inline-flex items-center gap-2"
+              style={{ color: "#0a0a0a" }}
             >
+              <span className="inline-block h-2 w-2 rounded-full" style={{ background: MINT }} />
               Social Media Management · 2022 → Now
             </span>
-            <h1 className="font-[var(--font-body)] font-bold tracking-tight leading-[0.95] text-5xl md:text-7xl">
-              Pages, built &amp; managed.
+            <h1
+              className="font-[var(--font-display)] font-black uppercase leading-[0.85] tracking-[-0.02em] text-6xl md:text-[8.5rem]"
+              style={{ color: "#0a0a0a" }}
+            >
+              Pages,<br />built &amp; <span style={{ color: MINT }}>managed.</span>
             </h1>
+            <Sparkle className="absolute -top-4 right-2 h-8 w-8" color="#0a0a0a" />
           </header>
 
           {/* ───── SECTION 1 — BUILT FROM SCRATCH ───── */}
