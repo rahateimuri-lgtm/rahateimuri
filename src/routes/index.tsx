@@ -99,7 +99,8 @@ const SOCIAL_LINKS = [
 function HeroShapes() {
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
-      <svg className="absolute top-[12%] right-[8%] w-[120px] md:w-[170px] float-shape" style={{ animationDelay: "0s" }} viewBox="0 0 100 100" data-parallax="0.05">
+      {/* Orange pyramid — top right */}
+      <svg className="absolute top-[10%] right-[10%] w-[110px] md:w-[160px] float-shape" style={{ animationDelay: "0s" }} viewBox="0 0 100 100" data-parallax="0.05">
         <defs>
           <linearGradient id="g-orange" x1="0" x2="1" y1="0" y2="1">
             <stop offset="0" stopColor="#ff8a5b" />
@@ -109,7 +110,8 @@ function HeroShapes() {
         <polygon points="50,8 92,88 8,88" fill="url(#g-orange)" />
         <polygon points="50,8 92,88 50,72" fill="#000" opacity="0.18" />
       </svg>
-      <svg className="absolute top-[55%] right-[14%] w-[110px] md:w-[150px] float-shape" style={{ animationDelay: "1.2s" }} viewBox="0 0 100 100" data-parallax="-0.08">
+      {/* Purple sphere — middle right area */}
+      <svg className="absolute top-[52%] right-[28%] w-[120px] md:w-[170px] float-shape" style={{ animationDelay: "1.2s" }} viewBox="0 0 100 100" data-parallax="-0.08">
         <defs>
           <radialGradient id="g-purple" cx="35%" cy="30%" r="70%">
             <stop offset="0" stopColor="#d6c3ff" />
@@ -119,7 +121,8 @@ function HeroShapes() {
         </defs>
         <circle cx="50" cy="50" r="44" fill="url(#g-purple)" />
       </svg>
-      <svg className="absolute top-[28%] left-[6%] w-[100px] md:w-[140px] float-shape" style={{ animationDelay: "0.6s" }} viewBox="0 0 100 120" data-parallax="0.06">
+      {/* Blue cylinder — middle far right */}
+      <svg className="absolute top-[30%] right-[4%] w-[90px] md:w-[120px] float-shape" style={{ animationDelay: "0.6s" }} viewBox="0 0 100 120" data-parallax="0.06">
         <defs>
           <linearGradient id="g-blue" x1="0" x2="1" y1="0" y2="0">
             <stop offset="0" stopColor="#3b6fc2" />
@@ -131,7 +134,8 @@ function HeroShapes() {
         <ellipse cx="50" cy="20" rx="40" ry="12" fill="#a9cef5" />
         <ellipse cx="50" cy="100" rx="40" ry="12" fill="#1f3a6b" />
       </svg>
-      <svg className="absolute bottom-[14%] left-[12%] w-[100px] md:w-[140px] float-shape" style={{ animationDelay: "1.8s" }} viewBox="0 0 100 100" data-parallax="-0.05">
+      {/* Turquoise star — bottom right */}
+      <svg className="absolute bottom-[10%] right-[18%] w-[100px] md:w-[140px] float-shape" style={{ animationDelay: "1.8s" }} viewBox="0 0 100 100" data-parallax="-0.05">
         <defs>
           <linearGradient id="g-turq" x1="0" x2="1" y1="0" y2="1">
             <stop offset="0" stopColor="#9ff0e3" />
@@ -140,7 +144,8 @@ function HeroShapes() {
         </defs>
         <polygon points="50,4 61,38 96,38 67,59 78,94 50,72 22,94 33,59 4,38 39,38" fill="url(#g-turq)" />
       </svg>
-      <svg className="absolute bottom-[28%] right-[40%] w-[90px] md:w-[120px] float-shape" style={{ animationDelay: "2.4s" }} viewBox="0 0 100 100" data-parallax="0.04">
+      {/* Green cylinder ring — bottom far right */}
+      <svg className="absolute bottom-[32%] right-[6%] w-[80px] md:w-[110px] float-shape" style={{ animationDelay: "2.4s" }} viewBox="0 0 100 100" data-parallax="0.04">
         <defs>
           <radialGradient id="g-green" cx="50%" cy="50%" r="50%">
             <stop offset="0.55" stopColor="transparent" />
@@ -150,7 +155,8 @@ function HeroShapes() {
         </defs>
         <circle cx="50" cy="50" r="46" fill="url(#g-green)" />
       </svg>
-      <svg className="absolute top-[6%] left-[38%] w-[80px] md:w-[110px] float-shape" style={{ animationDelay: "3s" }} viewBox="0 0 100 100" data-parallax="-0.06">
+      {/* Yellow cube — top middle/right */}
+      <svg className="absolute top-[8%] right-[40%] w-[80px] md:w-[110px] float-shape" style={{ animationDelay: "3s" }} viewBox="0 0 100 100" data-parallax="-0.06">
         <polygon points="50,10 88,30 88,72 50,92 12,72 12,30" fill="#f7c948" />
         <polygon points="50,10 88,30 50,50 12,30" fill="#fbe08c" />
         <polygon points="50,50 88,30 88,72 50,92" fill="#c69a2c" />
@@ -166,31 +172,51 @@ function HomePage() {
       <ScrollProgress />
 
       {/* HERO */}
-      <section className="relative pt-32 md:pt-40 pb-24 md:pb-32 px-5 md:px-12 max-w-[1400px] mx-auto grain">
-        <HeroShapes />
-        <div className="relative text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[color:var(--line)] bg-[color:var(--cream)] font-[var(--font-mono)] text-[10px] uppercase tracking-[0.28em] text-[color:var(--ink)] mb-10">
-            ✦ {NAME.toUpperCase()} ✦
+      <section
+        className="relative pt-28 md:pt-36 pb-20 md:pb-28 px-5 md:px-12 grain"
+        style={{ backgroundColor: "#FBF8F2" }}
+      >
+        <div className="max-w-[1400px] mx-auto">
+          {/* Top: centered pill + subheading */}
+          <div className="relative text-center">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[color:var(--line)] bg-[color:var(--cream)] font-serif text-[12px] tracking-[0.18em] text-[color:var(--ink)]">
+              ✦ <span style={{ fontFamily: '"Times New Roman", Times, serif' }}>{NAME.toUpperCase()}</span> ✦
+            </div>
+            <p className="mt-5 font-[var(--font-mono)] text-[11px] md:text-[12px] uppercase tracking-[0.32em] text-[color:var(--ink-soft)]">
+              Marketing &amp; Web Design
+            </p>
           </div>
-          <h1 className="font-[var(--font-body)] font-bold tracking-[-0.02em] leading-[0.92] text-[14vw] md:text-[9vw] lg:text-[8.5rem] mx-auto max-w-[14ch]">
-            Building social,<br />
-            <span className="italic font-normal text-[color:var(--accent)]">honestly.</span>
-          </h1>
-          <p className="mt-10 text-2xl md:text-3xl font-[var(--font-body)] italic text-[color:var(--ink)]">
-            Hi, I'm {NAME.split(" ")[0]}!
-          </p>
-          <p className="mt-3 font-[var(--font-mono)] text-[12px] uppercase tracking-[0.3em] text-[color:var(--ink-soft)]">
-            Social Media Lead · Berlin
-          </p>
-          <div className="mt-12 flex justify-center">
-            <a
-              href="#contact"
-              className="magnetic inline-flex items-center gap-2 px-7 py-4 rounded-full bg-[color:var(--ink)] text-[color:var(--cream)] font-[var(--font-mono)] text-[12px] uppercase tracking-[0.24em] hover:bg-[color:var(--accent)] transition-colors"
-            >
-              Let's Work Together <ArrowUpRight className="w-4 h-4" />
-            </a>
+
+          {/* Two-col: left text, right shapes */}
+          <div className="relative mt-12 md:mt-16 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-8 items-center min-h-[60vh]">
+            <div className="relative z-10 text-left">
+              <h1 className="font-[var(--font-body)] font-bold tracking-[-0.02em] leading-[0.92] text-[14vw] md:text-[7.5vw] lg:text-[6.5rem] max-w-[12ch]">
+                Building social,<br />
+                <span className="italic font-normal text-[color:var(--accent)]">honestly.</span>
+              </h1>
+              <p className="mt-8 text-2xl md:text-3xl font-[var(--font-body)] italic text-[color:var(--ink)]">
+                Hi, I'm {NAME.split(" ")[0]}!
+              </p>
+              <p className="mt-3 font-[var(--font-mono)] text-[12px] uppercase tracking-[0.3em] text-[color:var(--ink-soft)]">
+                Social Media Lead · Berlin
+              </p>
+              <div className="mt-10">
+                <a
+                  href="#contact"
+                  className="magnetic inline-flex items-center gap-2 px-7 py-4 rounded-full bg-[color:var(--ink)] text-[color:var(--cream)] font-[var(--font-mono)] text-[12px] uppercase tracking-[0.24em] hover:bg-[color:var(--accent)] transition-colors"
+                >
+                  Let's Work Together <ArrowUpRight className="w-4 h-4" />
+                </a>
+              </div>
+            </div>
+
+            {/* Right column: shapes canvas */}
+            <div className="relative h-[420px] md:h-[560px]">
+              <HeroShapes />
+            </div>
           </div>
-          <div className="mt-16 md:mt-24 font-[var(--font-mono)] text-[11px] uppercase tracking-[0.28em] text-[color:var(--ink-soft)]">
+
+          <div className="mt-14 md:mt-20 text-center font-[var(--font-mono)] text-[11px] uppercase tracking-[0.28em] text-[color:var(--ink-soft)]">
             ✦ Scroll down ✦ and know me better
           </div>
         </div>
