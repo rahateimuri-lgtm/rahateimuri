@@ -1082,7 +1082,7 @@ function ViralVideosLayout({ project, next }: { project: Project; next: Project 
                 sub={`${String(project.videos.length).padStart(2, "0")} pieces · TikTok`}
               />
 
-              <div className="grid md:grid-cols-3 gap-4 md:gap-5">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
                 {project.videos.map((v, i) => (
                   <article
                     key={v.href}
@@ -1091,9 +1091,9 @@ function ViralVideosLayout({ project, next }: { project: Project; next: Project 
                   >
                     <div className="flex items-center justify-between font-[var(--font-mono)] text-[10px] uppercase tracking-[0.28em]" style={{ color: ACCENT }}>
                       <span>0{i + 1} / Reel</span>
-                      <span>TikTok</span>
+                      <span>{v.platform === "instagram" ? "Instagram" : "TikTok"}</span>
                     </div>
-                    <div className="relative aspect-[9/14] rounded-2xl overflow-hidden bg-black">
+                    <div className="relative aspect-[325/740] rounded-2xl overflow-hidden bg-black">
                       {v.embed ? (
                         <iframe
                           src={v.embed}
@@ -1111,7 +1111,7 @@ function ViralVideosLayout({ project, next }: { project: Project; next: Project 
                           rel="noreferrer"
                           className="absolute inset-0 grid place-items-center px-6 text-center font-[var(--font-mono)] text-[11px] uppercase tracking-[0.24em] text-white/75 hover:text-white"
                         >
-                          Watch on TikTok ↗
+                          Watch ↗
                         </a>
                       )}
                     </div>
@@ -1125,7 +1125,7 @@ function ViralVideosLayout({ project, next }: { project: Project; next: Project 
                       className="mt-auto inline-flex items-center justify-between gap-2 rounded-full px-3.5 py-2 text-[12px] font-[var(--font-mono)] uppercase tracking-[0.2em] transition-colors hover:bg-[#1d1d1b] hover:text-white"
                       style={{ backgroundColor: "#ffffff80", color: INK }}
                     >
-                      Open on TikTok ↗
+                      Open {v.platform === "instagram" ? "on Instagram" : "on TikTok"} ↗
                     </a>
                   </article>
                 ))}
