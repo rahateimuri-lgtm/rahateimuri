@@ -3,20 +3,21 @@ import { useState } from "react";
 import { TabNav } from "@/components/TabNav";
 import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
+import { projects as PROJECT_DATA } from "@/lib/projects-data";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Rishani Jeyaseelan — Social Media Strategy (placeholder)" },
-      { name: "description", content: "Clean-room portfolio placeholder: social media strategy, content creation and visual design." },
-      { property: "og:title", content: "Rishani Jeyaseelan — Social Media Strategy" },
-      { property: "og:description", content: "Placeholder portfolio site — social media, video editing, visual design." },
+      { title: "Raha Teimuri — Building social, honestly." },
+      { name: "description", content: "Berlin-based Social Media Lead, Systems Builder and Creative Strategist — celebrity partnerships, organic growth, AI-augmented ops." },
+      { property: "og:title", content: "Raha Teimuri — Building social, honestly." },
+      { property: "og:description", content: "Strategy, creative direction, organic growth and AI-augmented content operations. Berlin · Worldwide." },
     ],
   }),
   component: HomePage,
 });
 
-const NAME = "Rishani Jeyaseelan"; // placeholder
+const NAME = "Raha Teimuri";
 
 const TESTIMONIALS = [
   {
@@ -55,30 +56,29 @@ const STACK = [
 ];
 
 const SERVICES = [
-  ["01", "Strategy & Content Planning"],
-  ["02", "Content Creation"],
-  ["03", "Posting & Scheduling"],
-  ["04", "Community Management"],
-  ["05", "Analytics & Optimization"],
-  ["06", "Paid Social (Meta Ads)"],
-  ["07", "Brand Identity Design"],
-  ["08", "Long-Form Video Editing & Thumbnails"],
-  ["09", "Website Design & Management"],
-  ["10", "Visual Design"],
+  ["01", "Social Strategy & Playbooks"],
+  ["02", "Creative Direction"],
+  ["03", "Celebrity & Brand Partnerships"],
+  ["04", "Organic Growth Systems"],
+  ["05", "Short-Form & Reels Production"],
+  ["06", "Community Management"],
+  ["07", "Content Operations & Calendars"],
+  ["08", "AI-augmented Workflows"],
+  ["09", "Analytics & Performance Review"],
+  ["10", "Team Leadership & Training"],
 ] as const;
 
-const PROJECTS = [
-  { t: "Community Event Hamburg", d: "Identity, signage and recap reel for a placeholder community meetup.", c: "#efd9c8" },
-  { t: "LinkedIn Community Management & Engagement Strategy", d: "Voice, cadence and weekly engagement system for a placeholder B2B account.", c: "#dbe5d4" },
-  { t: "Social Media Management & Content Creation", d: "End-to-end social ownership for a placeholder lifestyle brand.", c: "#f4d6cc" },
-  { t: "Podcast Visual Branding & Thumbnail Design", d: "Cover art, thumbnail system and episode templates for a placeholder podcast.", c: "#e6dcf5" },
-  { t: "Long-Form Video Editing for Exclusive Guests", d: "Pacing, color and graphics for a placeholder interview series.", c: "#fce6c4" },
-  { t: "Short-Form Content & Performance Video Editing", d: "Hooks, captions and cut-downs for placeholder paid social tests.", c: "#d8e6ec" },
-  { t: "Creative Teaservideo for New Podcast Format Launch", d: "Concept, script and edit for a launch teaser (placeholder).", c: "#f2e2d2" },
-  { t: "Graphic Design", d: "Print and digital collateral for placeholder events and campaigns.", c: "#e8e2d4" },
-  { t: "Short-Form Content (Reels & Carousels)", d: "Templates and recurring formats for a placeholder creator account.", c: "#f6dcd2" },
-  { t: "UGC Video", d: "Casting, briefing and edit for placeholder UGC product spots.", c: "#e0dbcc" },
+const PROJECT_TINTS = ["#efd9c8", "#dbe5d4", "#f4d6cc", "#e6dcf5", "#fce6c4", "#d8e6ec", "#f2e2d2", "#e8e2d4", "#f6dcd2", "#e0dbcc"];
+const EXTRA_PROJECTS = [
+  { id: "rome-italy-travel", t: "Rome Italy Travel", d: "Flagship Carpe Diem brand — scaled past 930K combined followers across Instagram, TikTok, YouTube and Facebook, fully organic." },
+  { id: "guitartuna", t: "GuitarTuna Social", d: "Running social for the world's most-used guitar app at Yousician — strategy, voice and rollout across Instagram and TikTok." },
+  { id: "tipsy-tours", t: "Tipsy Tours", d: "Built and scaled the Tipsy Tours presence to ~100K combined followers across Instagram and TikTok with a sharp, format-driven voice." },
+  { id: "team-leadership", t: "Team & Workflow Design", d: "Led a team of 4 social managers across 13 accounts — built the Monday & Miro stack that kept multi-brand publishing calm and consistent." },
 ];
+const PROJECTS = [
+  ...PROJECT_DATA.map((p) => ({ id: p.id, t: p.shortTitle || p.title, d: p.description })),
+  ...EXTRA_PROJECTS,
+].slice(0, 10).map((p, i) => ({ ...p, c: PROJECT_TINTS[i % PROJECT_TINTS.length] }));
 
 const USEFUL_LINKS = [
   { label: "Home", href: "#top" },
