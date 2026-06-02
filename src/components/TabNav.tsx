@@ -5,12 +5,15 @@ import { Menu, X } from "lucide-react";
 // Legacy accent prop kept so old call-sites compile; the new pill nav is fixed-color.
 export type Accent = "pink" | "navy" | "blue" | "ink";
 
+const NAME = "RISHANI JEYASEELAN"; // placeholder
+
 const tabs = [
-  { to: "/me", label: "Me" },
-  { to: "/projects", label: "Projects" },
-  { to: "/services", label: "Services" },
-  { to: "/process", label: "Process" },
-  { to: "/contact", label: "Contact" },
+  { href: "#top", label: "Home" },
+  { href: "#about", label: "About" },
+  { href: "#stack", label: "Stack" },
+  { href: "#services", label: "Services" },
+  { href: "#projects", label: "Projects" },
+  { href: "#contact", label: "Contact" },
 ] as const;
 
 export function TabNav(_props: { accent?: Accent } = {}) {
@@ -47,25 +50,19 @@ export function TabNav(_props: { accent?: Accent } = {}) {
         <Link
           to="/"
           activeOptions={{ exact: true }}
-          className="px-3 py-1.5 rounded-full text-[13px] font-[var(--font-mono)] uppercase tracking-[0.18em] text-[color:var(--ink)] hover:bg-[color:var(--accent-soft)] transition-colors"
+          className="px-3 py-1.5 rounded-full text-[13px] font-[var(--font-mono)] uppercase tracking-[0.2em] text-[color:var(--ink)] hover:bg-[color:var(--accent-soft)] transition-colors"
         >
-          RT
+          RJ
         </Link>
         <span className="w-px h-4 bg-[color:var(--line)] mx-1" aria-hidden />
         {tabs.map((t) => (
-          <Link
-            key={t.to}
-            to={t.to}
+          <a
+            key={t.href}
+            href={t.href}
             className="px-4 py-1.5 rounded-full text-[13px] font-[var(--font-body)] text-[color:var(--ink)] hover:bg-[color:var(--accent-soft)] transition-colors"
-            activeProps={{
-              style: {
-                backgroundColor: "var(--ink)",
-                color: "var(--cream)",
-              },
-            }}
           >
             {t.label}
-          </Link>
+          </a>
         ))}
       </nav>
 
@@ -84,7 +81,7 @@ export function TabNav(_props: { accent?: Accent } = {}) {
           to="/"
           className="px-2 py-1 text-[12px] font-[var(--font-mono)] uppercase tracking-[0.2em] text-[color:var(--ink)]"
         >
-          Raha Teimuri
+          {NAME}
         </Link>
         <button
           type="button"
@@ -117,20 +114,19 @@ export function TabNav(_props: { accent?: Accent } = {}) {
           </div>
           <div className="flex-1 flex flex-col px-6 py-8 gap-2">
             {tabs.map((t) => (
-              <Link
-                key={t.to}
-                to={t.to}
+              <a
+                key={t.href}
+                href={t.href}
                 onClick={() => setOpen(false)}
                 className="text-4xl font-[var(--font-body)] tracking-tight text-[color:var(--ink)] py-3 border-b border-[color:var(--line)]"
-                activeProps={{ style: { fontStyle: "italic", color: "var(--accent)" } as any }}
               >
                 {t.label}
-              </Link>
+              </a>
             ))}
           </div>
           <div className="px-6 py-6 border-t border-[color:var(--line)] flex justify-between text-[11px] font-[var(--font-mono)] uppercase tracking-[0.22em] text-[color:var(--ink-soft)]">
-            <span>Berlin, DE</span>
-            <a href="mailto:hello@example.com" className="hover:text-[color:var(--ink)]">hello@example.com</a>
+          <span>Placeholder, EU</span>
+          <a href="#contact" onClick={() => setOpen(false)} className="hover:text-[color:var(--ink)]">Book a call</a>
           </div>
         </div>
       )}
