@@ -575,7 +575,7 @@ function PagesDarkLayout({ next }: { next: Project }) {
     >
       <TabNav accent="navy" />
 
-      <main className="px-4 md:px-8 pt-4 md:pt-6 pb-12 max-w-[1400px] mx-auto">
+      <main className="px-4 md:px-8 pt-28 md:pt-36 pb-12 max-w-[1400px] mx-auto">
         <div className="bg-white rounded-3xl px-6 md:px-12 pt-10 md:pt-14 pb-16 md:pb-20">
           <Link
             to="/projects"
@@ -971,7 +971,7 @@ function ViralVideosLayout({ project, next }: { project: Project; next: Project 
     >
       <TabNav accent="navy" />
 
-      <main className="px-4 md:px-8 pt-4 md:pt-6 pb-12 max-w-[1400px] mx-auto">
+      <main className="px-4 md:px-8 pt-28 md:pt-36 pb-12 max-w-[1400px] mx-auto">
         <div className="bg-white rounded-3xl px-6 md:px-12 pt-10 md:pt-14 pb-16 md:pb-20">
           <Link
             to="/projects"
