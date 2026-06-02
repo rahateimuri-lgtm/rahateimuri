@@ -19,7 +19,7 @@ export type Project = {
   /** Optional bullet highlights — concise, scannable */
   bullets?: string[];
   /** Optional embedded videos / reels */
-  videos?: { title: string; href: string; embed?: string; poster?: string }[];
+  videos?: { title: string; href: string; embed?: string; poster?: string; platform?: "tiktok" | "instagram" }[];
   /** Optional gallery of supporting visuals */
   gallery?: { src: string; alt: string; caption?: string }[];
   /** Optional social-account table (platform, reach, link) */
@@ -155,16 +155,31 @@ export const projects: Project[] = [
         title: "€17K booked · 2.5M views",
         href: "https://vm.tiktok.com/ZNdUxJ6bu/",
         embed: "https://www.tiktok.com/embed/v2/7208239503889255686",
+        platform: "tiktok",
       },
       {
         title: "€23K booked · 3.1M views",
         href: "https://vm.tiktok.com/ZNdUx899b/",
         embed: "https://www.tiktok.com/embed/v2/7198937928385563910",
+        platform: "tiktok",
       },
       {
         title: "Featured viral campaign · 50M+ reach · 24.77M views",
         href: "https://vm.tiktok.com/ZNdU9wsjN/",
         embed: "https://www.tiktok.com/embed/v2/7236791185115860251",
+        platform: "tiktok",
+      },
+      {
+        title: "Instagram reel — Carpe Diem",
+        href: "https://www.instagram.com/reel/CwS4lv9sXMe/",
+        embed: "https://www.instagram.com/reel/CwS4lv9sXMe/embed",
+        platform: "instagram",
+      },
+      {
+        title: "GuitarTuna · TikTok",
+        href: "https://www.tiktok.com/@guitartuna/video/7558494856926989590",
+        embed: "https://www.tiktok.com/embed/v2/7558494856926989590",
+        platform: "tiktok",
       },
     ],
     stats: [
