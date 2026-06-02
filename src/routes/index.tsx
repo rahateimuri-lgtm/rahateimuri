@@ -173,21 +173,21 @@ function HomePage() {
             ✦ {NAME.toUpperCase()} ✦
           </div>
           <h1 className="font-[var(--font-body)] font-bold tracking-[-0.02em] leading-[0.92] text-[14vw] md:text-[9vw] lg:text-[8.5rem] mx-auto max-w-[14ch]">
-            Great People,<br />
-            <span className="italic font-normal text-[color:var(--accent)]">Great Projects</span>
+            Building social,<br />
+            <span className="italic font-normal text-[color:var(--accent)]">honestly.</span>
           </h1>
           <p className="mt-10 text-2xl md:text-3xl font-[var(--font-body)] italic text-[color:var(--ink)]">
             Hi, I'm {NAME.split(" ")[0]}!
           </p>
           <p className="mt-3 font-[var(--font-mono)] text-[12px] uppercase tracking-[0.3em] text-[color:var(--ink-soft)]">
-            Social Media Strategy
+            Social Media Lead · Berlin
           </p>
           <div className="mt-12 flex justify-center">
             <a
               href="#contact"
               className="magnetic inline-flex items-center gap-2 px-7 py-4 rounded-full bg-[color:var(--ink)] text-[color:var(--cream)] font-[var(--font-mono)] text-[12px] uppercase tracking-[0.24em] hover:bg-[color:var(--accent)] transition-colors"
             >
-              Let's Work Together! <ArrowUpRight className="w-4 h-4" />
+              Let's Work Together <ArrowUpRight className="w-4 h-4" />
             </a>
           </div>
           <div className="mt-16 md:mt-24 font-[var(--font-mono)] text-[11px] uppercase tracking-[0.28em] text-[color:var(--ink-soft)]">
@@ -203,14 +203,14 @@ function HomePage() {
             ✶ About Me
           </p>
           <h2 className="font-[var(--font-body)] font-bold text-4xl md:text-6xl tracking-tight leading-[1] text-center max-w-[20ch] mx-auto">
-            Turning ideas into <span className="italic font-normal text-[color:var(--accent)]">engaging content.</span>
+            Strategy-first, <span className="italic font-normal text-[color:var(--accent)]">human at the edit.</span>
           </h2>
         </Reveal>
         <Reveal delay={120}>
           <div className="mt-10 max-w-[64ch] mx-auto space-y-5 text-lg md:text-xl leading-relaxed text-[color:var(--ink)]">
-            <p>Hi, I'm {NAME.split(" ")[0]}. I am passionate about turning ideas into engaging digital content.</p>
-            <p>I specialize in social media, video editing, and visual design, helping brands communicate clearly, stand out, and connect with their audience.</p>
-            <p>My approach combines creativity and strategy to create content that doesn't just look good, but actually drives impact.</p>
+            <p>Hi, I'm Raha — a Social Media Lead, Systems Builder and Creative Strategist based in Berlin. I direct celebrity partnerships, build infrastructure that scales, and measure real business impact.</p>
+            <p>Currently Social Media Lead at Yousician — campaigns with David Bowie, Paul McCartney and Warner Music. Previously scaled Carpe Diem Tours from zero to 1M+ followers across Rome, Florence, London, Barcelona and Lisbon — all organic.</p>
+            <p>I work strategy-first and stay human at the edit: AI helps me move faster on drafts and structure, but taste, judgement and the final word stay mine.</p>
           </div>
         </Reveal>
 
