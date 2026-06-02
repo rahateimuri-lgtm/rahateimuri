@@ -1,4 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import * as React from "react";
 import { TabNav } from "@/components/TabNav";
 import { getProject, projects, type Project } from "@/lib/projects-data";
 import { Instagram, Music2, Youtube, Facebook } from "lucide-react";
