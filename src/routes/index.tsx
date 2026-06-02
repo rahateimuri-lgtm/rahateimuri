@@ -155,6 +155,40 @@ function HomePage() {
         </div>
       </section>
 
+      {/* ───── ABOUT PREVIEW ───── */}
+      <section className="px-5 md:px-12 max-w-[1400px] mx-auto py-20 md:py-28">
+        <div className="grid md:grid-cols-12 gap-10 md:gap-14 items-end">
+          <Reveal className="md:col-span-7">
+            <p className="font-[var(--font-mono)] text-[11px] uppercase tracking-[0.25em] text-[color:var(--ink-soft)] mb-3">
+              ✶ About
+            </p>
+            <h2 className="font-[var(--font-body)] font-bold text-4xl md:text-6xl tracking-tight leading-[0.98]">
+              Berlin-based,<br />
+              <span className="italic font-normal text-[color:var(--accent)]">strategy-first.</span>
+            </h2>
+            <p className="mt-6 text-lg leading-relaxed max-w-[58ch] text-[color:var(--ink-soft)]">
+              I lead social for global music partners and grow audiences without paid acquisition. Calm process, sharp taste, no theatrics — and a workflow that treats AI as a draft assistant, never the editor.
+            </p>
+          </Reveal>
+          <Reveal className="md:col-span-5" delay={120}>
+            <div className="rounded-[28px] border border-[color:var(--line)] bg-[color:var(--cream)] p-7 md:p-8 tilt-card">
+              <ul className="space-y-3 font-[var(--font-mono)] text-[11px] uppercase tracking-[0.22em] text-[color:var(--ink)]">
+                <li className="flex justify-between gap-4"><span>Now</span><span className="text-[color:var(--ink-soft)]">Social Media Lead, Yousician</span></li>
+                <li className="flex justify-between gap-4"><span>Past</span><span className="text-[color:var(--ink-soft)]">Carpe Diem Tours · 0 → 1M+</span></li>
+                <li className="flex justify-between gap-4"><span>Recent</span><span className="text-[color:var(--ink-soft)]">Bowie · McCartney · Warner</span></li>
+                <li className="flex justify-between gap-4"><span>Base</span><span className="text-[color:var(--ink-soft)]">Berlin · Worldwide</span></li>
+              </ul>
+              <Link
+                to="/me"
+                className="mt-6 inline-flex items-center gap-2 font-[var(--font-mono)] text-[11px] uppercase tracking-[0.2em] px-4 py-2.5 rounded-full border border-[color:var(--ink)] text-[color:var(--ink)] hover:bg-[color:var(--ink)] hover:text-[color:var(--cream)] transition-colors"
+              >
+                Read more <ArrowUpRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       {/* ───── SELECTED WORK ───── */}
       <section className="px-5 md:px-12 max-w-[1400px] mx-auto py-20 md:py-28">
         <Reveal>
