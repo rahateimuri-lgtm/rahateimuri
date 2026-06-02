@@ -330,6 +330,66 @@ function HomePage() {
         </div>
       </section>
 
+      {/* ───── STACK ───── */}
+      <section className="bg-[color:var(--cream)] border-y border-[color:var(--line)] py-20 md:py-24">
+        <div className="px-5 md:px-12 max-w-[1400px] mx-auto">
+          <Reveal>
+            <p className="font-[var(--font-mono)] text-[11px] uppercase tracking-[0.25em] text-[color:var(--ink-soft)] mb-3">
+              ✶ Stack
+            </p>
+            <h2 className="font-[var(--font-body)] font-bold text-4xl md:text-6xl tracking-tight mb-10 md:mb-14 max-w-[18ch]">
+              Tools & methods I <span className="italic font-normal">actually use.</span>
+            </h2>
+          </Reveal>
+          <Reveal>
+            <ul className="flex flex-wrap gap-2.5">
+              {STACK.map((s) => (
+                <li
+                  key={s}
+                  className="magnetic px-4 py-2 rounded-full border border-[color:var(--line)] bg-[color:var(--bone)] font-[var(--font-mono)] text-[11px] uppercase tracking-[0.22em] text-[color:var(--ink)]"
+                >
+                  {s}
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ───── TESTIMONIALS ───── */}
+      <section className="px-5 md:px-12 max-w-[1400px] mx-auto py-20 md:py-28">
+        <Reveal>
+          <div className="flex items-end justify-between mb-10 md:mb-14 gap-6 flex-wrap">
+            <div>
+              <p className="font-[var(--font-mono)] text-[11px] uppercase tracking-[0.25em] text-[color:var(--ink-soft)] mb-3">
+                ✶ Words ·{" "}
+                <span className="italic font-[var(--font-body)] normal-case tracking-normal text-[color:var(--ink-soft)]">
+                  anonymized placeholders
+                </span>
+              </p>
+              <h2 className="font-[var(--font-body)] font-bold text-4xl md:text-6xl tracking-tight max-w-[20ch]">
+                What collaborators <span className="italic font-normal">say.</span>
+              </h2>
+            </div>
+          </div>
+        </Reveal>
+        <div className="grid sm:grid-cols-2 gap-5 md:gap-7">
+          {TESTIMONIALS.map((t, i) => (
+            <Reveal key={i} delay={i * 80}>
+              <figure className="h-full p-7 md:p-9 rounded-[28px] border border-[color:var(--line)] bg-[color:var(--cream)] tilt-card flex flex-col gap-6">
+                <span aria-hidden className="font-[var(--font-body)] italic text-5xl leading-none text-[color:var(--accent)]">"</span>
+                <blockquote className="text-lg md:text-xl leading-relaxed text-[color:var(--ink)]">
+                  {t.quote}
+                </blockquote>
+                <figcaption className="mt-auto font-[var(--font-mono)] text-[10px] uppercase tracking-[0.25em] text-[color:var(--ink-soft)]">
+                  — {t.role}
+                </figcaption>
+              </figure>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
       {/* ───── CONTACT CTA ───── */}
       <section className="px-5 md:px-12 max-w-[1400px] mx-auto pb-24 md:pb-32">
         <div className="relative rounded-[44px] overflow-hidden bg-[color:var(--ink)] text-[color:var(--cream)] p-10 md:p-20 grain">
