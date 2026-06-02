@@ -151,9 +151,21 @@ export const projects: Project[] = [
       "A single featured campaign crossed 50M reach / 24.77M views across TikTok and Instagram.",
     ],
     videos: [
-      { title: "€17K booked · 2.5M views", href: "https://vm.tiktok.com/ZNdUxJ6bu/" },
-      { title: "€23K booked · 3.1M views", href: "https://vm.tiktok.com/ZNdUx899b/" },
-      { title: "Featured viral campaign · 50M+ reach · 24.77M views", href: "https://vm.tiktok.com/ZNdU9wsjN/" },
+      {
+        title: "€17K booked · 2.5M views",
+        href: "https://vm.tiktok.com/ZNdUxJ6bu/",
+        embed: "https://www.tiktok.com/embed/v2/7208239503889255686",
+      },
+      {
+        title: "€23K booked · 3.1M views",
+        href: "https://vm.tiktok.com/ZNdUx899b/",
+        embed: "https://www.tiktok.com/embed/v2/7198937928385563910",
+      },
+      {
+        title: "Featured viral campaign · 50M+ reach · 24.77M views",
+        href: "https://vm.tiktok.com/ZNdU9wsjN/",
+        embed: "https://www.tiktok.com/embed/v2/7236791185115860251",
+      },
     ],
     stats: [
       ["50M+", "Cross-platform reach"],

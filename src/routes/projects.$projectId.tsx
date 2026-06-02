@@ -1,5 +1,4 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import * as React from "react";
 import { TabNav } from "@/components/TabNav";
 import { getProject, projects, type Project } from "@/lib/projects-data";
 import { Instagram, Music2, Youtube, Facebook } from "lucide-react";
@@ -964,41 +963,6 @@ const VIRAL_STRENGTHS = [
   "Fluent with AI workflows (generation, editing, repurposing) to multiply volume while keeping the brand voice.",
 ];
 
-function tiktokEmbed(url: string) {
-  const match = url.match(/\/([A-Za-z0-9]+)\/?$/);
-  const id = match?.[1];
-  return id ? `https://www.tiktok.com/embed/v2/${id}` : url;
-}
-
-function TikTokBlockquote({ url }: { url: string }) {
-  React.useEffect(() => {
-    const existing = document.querySelector<HTMLScriptElement>(
-      'script[src="https://www.tiktok.com/embed.js"]',
-    );
-    if (existing) {
-      // @ts-expect-error tiktok global
-      if (window.tiktokEmbedLoad) window.tiktokEmbedLoad();
-      return;
-    }
-    const s = document.createElement("script");
-    s.src = "https://www.tiktok.com/embed.js";
-    s.async = true;
-    document.body.appendChild(s);
-  }, [url]);
-  return (
-    <blockquote
-      className="tiktok-embed"
-      cite={url}
-      data-video-id=""
-      style={{ maxWidth: "100%", minWidth: "100%", margin: 0 }}
-    >
-      <a href={url} target="_blank" rel="noreferrer">
-        Watch on TikTok
-      </a>
-    </blockquote>
-  );
-}
-
 function ViralVideosLayout({ project, next }: { project: Project; next: Project }) {
   return (
     <div
@@ -1130,9 +1094,26 @@ function ViralVideosLayout({ project, next }: { project: Project; next: Project 
                       <span>TikTok</span>
                     </div>
                     <div className="relative aspect-[9/14] rounded-2xl overflow-hidden bg-black">
-                      <div className="absolute inset-0 w-full h-full overflow-y-auto bg-black">
-                        <TikTokBlockquote url={v.href} />
-                      </div>
+                      {v.embed ? (
+                        <iframe
+                          src={v.embed}
+                          title={v.title}
+                          loading="lazy"
+                          allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+                          allowFullScreen
+                          scrolling="no"
+                          className="absolute inset-0 h-full w-full border-0"
+                        />
+                      ) : (
+                        <a
+                          href={v.href}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="absolute inset-0 grid place-items-center px-6 text-center font-[var(--font-mono)] text-[11px] uppercase tracking-[0.24em] text-white/75 hover:text-white"
+                        >
+                          Watch on TikTok ↗
+                        </a>
+                      )}
                     </div>
                     <p className="font-[var(--font-body)] text-base md:text-lg leading-snug">
                       {v.title}
