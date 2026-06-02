@@ -41,6 +41,45 @@ const PROCESS_STRIP = [
   ["04", "Measure"],
 ];
 
+const STACK = [
+  "Research",
+  "Positioning",
+  "Messaging",
+  "Figma",
+  "Framer-style motion",
+  "Conversion copy",
+  "Content systems",
+  "Responsive QA",
+  "Launch planning",
+  "Analytics notes",
+  "SEO basics",
+  "AI-augmented ops",
+];
+
+// Anonymized placeholder testimonials — replace with permission-cleared quotes.
+const TESTIMONIALS = [
+  {
+    quote:
+      "The new structure made the offer understandable in minutes. It feels polished without becoming cold or corporate.",
+    role: "Anonymous founder · Creative services",
+  },
+  {
+    quote:
+      "The site now has a real narrative. Every section earns its place and the mobile experience finally feels intentional.",
+    role: "Anonymous client · Brand studio",
+  },
+  {
+    quote:
+      "The process was calm, precise and strategic. The final system gave us pages, content prompts and reusable visual rules.",
+    role: "Anonymous operator · Digital product",
+  },
+  {
+    quote:
+      "It captured the personal tone we wanted while removing the messy parts that made the old website feel unfocused.",
+    role: "Anonymous consultant · Marketing advisory",
+  },
+];
+
 function HomePage() {
   return (
     <div className="min-h-screen bg-[color:var(--bone)] text-[color:var(--ink)] font-[var(--font-body)] overflow-x-hidden">
