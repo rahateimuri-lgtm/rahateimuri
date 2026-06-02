@@ -412,7 +412,7 @@ export function SiteFooter() {
             ✦ {NAME.toUpperCase()}
           </div>
           <p className="text-sm text-[color:var(--ink-soft)] max-w-[36ch] leading-relaxed">
-            Social media strategy, content creation and visual design. Placeholder portfolio site.
+            Social Media Lead, Systems Builder & Creative Strategist. Berlin · Worldwide.
           </p>
         </div>
         <div>
