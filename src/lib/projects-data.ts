@@ -39,7 +39,9 @@ export type Project = {
   stats: [string, string][];
   links: { label: string; href: string }[];
   /** Tile size on the mosaic grid */
-  tile: "bowie" | "paul" | "viral" | "pages";
+  tile: "bowie" | "paul" | "viral" | "pages" | "ai" | "money";
+  /** Render a text-only placeholder tile (no cover image) on the mosaic grid */
+  placeholderTile?: boolean;
   tag: string;
   /** Background color behind the cover image */
   bg: string;
