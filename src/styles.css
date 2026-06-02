@@ -214,3 +214,41 @@
 .magnetic { transition: transform 0.25s cubic-bezier(0.2,0.7,0.2,1); }
 .tilt-card { transition: transform 0.4s cubic-bezier(0.2,0.7,0.2,1); }
 .tilt-card:hover { transform: translateY(-4px) rotate(-0.3deg); }
+
+/* ───── Flip cards (Stack) ───── */
+.flip-card { perspective: 900px; }
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.7s cubic-bezier(0.2,0.7,0.2,1);
+  transform-style: preserve-3d;
+}
+.flip-card:hover .flip-card-inner,
+.flip-card:focus-within .flip-card-inner,
+.flip-card.is-flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+.flip-card-face {
+  position: absolute;
+  inset: 0;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 28px;
+}
+.flip-card-back { transform: rotateY(180deg); }
+
+/* ───── Floating shapes ───── */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%      { transform: translateY(-18px) rotate(6deg); }
+}
+.float-shape { animation: float-slow 9s ease-in-out infinite; will-change: transform; }
+
+@media (prefers-reduced-motion: reduce) {
+  .float-shape { animation: none; }
+  .flip-card-inner { transition: none; }
+}
