@@ -49,6 +49,15 @@ function ProjectsPage() {
                 <div key={p.id} className="aspect-square"><ProjectTile project={p} pickerOn={pickerOn} /></div>
               ))}
             </div>
+            {/* New row: How I Use AI + Monetization */}
+            <div className="grid grid-cols-2 gap-6 items-start">
+              {projects.filter(p => p.tile === "ai").map(p => (
+                <div key={p.id} className="aspect-video"><ProjectTile project={p} pickerOn={pickerOn} /></div>
+              ))}
+              {projects.filter(p => p.tile === "money").map(p => (
+                <div key={p.id} className="aspect-video"><ProjectTile project={p} pickerOn={pickerOn} /></div>
+              ))}
+            </div>
           </div>
           {/* Right column: Viral video — 9:16 phone, bottom-aligned, shorter than full column */}
           <div className="min-w-0 flex items-end justify-center">
@@ -89,13 +98,24 @@ function ProjectTile({ project, pickerOn }: { project: Project; pickerOn: boolea
         className="relative overflow-hidden flex-1 min-h-0 border border-black/80"
         style={{ backgroundColor: project.bg }}
       >
-        <img
-          src={project.image}
-          alt={`${project.title} cover`}
-          loading="lazy"
-          style={{ objectPosition: `${focal.x}% ${focal.y}%` }}
-          className="absolute inset-0 w-full h-full object-contain transition-transform duration-500 group-hover:scale-[1.03]"
-        />
+        {project.placeholderTile ? (
+          <div
+            className="absolute inset-0 flex items-center justify-center p-4 text-center transition-transform duration-500 group-hover:scale-[1.03]"
+            style={{ color: project.tagBg }}
+          >
+            <span className="font-[var(--font-mono)] uppercase tracking-[0.18em] text-lg md:text-2xl leading-tight">
+              {project.shortTitle ?? project.title}
+            </span>
+          </div>
+        ) : (
+          <img
+            src={project.image}
+            alt={`${project.title} cover`}
+            loading="lazy"
+            style={{ objectPosition: `${focal.x}% ${focal.y}%` }}
+            className="absolute inset-0 w-full h-full object-contain transition-transform duration-500 group-hover:scale-[1.03]"
+          />
+        )}
         {pickerOn && (
           <>
             <div
