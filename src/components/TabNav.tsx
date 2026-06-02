@@ -5,7 +5,7 @@ import { Menu, X } from "lucide-react";
 // Legacy accent prop kept so old call-sites compile; the new pill nav is fixed-color.
 export type Accent = "pink" | "navy" | "blue" | "ink";
 
-const NAME = "RISHANI JEYASEELAN"; // placeholder
+const NAME = "RAHA TEIMURI";
 
 const tabs = [
   { href: "#top", label: "Home" },
@@ -52,7 +52,7 @@ export function TabNav(_props: { accent?: Accent } = {}) {
           activeOptions={{ exact: true }}
           className="px-3 py-1.5 rounded-full text-[13px] font-[var(--font-mono)] uppercase tracking-[0.2em] text-[color:var(--ink)] hover:bg-[color:var(--accent-soft)] transition-colors"
         >
-          RJ
+          RAHA TEIMURI
         </Link>
         <span className="w-px h-4 bg-[color:var(--line)] mx-1" aria-hidden />
         {tabs.map((t) => (
