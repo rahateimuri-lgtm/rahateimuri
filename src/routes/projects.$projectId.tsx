@@ -1130,14 +1130,9 @@ function ViralVideosLayout({ project, next }: { project: Project; next: Project 
                       <span>TikTok</span>
                     </div>
                     <div className="relative aspect-[9/14] rounded-2xl overflow-hidden bg-black">
-                      <iframe
-                        src={tiktokEmbed(v.href)}
-                        title={v.title}
-                        loading="lazy"
-                        allow="encrypted-media"
-                        scrolling="no"
-                        className="absolute inset-0 w-full h-full"
-                      />
+                      <div className="absolute inset-0 w-full h-full overflow-y-auto bg-black">
+                        <TikTokBlockquote url={v.href} />
+                      </div>
                     </div>
                     <p className="font-[var(--font-body)] text-base md:text-lg leading-snug">
                       {v.title}
