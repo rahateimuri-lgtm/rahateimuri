@@ -41,6 +41,45 @@ const PROCESS_STRIP = [
   ["04", "Measure"],
 ];
 
+const STACK = [
+  "Research",
+  "Positioning",
+  "Messaging",
+  "Figma",
+  "Framer-style motion",
+  "Conversion copy",
+  "Content systems",
+  "Responsive QA",
+  "Launch planning",
+  "Analytics notes",
+  "SEO basics",
+  "AI-augmented ops",
+];
+
+// Anonymized placeholder testimonials — replace with permission-cleared quotes.
+const TESTIMONIALS = [
+  {
+    quote:
+      "The new structure made the offer understandable in minutes. It feels polished without becoming cold or corporate.",
+    role: "Anonymous founder · Creative services",
+  },
+  {
+    quote:
+      "The site now has a real narrative. Every section earns its place and the mobile experience finally feels intentional.",
+    role: "Anonymous client · Brand studio",
+  },
+  {
+    quote:
+      "The process was calm, precise and strategic. The final system gave us pages, content prompts and reusable visual rules.",
+    role: "Anonymous operator · Digital product",
+  },
+  {
+    quote:
+      "It captured the personal tone we wanted while removing the messy parts that made the old website feel unfocused.",
+    role: "Anonymous consultant · Marketing advisory",
+  },
+];
+
 function HomePage() {
   return (
     <div className="min-h-screen bg-[color:var(--bone)] text-[color:var(--ink)] font-[var(--font-body)] overflow-x-hidden">
@@ -113,6 +152,40 @@ function HomePage() {
               <span className="mx-8 text-[color:var(--accent)]">✶</span>
             </span>
           ))}
+        </div>
+      </section>
+
+      {/* ───── ABOUT PREVIEW ───── */}
+      <section className="px-5 md:px-12 max-w-[1400px] mx-auto py-20 md:py-28">
+        <div className="grid md:grid-cols-12 gap-10 md:gap-14 items-end">
+          <Reveal className="md:col-span-7">
+            <p className="font-[var(--font-mono)] text-[11px] uppercase tracking-[0.25em] text-[color:var(--ink-soft)] mb-3">
+              ✶ About
+            </p>
+            <h2 className="font-[var(--font-body)] font-bold text-4xl md:text-6xl tracking-tight leading-[0.98]">
+              Berlin-based,<br />
+              <span className="italic font-normal text-[color:var(--accent)]">strategy-first.</span>
+            </h2>
+            <p className="mt-6 text-lg leading-relaxed max-w-[58ch] text-[color:var(--ink-soft)]">
+              I lead social for global music partners and grow audiences without paid acquisition. Calm process, sharp taste, no theatrics — and a workflow that treats AI as a draft assistant, never the editor.
+            </p>
+          </Reveal>
+          <Reveal className="md:col-span-5" delay={120}>
+            <div className="rounded-[28px] border border-[color:var(--line)] bg-[color:var(--cream)] p-7 md:p-8 tilt-card">
+              <ul className="space-y-3 font-[var(--font-mono)] text-[11px] uppercase tracking-[0.22em] text-[color:var(--ink)]">
+                <li className="flex justify-between gap-4"><span>Now</span><span className="text-[color:var(--ink-soft)]">Social Media Lead, Yousician</span></li>
+                <li className="flex justify-between gap-4"><span>Past</span><span className="text-[color:var(--ink-soft)]">Carpe Diem Tours · 0 → 1M+</span></li>
+                <li className="flex justify-between gap-4"><span>Recent</span><span className="text-[color:var(--ink-soft)]">Bowie · McCartney · Warner</span></li>
+                <li className="flex justify-between gap-4"><span>Base</span><span className="text-[color:var(--ink-soft)]">Berlin · Worldwide</span></li>
+              </ul>
+              <Link
+                to="/me"
+                className="mt-6 inline-flex items-center gap-2 font-[var(--font-mono)] text-[11px] uppercase tracking-[0.2em] px-4 py-2.5 rounded-full border border-[color:var(--ink)] text-[color:var(--ink)] hover:bg-[color:var(--ink)] hover:text-[color:var(--cream)] transition-colors"
+              >
+                Read more <ArrowUpRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+          </Reveal>
         </div>
       </section>
 
@@ -254,6 +327,66 @@ function HomePage() {
           >
             How I work <ArrowUpRight className="w-3.5 h-3.5" />
           </Link>
+        </div>
+      </section>
+
+      {/* ───── STACK ───── */}
+      <section className="bg-[color:var(--cream)] border-y border-[color:var(--line)] py-20 md:py-24">
+        <div className="px-5 md:px-12 max-w-[1400px] mx-auto">
+          <Reveal>
+            <p className="font-[var(--font-mono)] text-[11px] uppercase tracking-[0.25em] text-[color:var(--ink-soft)] mb-3">
+              ✶ Stack
+            </p>
+            <h2 className="font-[var(--font-body)] font-bold text-4xl md:text-6xl tracking-tight mb-10 md:mb-14 max-w-[18ch]">
+              Tools & methods I <span className="italic font-normal">actually use.</span>
+            </h2>
+          </Reveal>
+          <Reveal>
+            <ul className="flex flex-wrap gap-2.5">
+              {STACK.map((s) => (
+                <li
+                  key={s}
+                  className="magnetic px-4 py-2 rounded-full border border-[color:var(--line)] bg-[color:var(--bone)] font-[var(--font-mono)] text-[11px] uppercase tracking-[0.22em] text-[color:var(--ink)]"
+                >
+                  {s}
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ───── TESTIMONIALS ───── */}
+      <section className="px-5 md:px-12 max-w-[1400px] mx-auto py-20 md:py-28">
+        <Reveal>
+          <div className="flex items-end justify-between mb-10 md:mb-14 gap-6 flex-wrap">
+            <div>
+              <p className="font-[var(--font-mono)] text-[11px] uppercase tracking-[0.25em] text-[color:var(--ink-soft)] mb-3">
+                ✶ Words ·{" "}
+                <span className="italic font-[var(--font-body)] normal-case tracking-normal text-[color:var(--ink-soft)]">
+                  anonymized placeholders
+                </span>
+              </p>
+              <h2 className="font-[var(--font-body)] font-bold text-4xl md:text-6xl tracking-tight max-w-[20ch]">
+                What collaborators <span className="italic font-normal">say.</span>
+              </h2>
+            </div>
+          </div>
+        </Reveal>
+        <div className="grid sm:grid-cols-2 gap-5 md:gap-7">
+          {TESTIMONIALS.map((t, i) => (
+            <Reveal key={i} delay={i * 80}>
+              <figure className="h-full p-7 md:p-9 rounded-[28px] border border-[color:var(--line)] bg-[color:var(--cream)] tilt-card flex flex-col gap-6">
+                <span aria-hidden className="font-[var(--font-body)] italic text-5xl leading-none text-[color:var(--accent)]">"</span>
+                <blockquote className="text-lg md:text-xl leading-relaxed text-[color:var(--ink)]">
+                  {t.quote}
+                </blockquote>
+                <figcaption className="mt-auto font-[var(--font-mono)] text-[10px] uppercase tracking-[0.25em] text-[color:var(--ink-soft)]">
+                  — {t.role}
+                </figcaption>
+              </figure>
+            </Reveal>
+          ))}
         </div>
       </section>
 
