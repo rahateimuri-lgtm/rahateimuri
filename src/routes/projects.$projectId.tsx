@@ -969,6 +969,35 @@ function tiktokEmbed(url: string) {
   return id ? `https://www.tiktok.com/embed/v2/${id}` : url;
 }
 
+function TikTokBlockquote({ url }: { url: string }) {
+  React.useEffect(() => {
+    const existing = document.querySelector<HTMLScriptElement>(
+      'script[src="https://www.tiktok.com/embed.js"]',
+    );
+    if (existing) {
+      // @ts-expect-error tiktok global
+      if (window.tiktokEmbedLoad) window.tiktokEmbedLoad();
+      return;
+    }
+    const s = document.createElement("script");
+    s.src = "https://www.tiktok.com/embed.js";
+    s.async = true;
+    document.body.appendChild(s);
+  }, [url]);
+  return (
+    <blockquote
+      className="tiktok-embed"
+      cite={url}
+      data-video-id=""
+      style={{ maxWidth: "100%", minWidth: "100%", margin: 0 }}
+    >
+      <a href={url} target="_blank" rel="noreferrer">
+        Watch on TikTok
+      </a>
+    </blockquote>
+  );
+}
+
 function ViralVideosLayout({ project, next }: { project: Project; next: Project }) {
   return (
     <div
