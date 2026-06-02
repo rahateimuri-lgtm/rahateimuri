@@ -86,11 +86,11 @@ function ProjectDetailPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[color:var(--pink-soft)] text-[color:var(--navy)] font-[var(--font-body)]">
-      <TabNav accent="navy" />
+    <div className="min-h-screen bg-[color:var(--bone)] text-[color:var(--ink)] font-[var(--font-body)]">
+      <TabNav />
 
-      <main className="px-4 md:px-8 pt-4 md:pt-6 pb-12 max-w-[1400px] mx-auto">
-       <div className="bg-white px-6 md:px-12 pt-10 md:pt-14 pb-20 md:pb-24">
+      <main className="pt-28 md:pt-36 px-4 md:px-8 pb-12 max-w-[1400px] mx-auto">
+       <div className="bg-[color:var(--cream)] rounded-[28px] border border-[color:var(--line)] px-6 md:px-12 pt-10 md:pt-14 pb-20 md:pb-24">
         <Link
           to="/projects"
           className="inline-block font-[var(--font-mono)] text-[10px] uppercase tracking-widest opacity-70 hover:opacity-100 mb-8"
@@ -575,7 +575,7 @@ function PagesDarkLayout({ next }: { next: Project }) {
     >
       <TabNav accent="navy" />
 
-      <main className="px-4 md:px-8 pt-4 md:pt-6 pb-12 max-w-[1400px] mx-auto">
+      <main className="px-4 md:px-8 pt-28 md:pt-36 pb-12 max-w-[1400px] mx-auto">
         <div className="bg-white rounded-3xl px-6 md:px-12 pt-10 md:pt-14 pb-16 md:pb-20">
           <Link
             to="/projects"
@@ -971,7 +971,7 @@ function ViralVideosLayout({ project, next }: { project: Project; next: Project 
     >
       <TabNav accent="navy" />
 
-      <main className="px-4 md:px-8 pt-4 md:pt-6 pb-12 max-w-[1400px] mx-auto">
+      <main className="px-4 md:px-8 pt-28 md:pt-36 pb-12 max-w-[1400px] mx-auto">
         <div className="bg-white rounded-3xl px-6 md:px-12 pt-10 md:pt-14 pb-16 md:pb-20">
           <Link
             to="/projects"
