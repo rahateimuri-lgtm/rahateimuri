@@ -9,7 +9,6 @@ import {
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
-import { SiteInteractions } from "@/components/SiteInteractions";
 
 function NotFoundComponent() {
   return (
@@ -116,7 +115,6 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
-      <SiteInteractions />
     </QueryClientProvider>
   );
 }
