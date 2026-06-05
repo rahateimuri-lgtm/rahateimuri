@@ -103,7 +103,7 @@ const finePointer = window.matchMedia("(pointer: fine)");
 const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
 
 const getMaxScroll = () => Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
-const canUseInertia = () => finePointer.matches && !prefersReducedMotion.matches && window.innerWidth > 760;
+const canUseInertia = () => false;
 const isEditableTarget = (target) => target?.closest?.("input, textarea, select, [contenteditable='true']");
 const hasLocalScroll = (target) => {
   let node = target instanceof Element ? target : null;
