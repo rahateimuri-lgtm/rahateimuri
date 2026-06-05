@@ -243,196 +243,34 @@
       </section>
 
       <section class="projects section-pad" id="projects" aria-labelledby="projects-title">
-        <h2 id="projects-title" class="visually-hidden-projects">Projects</h2>
-        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-        <style>
-          .raha-projects { --black:#0a0a0a; --white:#f5f3ef; --accent:#c8a97e; --muted:#7a756e; --card-bg:#111110; --border:rgba(200,169,126,0.2); background:var(--black); color:var(--white); font-family:'DM Sans',sans-serif; font-weight:300; line-height:1.6; padding:80px 40px; max-width:1100px; margin:0 auto; }
-          .raha-projects .visually-hidden-projects { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
-          .raha-projects .section-label { font-family:'DM Sans',sans-serif; font-size:11px; letter-spacing:0.3em; text-transform:uppercase; color:var(--accent); margin-bottom:60px; }
-          .raha-projects .project { display:grid; grid-template-columns:1fr 1fr; gap:0; border-top:1px solid var(--border); padding:60px 0; position:relative; opacity:0; transform:translateY(30px); transition:opacity 0.7s ease, transform 0.7s ease; }
-          .raha-projects .project.visible { opacity:1; transform:translateY(0); }
-          .raha-projects .project:last-child { border-bottom:1px solid var(--border); }
-          .raha-projects .project-left { padding-right:60px; }
-          .raha-projects .project-number { font-size:11px; letter-spacing:0.2em; color:var(--muted); margin-bottom:20px; font-weight:400; }
-          .raha-projects .project-title { font-family:'Playfair Display',serif; font-size:clamp(28px,3vw,42px); font-weight:700; line-height:1.1; margin-bottom:24px; color:var(--white); }
-          .raha-projects .project-title em { font-style:italic; color:var(--accent); }
-          .raha-projects .project-desc { font-size:15px; color:#b0aaa2; margin-bottom:32px; line-height:1.8; max-width:380px; }
-          .raha-projects .stats-row { display:flex; gap:32px; margin-bottom:36px; flex-wrap:wrap; }
-          .raha-projects .stat { display:flex; flex-direction:column; gap:4px; }
-          .raha-projects .stat-number { font-family:'Playfair Display',serif; font-size:28px; font-weight:700; color:var(--accent); line-height:1; }
-          .raha-projects .stat-label { font-size:11px; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); }
-          .raha-projects .proof-links { display:flex; flex-direction:column; gap:10px; }
-          .raha-projects .proof-link { display:flex; align-items:center; gap:10px; font-size:13px; color:var(--muted); text-decoration:none; transition:color 0.2s; font-weight:400; }
-          .raha-projects .proof-link:hover { color:var(--accent); }
-          .raha-projects .proof-link::before { content:''; width:20px; height:1px; background:var(--accent); flex-shrink:0; }
-          .raha-projects .project-right { display:grid; grid-template-columns:1fr 1fr; gap:8px; align-content:start; }
-          .raha-projects .proof-card { background:var(--card-bg); border:1px solid var(--border); padding:20px; display:flex; flex-direction:column; gap:6px; transition:border-color 0.2s; }
-          .raha-projects .proof-card:hover { border-color:var(--accent); }
-          .raha-projects .proof-card.wide { grid-column:1 / -1; }
-          .raha-projects .proof-card-label { font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--accent); font-weight:500; }
-          .raha-projects .proof-card-value { font-family:'Playfair Display',serif; font-size:22px; color:var(--white); font-weight:700; }
-          .raha-projects .proof-card-sub { font-size:12px; color:var(--muted); }
-          .raha-projects .tag-row { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:28px; }
-          .raha-projects .tag { font-size:11px; padding:5px 12px; border:1px solid var(--border); color:var(--muted); letter-spacing:0.1em; text-transform:uppercase; }
-          @media (max-width:768px) {
-            .raha-projects { padding:40px 20px; }
-            .raha-projects .project { grid-template-columns:1fr; gap:40px; }
-            .raha-projects .project-left { padding-right:0; }
-            .raha-projects .project-right { grid-template-columns:1fr 1fr; }
-          }
-        </style>
-        <div class="raha-projects">
-          <div class="section-label">Selected Work</div>
-
-          <article class="project">
-            <div class="project-left">
-              <div class="project-number">01</div>
-              <h3 class="project-title">Social Media <em>Growth</em></h3>
-              <div class="tag-row">
-                <span class="tag">Multi-platform</span>
-                <span class="tag">0 → scale</span>
-                <span class="tag">Europe</span>
-              </div>
-              <p class="project-desc">Built social media presences from zero across multiple travel brands in Rome, Barcelona, and London — growing a combined audience of over 1M followers across TikTok, Instagram, YouTube, and Facebook. Now leading growth for Yousician and GuitarTuna.</p>
-              <div class="stats-row">
-                <div class="stat"><span class="stat-number">1M+</span><span class="stat-label">Total followers built</span></div>
-                <div class="stat"><span class="stat-number">10+</span><span class="stat-label">Accounts launched</span></div>
-                <div class="stat"><span class="stat-number">4</span><span class="stat-label">Platforms</span></div>
-              </div>
-              <div class="proof-links">
-                <a class="proof-link" href="https://www.instagram.com/romeitalytravel/" target="_blank" rel="noopener">Rome Italy Travel — Instagram (311K)</a>
-                <a class="proof-link" href="https://www.tiktok.com/@romeitalytravel" target="_blank" rel="noopener">Rome Italy Travel — TikTok (447K)</a>
-                <a class="proof-link" href="https://www.instagram.com/romewithchef/" target="_blank" rel="noopener">Rome With Chef — Instagram (12.8K)</a>
-                <a class="proof-link" href="https://www.instagram.com/carpediemtours/" target="_blank" rel="noopener">Carpe Diem Tours — Instagram (11.6K)</a>
-                <a class="proof-link" href="https://www.instagram.com/tipsytours/" target="_blank" rel="noopener">Tipsy Tours — Instagram (64.3K)</a>
-              </div>
-            </div>
-            <div class="project-right">
-              <div class="proof-card"><span class="proof-card-label">Instagram</span><span class="proof-card-value">311K</span><span class="proof-card-sub">Rome Italy Travel</span></div>
-              <div class="proof-card"><span class="proof-card-label">TikTok</span><span class="proof-card-value">447K</span><span class="proof-card-sub">Rome Italy Travel</span></div>
-              <div class="proof-card"><span class="proof-card-label">YouTube</span><span class="proof-card-value">88.2K</span><span class="proof-card-sub">Rome Italy Travel</span></div>
-              <div class="proof-card"><span class="proof-card-label">Instagram</span><span class="proof-card-value">64.3K</span><span class="proof-card-sub">Tipsy Tours</span></div>
-              <div class="proof-card wide"><span class="proof-card-label">Currently leading</span><span class="proof-card-value">Yousician + GuitarTuna</span><span class="proof-card-sub">Social Media Lead — Berlin, 2024–present</span></div>
-            </div>
-          </article>
-
-          <article class="project">
-            <div class="project-left">
-              <div class="project-number">02</div>
-              <h3 class="project-title">Content <em>Creation</em></h3>
-              <div class="tag-row">
-                <span class="tag">Viral</span>
-                <span class="tag">TikTok</span>
-                <span class="tag">Direction</span>
-              </div>
-              <p class="project-desc">Created and directed 50+ viral videos across brands — from concept to execution. Three pieces crossed 2.5M+ views individually; one campaign reached 50M views across platforms. At Yousician, producing and directing content for both product and artist campaigns.</p>
-              <div class="stats-row">
-                <div class="stat"><span class="stat-number">50M+</span><span class="stat-label">Views, one campaign</span></div>
-                <div class="stat"><span class="stat-number">50+</span><span class="stat-label">Viral pieces</span></div>
-              </div>
-              <div class="proof-links">
-                <a class="proof-link" href="https://www.tiktok.com/@romeitalytravel" target="_blank" rel="noopener">24.77M views — "No Cappuccino after 12" campaign</a>
-                <a class="proof-link" href="https://www.tiktok.com/@romewithchef" target="_blank" rel="noopener">3.1M views — Rome With Chef cooking series</a>
-                <a class="proof-link" href="https://www.tiktok.com/@romewithchef" target="_blank" rel="noopener">2.5M views — Rome With Chef wine night</a>
-              </div>
-            </div>
-            <div class="project-right">
-              <div class="proof-card wide"><span class="proof-card-label">Featured campaign</span><span class="proof-card-value">50M views</span><span class="proof-card-sub">Directed &amp; produced concept to execution — TikTok + Instagram</span></div>
-              <div class="proof-card"><span class="proof-card-label">Video #1</span><span class="proof-card-value">3.1M</span><span class="proof-card-sub">23K€ direct bookings</span></div>
-              <div class="proof-card"><span class="proof-card-label">Video #2</span><span class="proof-card-value">2.5M</span><span class="proof-card-sub">17K€ direct bookings</span></div>
-              <div class="proof-card wide"><span class="proof-card-label">Tools</span><span class="proof-card-value">Concept · Script · Direction · Brief</span><span class="proof-card-sub">Full creative ownership across all formats</span></div>
-            </div>
-          </article>
-
-          <article class="project">
-            <div class="project-left">
-              <div class="project-number">03</div>
-              <h3 class="project-title">UGC &amp; <em>Influencer</em></h3>
-              <div class="tag-row">
-                <span class="tag">Creator network</span>
-                <span class="tag">Pipeline</span>
-                <span class="tag">Nano UGC</span>
-              </div>
-              <p class="project-desc">Built a nano-creator UGC pipeline from scratch at Yousician — sourcing, onboarding, and managing creators to drive organic installs on TikTok and Instagram. Developed full operating systems: briefs, contracts, content review, and performance tracking. Previously created a UGC guide for 200+ tour guides across 7 European cities.</p>
-              <div class="stats-row">
-                <div class="stat"><span class="stat-number">7</span><span class="stat-label">Cities covered</span></div>
-                <div class="stat"><span class="stat-number">2</span><span class="stat-label">Creator programs built</span></div>
-              </div>
-              <div class="proof-links">
-                <a class="proof-link" href="#" target="_blank" rel="noopener">UGC Guide — Carpe Diem Tours (preview)</a>
-                <a class="proof-link" href="#" target="_blank" rel="noopener">Nano Creator Network — Yousician (ongoing)</a>
-              </div>
-            </div>
-            <div class="project-right">
-              <div class="proof-card wide"><span class="proof-card-label">At Yousician</span><span class="proof-card-value">Nano Creator Network</span><span class="proof-card-sub">Built from zero: sourcing → brief → onboarding → tracking → payments</span></div>
-              <div class="proof-card wide"><span class="proof-card-label">At Carpe Diem Tours</span><span class="proof-card-value">UGC Guide</span><span class="proof-card-sub">Deployed across Rome, Madrid, Barcelona, Florence, Lisbon, Budapest, London</span></div>
-              <div class="proof-card"><span class="proof-card-label">Stack</span><span class="proof-card-value">WhatsApp · Notion · Drive</span><span class="proof-card-sub">Creator comms</span></div>
-              <div class="proof-card"><span class="proof-card-label">Measurement</span><span class="proof-card-value">Organic installs</span><span class="proof-card-sub">Primary KPI signal</span></div>
-            </div>
-          </article>
-
-          <article class="project">
-            <div class="project-left">
-              <div class="project-number">04</div>
-              <h3 class="project-title">Artist <em>Collabs</em></h3>
-              <div class="tag-row">
-                <span class="tag">David Bowie</span>
-                <span class="tag">Paul McCartney</span>
-                <span class="tag">Warner Chappell</span>
-              </div>
-              <p class="project-desc">Social Media Lead on two major artist campaigns at Yousician — David Bowie (Estate × Warner Chappell) and Paul McCartney. Led creative direction, copy, and cross-posting strategy. The Bowie campaign resulted in co-posts live on the official David Bowie and Warner Music Chappell social media accounts.</p>
-              <div class="stats-row">
-                <div class="stat"><span class="stat-number">2</span><span class="stat-label">Artist campaigns led</span></div>
-                <div class="stat"><span class="stat-number">Global</span><span class="stat-label">Artist accounts reached</span></div>
-              </div>
-              <div class="proof-links">
-                <a class="proof-link" href="https://www.instagram.com/davidbowie/" target="_blank" rel="noopener">David Bowie Official — collab post</a>
-                <a class="proof-link" href="https://www.instagram.com/warnerchappell/" target="_blank" rel="noopener">Warner Music Chappell — collab post</a>
-                <a class="proof-link" href="#" target="_blank" rel="noopener">Campaign write-up — LinkedIn</a>
-              </div>
-            </div>
-            <div class="project-right">
-              <div class="proof-card wide"><span class="proof-card-label">Campaign 1</span><span class="proof-card-value">David Bowie × Yousician</span><span class="proof-card-sub">David Bowie Estate + Warner Chappell · Creative lead, copy, strategy</span></div>
-              <div class="proof-card wide"><span class="proof-card-label">Campaign 2</span><span class="proof-card-value">Paul McCartney × Yousician</span><span class="proof-card-sub">Social Media Lead · End-to-end campaign ownership</span></div>
-              <div class="proof-card wide"><span class="proof-card-label">Cross-post reached</span><span class="proof-card-value">Official Bowie · Warner Chappell · Yousician</span><span class="proof-card-sub">Live across all three brand accounts simultaneously</span></div>
-            </div>
-          </article>
-
-          <article class="project">
-            <div class="project-left">
-              <div class="project-number">05</div>
-              <h3 class="project-title">Social Media <em>Monetization</em></h3>
-              <div class="tag-row">
-                <span class="tag">Revenue tracking</span>
-                <span class="tag">Promo codes</span>
-                <span class="tag">UTM · GA4</span>
-              </div>
-              <p class="project-desc">Turned social channels into direct revenue streams. Built full tracking infrastructure — UTM links, GA4, Looker dashboards, and Monday.com reporting — to connect content performance to promo code sales and bookings. Two videos alone generated 40K€+ in direct revenue.</p>
-              <div class="stats-row">
-                <div class="stat"><span class="stat-number">40K€+</span><span class="stat-label">Direct revenue, 2 videos</span></div>
-                <div class="stat"><span class="stat-number">GA4</span><span class="stat-label">+ Looker + Monday</span></div>
-              </div>
-            </div>
-            <div class="project-right">
-              <div class="proof-card"><span class="proof-card-label">Video 1 — 3.1M views</span><span class="proof-card-value">23K€</span></div>
-              <div class="proof-card"><span class="proof-card-label">Video 2 — 2.5M views</span><span class="proof-card-value">17K€</span></div>
-              <div class="proof-card wide"><span class="proof-card-label">Tracking stack built</span><span class="proof-card-value">UTM · GA4 · Looker Studio · Monday.com</span><span class="proof-card-sub">Click-throughs, promo code sales, and bookings — all attributed to content</span></div>
-              <div class="proof-card"><span class="proof-card-label">Revenue attributed</span><span class="proof-card-value">40K€+</span><span class="proof-card-sub">From 2 TikTok videos</span></div>
-              <div class="proof-card"><span class="proof-card-label">KPIs tracked</span><span class="proof-card-value">Shares · Promos · Bookings</span><span class="proof-card-sub">Per post, per platform</span></div>
-              <div class="proof-card wide"><span class="proof-card-label">At Yousician</span><span class="proof-card-value">Organic installs via creator program</span><span class="proof-card-sub">Primary measurement signal for P0 nano creator network</span></div>
-            </div>
-          </article>
+        <h2 id="projects-title">Projects</h2>
+        <div class="project-grid">
+          <a class="project-card" href="social-media-growth/" aria-label="Open Social Media Growth 📈 case study">
+            <img src="assets/project-social.png" alt="">
+            <p>Social Media Growth 📈</p>
+            <h3>Social Media Growth 📈</h3>
+          </a>
+          <a class="project-card" href="content-creation/" aria-label="Open Content Creation 🎨 case study">
+            <img src="assets/project-graphic.png" alt="">
+            <p>Content Creation 🎨</p>
+            <h3>Content Creation 🎨</h3>
+          </a>
+          <a class="project-card" href="ugc-and-influencer/" aria-label="Open UGC & Influencer 🎥 case study">
+            <img src="assets/project-ugc.png" alt="">
+            <p>UGC & Influencer 🎥</p>
+            <h3>UGC & Influencer 🎥</h3>
+          </a>
+          <a class="project-card" href="artist-collab/" aria-label="Open Artist Collab 🎤 case study">
+            <img src="assets/project-reels.png" alt="">
+            <p>Artist Collab 🎤</p>
+            <h3>Artist Collab 🎤</h3>
+          </a>
+          <a class="project-card" href="social-media-monetization/" aria-label="Open Social Media Monetization 💰 case study">
+            <img src="assets/project-linkedin.png" alt="">
+            <p>Social Media Monetization 💰</p>
+            <h3>Social Media Monetization 💰</h3>
+          </a>
         </div>
-        <script>
-          (function(){
-            var els = document.querySelectorAll('.raha-projects .project');
-            if (!('IntersectionObserver' in window)) { els.forEach(function(e){ e.classList.add('visible'); }); return; }
-            var io = new IntersectionObserver(function(entries){
-              entries.forEach(function(en){ if (en.isIntersecting) { en.target.classList.add('visible'); io.unobserve(en.target); } });
-            }, { threshold: 0.15 });
-            els.forEach(function(e){ io.observe(e); });
-          })();
-        </script>
       </section>
     </main>
 
