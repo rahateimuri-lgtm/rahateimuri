@@ -2707,14 +2707,14 @@ body.is-scrolled .nav-pill {
 .smg-card .smg-count { display: block; margin: 14px 0 8px;
   font-size: clamp(30px, 3.6vw, 44px); font-weight: 700; line-height: 1; color: var(--ink); }
 .smg-card .smg-brand { color: var(--muted); font-size: 15px; }
-.smg-lead { padding: 32px; border: 1px solid var(--line); border-radius: 28px;
+.smg-lead { padding: 28px; border: 1px solid var(--line); border-radius: 28px;
   background: linear-gradient(135deg, #fff0eb, #fff 60%);
   box-shadow: 0 16px 48px rgba(33,28,70,0.06); }
-.smg-lead .smg-platform { font-family: "Fragment Mono", monospace; font-size: 12px;
+.smg-lead .smg-platform { font-family: "Fragment Mono", monospace; font-size: 11px;
   letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
-.smg-lead h3 { margin: 12px 0 8px; font-size: clamp(28px, 3.4vw, 44px);
+.smg-lead h3 { margin: 12px 0 8px; font-size: clamp(24px, 3vw, 40px);
   font-weight: 700; line-height: 1.05; }
-.smg-lead p { margin: 0; color: var(--muted); font-size: 17px; }
+.smg-lead p { margin: 0; color: var(--muted); font-size: 15px; }
 @media (max-width: 760px) {
   .smg-stats, .smg-grid { grid-template-columns: 1fr; }
 }
