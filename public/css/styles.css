@@ -2738,6 +2738,52 @@ body.is-scrolled .nav-pill {
   letter-spacing: 0.14em; text-transform: uppercase; color: #777; }
 
 .smg-card { position: relative; overflow: hidden; }
+
+/* === SMG hero visual with floating icons === */
+.smg-hero-visual {
+  position: relative;
+  width: min(100%, 520px);
+  margin: 8px auto 36px;
+  aspect-ratio: 16 / 10;
+  border-radius: 28px;
+  overflow: visible;
+  isolation: isolate;
+}
+.smg-hero-visual .smg-hero-img {
+  width: 100%; height: 100%; object-fit: cover;
+  border-radius: 28px;
+  box-shadow: 0 24px 64px rgba(33,28,70,0.14);
+  display: block;
+}
+.smg-float {
+  position: absolute;
+  width: 48px; height: 48px;
+  border-radius: 14px;
+  display: grid; place-items: center;
+  background: #fff;
+  box-shadow: 0 12px 28px rgba(33,28,70,0.18);
+  animation: smg-float 6s ease-in-out infinite;
+  z-index: 2;
+}
+.smg-float svg { width: 62%; height: 62%; display: block; }
+.smg-float-ig { top: 14%; right: -22px; animation-delay: 0s; }
+.smg-float-tt { top: 6%;  right: 38%;  animation-delay: 0.8s; width: 44px; height: 44px; }
+.smg-float-yt { top: 44%; right: -34px; animation-delay: 1.6s; }
+.smg-float-x  { top: 64%; right: 6%;  animation-delay: 2.2s; width: 42px; height: 42px; }
+.smg-float-li { top: 28%; right: 22%;  animation-delay: 3s;   width: 42px; height: 42px; }
+
+@keyframes smg-float {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50%      { transform: translateY(-14px) rotate(3deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .smg-float { animation: none; }
+}
+@media (max-width: 640px) {
+  .smg-hero-visual { max-width: 360px; }
+  .smg-float { width: 40px; height: 40px; }
+  .smg-float-tt, .smg-float-x, .smg-float-li { width: 36px; height: 36px; }
+}
 .smg-card::before {
   content: ""; position: absolute; inset: auto -40% -60% auto;
   width: 220px; height: 220px; border-radius: 50%;
