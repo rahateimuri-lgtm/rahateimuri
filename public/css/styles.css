@@ -2766,10 +2766,10 @@ body.is-scrolled .nav-pill {
   z-index: 2;
 }
 .smg-float svg { width: 62%; height: 62%; display: block; }
-.smg-float-tt { top: 22%; right: 6%;  animation-delay: 0s; }
-.smg-float-ig { top: 34%; right: 28%; animation-delay: 0.8s; }
-.smg-float-x  { top: 40%; right: 14%; animation-delay: 1.6s; width: 44px; height: 44px; }
-.smg-float-yt { top: 46%; right: 2%;  animation-delay: 2.4s; }
+.smg-float-tt { top: 26%; right: 16%; animation-delay: 0s; }
+.smg-float-ig { top: 40%; right: 31%; animation-delay: 0.8s; }
+.smg-float-x  { top: 45%; right: 19%; animation-delay: 1.6s; }
+.smg-float-yt { top: 47%; right: 7%;  animation-delay: 2.4s; }
 
 @keyframes smg-float {
   0%, 100% { transform: translateY(0) rotate(-2deg); }
