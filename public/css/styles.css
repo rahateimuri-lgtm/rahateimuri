@@ -2779,15 +2779,15 @@ body.is-scrolled .nav-pill {
 
 .smg-lead {
   display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: center;
-  gap: 24px; padding: 36px; border-radius: 32px;
+  gap: 24px; padding: 28px; border-radius: 32px;
   background: linear-gradient(135deg, #fff0eb, #f7f5ff 60%, #fff);
   border: 1px solid var(--line); box-shadow: 0 20px 56px rgba(33,28,70,0.08);
 }
 .smg-lead h3 { font-family: "Instrument Serif", Georgia, serif; font-weight: 400;
   letter-spacing: -0.01em; }
 .smg-lead-badge {
-  padding: 12px 20px; border-radius: 999px; background: var(--ink); color: #fff;
-  font-family: "Fragment Mono", monospace; font-size: 11px; letter-spacing: 0.16em;
+  padding: 10px 16px; border-radius: 999px; background: var(--ink); color: #fff;
+  font-family: "Fragment Mono", monospace; font-size: 10px; letter-spacing: 0.16em;
   text-transform: uppercase; white-space: nowrap;
 }
 
