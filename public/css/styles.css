@@ -2829,8 +2829,7 @@ body.is-scrolled .nav-pill {
 
 /* ───── Showcase: phone + brand wall ───── */
 .smg-showcase {
-  display: grid; grid-template-columns: 320px 1fr; gap: 48px;
-  align-items: center; margin: 8px 0 24px;
+  display: flex; justify-content: center; margin: 8px 0 48px;
 }
 .smg-phone {
   position: relative; width: 300px; height: 600px; margin: 0 auto;
