@@ -2794,10 +2794,23 @@ body.is-scrolled .nav-pill {
 .smg-card[data-platform="tiktok"]    { --platform-glow: rgba(0, 0, 0, 0.18); }
 .smg-card[data-platform="youtube"]   { --platform-glow: rgba(255, 0, 0, 0.18); }
 .smg-card .smg-platform { display: inline-flex; align-items: center; gap: 8px; }
-.smg-card .smg-platform::before {
-  content: ""; width: 8px; height: 8px; border-radius: 50%;
-  background: var(--platform-glow, var(--accent)); box-shadow: 0 0 0 3px rgba(0,0,0,0.04);
+.smg-card .smg-platform::before { content: none; }
+.smg-logo { width: 18px; height: 18px; display: inline-grid; place-items: center; flex: 0 0 auto; }
+.smg-logo svg { width: 100%; height: 100%; display: block; }
+.smg-followers {
+  display: block; margin-top: 2px;
+  font-family: "Fragment Mono", monospace; font-size: 11px;
+  letter-spacing: 0.16em; text-transform: uppercase; color: #777;
 }
+
+/* SMG blue branding override */
+.smg { --accent: #1E5BFF; --accent-soft: #dfe8ff; }
+.smg .smg-tags span { border-color: rgba(30,91,255,0.25); color: #1E5BFF; }
+.smg-card:hover { border-color: #1E5BFF; box-shadow: 0 24px 64px rgba(30,91,255,0.18); }
+.smg-card .smg-platform { color: #1E5BFF; }
+.smg-lead { background: linear-gradient(135deg, #eaf0ff, #fff 60%); }
+.smg-lead .smg-platform { color: #1E5BFF; }
+.smg-lead-badge { background: #1E5BFF; color: #fff; }
 .smg-card .smg-count {
   font-family: "Instrument Serif", Georgia, serif; font-weight: 400;
   letter-spacing: -0.01em;
