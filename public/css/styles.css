@@ -2966,9 +2966,28 @@ body.is-scrolled .nav-pill {
 
 /* ===== Case Slider (Piggyback-style) ===== */
 .projects--slider {
-  background: transparent;
+  background: #f6f4ef;
   color: #111;
   overflow: hidden;
+  position: relative;
+  border-radius: 32px;
+  margin: 40px 16px;
+  padding: 56px 24px 64px;
+}
+
+.projects--slider::before {
+  content: "CASES";
+  position: absolute;
+  left: 50%;
+  bottom: -40px;
+  transform: translateX(-50%);
+  font-size: clamp(120px, 22vw, 280px);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  color: rgba(17, 17, 17, 0.04);
+  pointer-events: none;
+  line-height: 1;
+  white-space: nowrap;
 }
 
 .projects--slider > h2 { display: none; }
@@ -3039,20 +3058,24 @@ body.is-scrolled .nav-pill {
 
 .case-slide {
   scroll-snap-align: start;
-  flex: 0 0 min(88vw, 720px);
+  flex: 0 0 min(92vw, 1040px);
   background: #fff;
   border-radius: 24px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 12px 32px -16px rgba(0, 0, 0, 0.10);
-  padding: 20px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05), 0 24px 60px -24px rgba(0, 0, 0, 0.18);
+  padding: 28px;
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  grid-template-rows: auto auto;
-  gap: 16px;
+  grid-template-columns: 1.25fr 0.62fr 1.1fr;
+  grid-template-areas: "primary stack meta";
+  gap: 18px;
   overflow: hidden;
+  position: relative;
+  z-index: 1;
 }
 
 .case-slide-primary {
-  height: 300px;
+  grid-area: primary;
+  aspect-ratio: 4 / 5;
+  height: auto;
   min-height: 0;
   border-radius: 14px;
   overflow: hidden;
@@ -3072,10 +3095,11 @@ body.is-scrolled .nav-pill {
 }
 
 .case-slide-stack {
+  grid-area: stack;
   display: grid;
   grid-template-rows: 1fr 1fr;
-  gap: 12px;
-  height: 300px;
+  gap: 14px;
+  height: 100%;
   min-height: 0;
 }
 
@@ -3084,61 +3108,64 @@ body.is-scrolled .nav-pill {
   overflow: hidden;
   border-radius: 14px;
   background: #f3f3f3;
+  min-height: 0;
 }
 
-.case-slide--solo .case-slide-primary { grid-column: 1 / -1; }
+.case-slide--solo {
+  grid-template-columns: 1.1fr 1fr;
+  grid-template-areas: "primary meta";
+}
 .case-slide--solo .case-slide-stack { display: none; }
-.case-slide--solo .case-slide-meta { grid-column: 1 / -1; }
 
 .case-slide-meta {
-  grid-column: 1 / -1;
+  grid-area: meta;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 8px 4px 4px;
+  justify-content: center;
+  gap: 14px;
+  padding: 12px 8px 12px 18px;
 }
 
 .case-slide-brand {
-  font-size: 15px;
+  font-size: clamp(28px, 3vw, 38px);
   font-weight: 800;
-  line-height: 1.1;
-  color: #1E5BFF;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #111;
+  text-align: right;
+  margin-bottom: 8px;
 }
 
 .case-slide-stat {
   margin: 0;
-  display: flex;
-  align-items: baseline;
-  gap: 14px;
-  flex-wrap: wrap;
+  display: block;
 }
 
 .case-slide-stat strong {
   display: block;
-  font-size: clamp(38px, 5vw, 52px);
+  font-size: clamp(48px, 6.5vw, 72px);
   line-height: 0.95;
   font-weight: 800;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.05em;
   color: #111;
 }
 
 .case-slide-stat span {
   display: block;
+  margin-top: 10px;
   font-size: 13px;
   text-transform: uppercase;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: 0.08em;
-  color: #555;
+  color: #111;
 }
 
 .case-slide-copy {
   max-width: 640px;
-  font-size: 16px;
-  line-height: 1.55;
-  color: #333;
-  margin: 2px 0 6px;
+  font-size: clamp(16px, 1.3vw, 20px);
+  line-height: 1.45;
+  color: #2b2b2b;
+  margin: 6px 0 10px;
 }
 
 .case-slide-cta {
@@ -3179,14 +3206,27 @@ body.is-scrolled .nav-pill {
   .case-track { gap: 16px; padding: 4px 16px 20px 0; }
   .case-slide {
     flex-basis: 88vw;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1.6fr 1fr;
+    grid-template-areas:
+      "primary stack"
+      "meta meta";
     padding: 16px;
-    gap: 14px;
+    gap: 12px;
   }
-  .case-slide-primary { height: 220px; }
-  .case-slide-stack { display: none; }
-  .case-slide-meta { gap: 8px; }
-  .case-slide-brand { font-size: 14px; }
+  .case-slide--solo {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "primary"
+      "meta";
+  }
+  .case-slide-primary { aspect-ratio: 4 / 5; }
+  .case-slide-stack { height: auto; gap: 10px; }
+  .case-slide-meta {
+    gap: 8px;
+    padding: 8px 4px 4px;
+    text-align: left;
+  }
+  .case-slide-brand { font-size: 22px; text-align: left; }
   .case-slide-stat strong { font-size: 38px; }
   .case-slide-copy { font-size: 15px; }
 }
