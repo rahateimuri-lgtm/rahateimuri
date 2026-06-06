@@ -2805,6 +2805,7 @@ body.is-scrolled .nav-pill {
 
 /* SMG blue branding override */
 .smg { --accent: #1E5BFF; --accent-soft: #dfe8ff; }
+.case-page-original .case-kicker { color: #1E5BFF; margin-top: 28px; }
 .smg .smg-tags span { border-color: rgba(30,91,255,0.25); color: #1E5BFF; }
 .smg-card:hover { border-color: #1E5BFF; box-shadow: 0 24px 64px rgba(30,91,255,0.18); }
 .smg-card .smg-platform { color: #1E5BFF; }
