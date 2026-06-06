@@ -3173,20 +3173,20 @@ body.is-scrolled .nav-pill {
   .case-slider-head {
     align-items: flex-start;
     flex-direction: column-reverse;
-    margin-bottom: 28px;
+    margin-bottom: 20px;
   }
   .case-slider-controls { align-self: flex-end; }
-  .case-track { gap: 22px; padding-right: 24px; }
+  .case-track { gap: 16px; padding: 4px 16px 20px 0; }
   .case-slide {
     flex-basis: 88vw;
     grid-template-columns: 1fr;
-    padding: 18px;
-    gap: 18px;
+    padding: 16px;
+    gap: 14px;
   }
-  .case-slide-primary,
-  .case-slide-stack { min-height: 320px; }
+  .case-slide-primary { height: 220px; }
   .case-slide-stack { display: none; }
-  .case-slide-meta { grid-template-columns: 1fr; gap: 20px; }
-  .case-slide-brand { font-size: 18px; }
-  .case-slide-copy { font-size: 16px; }
+  .case-slide-meta { gap: 8px; }
+  .case-slide-brand { font-size: 14px; }
+  .case-slide-stat strong { font-size: 38px; }
+  .case-slide-copy { font-size: 15px; }
 }
