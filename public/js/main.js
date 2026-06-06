@@ -506,23 +506,42 @@ document.querySelectorAll('[data-case-slider]').forEach((root) => {
   });
 
   const dots = dotsWrap ? Array.from(dotsWrap.querySelectorAll('.case-dot')) : [];
+  let activeIndex = 0;
+
+  const centeredScrollLeft = (index) => {
+    const slide = slides[index];
+    return slide.offsetLeft - (track.clientWidth - slide.offsetWidth) / 2;
+  };
+
+  const goTo = (index, behavior = 'smooth') => {
+    activeIndex = Math.max(0, Math.min(slides.length - 1, index));
+    track.scrollTo({ left: centeredScrollLeft(activeIndex), behavior });
+    update();
+  };
 
   const update = () => {
-    const x = track.scrollLeft;
-    const w = track.clientWidth;
-    const idx = Math.round(x / w);
+    const trackCenter = track.scrollLeft + track.clientWidth / 2;
+    const idx = slides.reduce((closest, slide, i) => {
+      const slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
+      const currentDistance = Math.abs(slideCenter - trackCenter);
+      const closestSlide = slides[closest];
+      const closestDistance = Math.abs(closestSlide.offsetLeft + closestSlide.offsetWidth / 2 - trackCenter);
+      return currentDistance < closestDistance ? i : closest;
+    }, 0);
+    activeIndex = idx;
     dots.forEach((d, i) => d.setAttribute('aria-current', i === idx ? 'true' : 'false'));
     if (prev) prev.disabled = idx <= 0;
     if (next) next.disabled = idx >= slides.length - 1;
   };
 
   prev && prev.addEventListener('click', () => {
-    track.scrollBy({ left: -track.clientWidth, behavior: 'smooth' });
+    goTo(activeIndex - 1);
   });
   next && next.addEventListener('click', () => {
-    track.scrollBy({ left: track.clientWidth, behavior: 'smooth' });
+    goTo(activeIndex + 1);
   });
   track.addEventListener('scroll', () => requestAnimationFrame(update), { passive: true });
-  window.addEventListener('resize', update);
+  window.addEventListener('resize', () => goTo(activeIndex, 'auto'));
+  requestAnimationFrame(() => goTo(0, 'auto'));
   update();
 });
