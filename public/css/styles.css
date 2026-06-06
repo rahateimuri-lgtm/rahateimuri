@@ -3066,3 +3066,25 @@ body.is-scrolled .nav-pill {
   .case-slide-brand { justify-content: flex-start; }
   .case-slide-stat { margin: 14px 0 6px; }
 }
+
+/* Solo variant — primary image + meta only (no middle stack) */
+.case-slide.case-slide--solo { grid-template-columns: 1.4fr 1fr; }
+.case-slide.case-slide--solo .case-slide-stack { display: none; }
+@media (max-width: 900px) {
+  .case-slide.case-slide--solo { grid-template-columns: 1fr; }
+}
+
+/* Make the home Projects section use a wider slider container */
+.projects.projects--slider { display: block; }
+.projects.projects--slider > h2 { display: none; }
+
+.case-slide-primary { text-decoration: none; cursor: pointer; }
+.case-slide-cta {
+  display: inline-block; margin-top: 18px;
+  font-family: "Fragment Mono", monospace; font-size: 12px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: #1E5BFF; text-decoration: none;
+  border-bottom: 1px solid #1E5BFF; padding-bottom: 2px;
+  transition: opacity 0.2s;
+}
+.case-slide-cta:hover { opacity: 0.7; }
