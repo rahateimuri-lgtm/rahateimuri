@@ -3241,3 +3241,6 @@ body.is-scrolled .nav-pill {
   .case-slide-stat strong { font-size: 38px; }
   .case-slide-copy { font-size: 15px; }
 }
+
+.case-slide-primary video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
