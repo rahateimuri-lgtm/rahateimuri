@@ -500,7 +500,7 @@ document.querySelectorAll('[data-case-slider]').forEach((root) => {
     b.type = 'button';
     b.setAttribute('aria-label', `Go to case ${i + 1}`);
     b.addEventListener('click', () => {
-      slides[i].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+      goTo(i);
     });
     dotsWrap && dotsWrap.appendChild(b);
   });
