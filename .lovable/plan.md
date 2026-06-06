@@ -1,39 +1,15 @@
-## Ziel
-Die hochgeladene statische Site (`site-2.zip` / `site.zip`) 1:1 als Basis verwenden, alle personenbezogenen Inhalte von Rishani durch Raha-Platzhalter ersetzen, Struktur/CSS/JS/Animationen unverändert lassen.
+## Goal
+Swap the `smg-cover.png` cover on the first project card (Social Media Growth) for your uploaded `.mov` clip. Play it autoplay, muted, looping, inline.
 
-## Schritte
+## Steps
+1. **Transcode + strip audio.** Convert the uploaded `.mov` (720×1280, ~4.7s, H.264+AAC) to a web-friendly MP4 with no audio track using ffmpeg (`-an`, `faststart`). Keeps it ~1MB and guarantees iOS/Safari autoplay.
+2. **Upload to CDN.** Push the cleaned MP4 to Lovable Assets and save the pointer at `src/assets/smg-cover.mp4.asset.json`.
+3. **Replace the cover in `public/index.html`** (line ~147, first `case-slide-primary` inside `#projects`):
+   - Swap `<img src=".../smg-cover.png">` for a `<video>` with: `autoplay muted loop playsinline preload="metadata"` and `poster` set to the existing `smg-cover.png` URL (instant first paint, fallback if video blocked).
+   - Also mirror the change in `src/site/index.html` so the source-of-truth stays in sync.
+4. **CSS touch-up in `public/css/styles.css`.** Add a small rule so `.case-slide-primary video` fills the slot identically to the image (`width:100%; height:100%; object-fit:cover; display:block;`) — the existing card is landscape but the clip is vertical, so `object-fit: cover` will crop it cleanly to fit the frame.
 
-1. **Archiv prüfen & nach `public/` kopieren**
-   - `/mnt/user-uploads/site-2.zip` nach `/tmp/site/` entpacken
-   - Sicherstellen: kein `.git`, kein `__MACOSX`
-   - Inhalt nach `public/` spiegeln: `index.html`, `404.html`, `favicon.svg`, `css/`, `js/`, `assets/`, alle Unterseiten-Ordner (projects-2/, makler-vermittler-podcast/, impressum-datenschutzerklaerung/ etc.)
-
-2. **React-Layer minimieren**
-   - Alle Custom-Routes/Komponenten entfernen, die mit der alten Hero/Services/Projects-Version zu tun haben (`TabNav.tsx`, `HeroShapes*`, `SiteFooter`, `services.tsx`, `contact.tsx`, `me.tsx`, `process.tsx`, `projects.*.tsx`, `projects-data.ts`, `assets/*.asset.json`)
-   - `src/routes/index.tsx`: liefert die statische `public/index.html` aus (Redirect via `<meta http-equiv="refresh">` oder server route `GET /` → HTML)
-   - `src/routes/$.tsx` Catch-all → 404 der statischen Seite
-   - `__root.tsx` bleibt minimal (kein eigenes Layout über die HTML-Datei)
-
-3. **Inhaltliche Platzhalter in HTML** (nur HTML, CSS/JS unberührt)
-   - `Rishani Jeyaseelan` → `[RAHA FULL NAME]`
-   - `Rishani` → `Raha`
-   - Headline/Role → `[RAHA ROLE / POSITIONING]`
-   - About-Texte → `[SHORT RAHA INTRODUCTION]`, `[RAHA SPECIALIZATION]`, `[RAHA APPROACH]`
-   - E-Mail → `[RAHA EMAIL]`, CV-Link → `[RAHA CV LINK]`
-   - Socials → `[RAHA LINKEDIN URL]`, `[RAHA INSTAGRAM URL]`, `[RAHA TIKTOK URL]`
-   - Services 01–10 → `[RAHA SERVICE 0X TITLE/SHORT/DETAIL]`
-   - Projects → `[PROJECT 0X TITLE/CATEGORY/DESCRIPTION/CASE STUDY COPY]` (Bilder bleiben als visuelle Platzhalter)
-   - Testimonials → `[CLIENT NAME/ROLE/QUOTE]`
-   - SEO-Meta → Raha-Versionen mit Platzhaltern
-   - Framer/Template-Hinweise entfernen
-
-4. **Services-Sektion**: technisch unverändert (Sticky-Stage, 01–10, Scroll-Number-Swap aus `css/styles.css` + `js/main.js`) — nur Text-Slots ersetzen
-
-5. **QA**
-   - Build error-free
-   - Console clean, alle Assets 200
-   - Viewports 390×667 / 393×852 / 768×1024 / 1280×720 / 1280×900: kein H-Scroll, Services lesbar, Entry/Exit + Nummern-Delay funktional
-   - Keine verbliebenen `Rishani`-Tokens, keine echten Mails/CV-Links
-
-## Technische Notiz
-Das Projekt ist TanStack Start. Die statische Site wird aus `public/` ausgeliefert; die React-Routen werden auf einen minimalen Passthrough für `/` und Unterseiten reduziert, damit Original-Datei-/Klassen-/Animations-Struktur unverändert greift.
+## Notes
+- No changes to slider JS — `<video>` sits in the same slot as `<img>`.
+- Existing `smg-cover.png` stays in place as the poster, so nothing breaks if the video fails to load.
+- If you'd rather the vertical video show fully (letterboxed) instead of cropped to fit, say the word and I'll switch `object-fit` to `contain` with a dark backdrop.
