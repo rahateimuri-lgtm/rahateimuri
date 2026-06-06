@@ -3066,3 +3066,14 @@ body.is-scrolled .nav-pill {
   .case-slide-brand { justify-content: flex-start; }
   .case-slide-stat { margin: 14px 0 6px; }
 }
+
+/* Solo variant — primary image + meta only (no middle stack) */
+.case-slide.case-slide--solo { grid-template-columns: 1.4fr 1fr; }
+.case-slide.case-slide--solo .case-slide-stack { display: none; }
+@media (max-width: 900px) {
+  .case-slide.case-slide--solo { grid-template-columns: 1fr; }
+}
+
+/* Make the home Projects section use a wider slider container */
+.projects.projects--slider { display: block; }
+.projects.projects--slider > h2 { display: none; }
