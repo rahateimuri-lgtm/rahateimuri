@@ -3132,7 +3132,7 @@ body.is-scrolled .nav-pill {
   flex-direction: column;
   justify-content: center;
   gap: 14px;
-  padding: 8px 8px 8px 40px;
+  padding: 16px 24px 16px 40px;
 }
 
 .case-slide-brand {
@@ -3234,7 +3234,7 @@ body.is-scrolled .nav-pill {
   .case-slide-stack { height: auto; gap: 10px; }
   .case-slide-meta {
     gap: 8px;
-    padding: 8px 4px 4px;
+    padding: 16px 16px 12px;
     text-align: left;
   }
   .case-slide-brand { font-size: 22px; text-align: left; }
