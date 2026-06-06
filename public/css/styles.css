@@ -2802,6 +2802,11 @@ body.is-scrolled .nav-pill {
   font-family: "Fragment Mono", monospace; font-size: 11px;
   letter-spacing: 0.16em; text-transform: uppercase; color: #777;
 }
+.smg-count-note {
+  display: block; margin-top: 6px;
+  font-family: "Fragment Mono", monospace; font-size: 10px;
+  color: #999;
+}
 
 /* SMG blue branding override */
 .smg { --accent: #1E5BFF; --accent-soft: #dfe8ff; }
