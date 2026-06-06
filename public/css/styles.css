@@ -2994,7 +2994,7 @@ body.is-scrolled .nav-pill {
 
 .case-slider {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1380px;
   margin: 0 auto;
 }
 
@@ -3050,7 +3050,10 @@ body.is-scrolled .nav-pill {
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  padding: 8px max(24px, calc((100% - min(96vw, 1180px)) / 2)) 24px;
+  padding-top: 8px;
+  padding-bottom: 24px;
+  padding-left: max(24px, calc((100% - min(92vw, 1080px)) / 2));
+  padding-right: max(24px, calc((100% - min(92vw, 1080px)) / 2));
   scrollbar-width: none;
 }
 
@@ -3058,7 +3061,7 @@ body.is-scrolled .nav-pill {
 
 .case-slide {
   scroll-snap-align: center;
-  flex: 0 0 min(96vw, 1180px);
+  flex: 0 0 min(92vw, 1080px);
   box-sizing: border-box;
   height: 560px;
   background: #fff;
