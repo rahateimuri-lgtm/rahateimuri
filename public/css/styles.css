@@ -2971,7 +2971,9 @@ body.is-scrolled .nav-pill {
   overflow: hidden;
   position: relative;
   border-radius: 32px;
-  margin: 40px 16px;
+  width: calc(100% - 32px);
+  max-width: none;
+  margin: 40px auto;
   padding: 56px 24px 64px;
 }
 
@@ -3049,6 +3051,7 @@ body.is-scrolled .nav-pill {
   gap: 36px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
+  scroll-padding-inline: max(24px, calc((100% - min(92vw, 1080px)) / 2));
   scroll-behavior: smooth;
   padding-top: 8px;
   padding-bottom: 24px;
