@@ -2984,39 +2984,39 @@ body.is-scrolled .nav-pill {
   justify-content: space-between;
   align-items: flex-end;
   gap: 32px;
-  margin-bottom: 42px;
+  margin-bottom: 28px;
 }
 
 .case-slider-head p {
   color: #1E5BFF;
   text-transform: uppercase;
   letter-spacing: 0.16em;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
-  margin: 0 0 10px;
+  margin: 0 0 8px;
 }
 
 .case-slider-head h2 {
-  font-size: clamp(48px, 8vw, 92px);
-  line-height: 0.95;
-  letter-spacing: -0.04em;
+  font-size: clamp(38px, 5.5vw, 56px);
+  line-height: 1;
+  letter-spacing: -0.03em;
   margin: 0;
 }
 
 .case-slider-controls {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   order: 2;
 }
 
 .case-slider-btn {
-  width: 52px;
-  height: 52px;
+  width: 40px;
+  height: 40px;
   border-radius: 999px;
   border: 1.5px solid #1E5BFF;
   background: transparent;
   color: #1E5BFF;
-  font-size: 34px;
+  font-size: 22px;
   line-height: 1;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -3027,11 +3027,11 @@ body.is-scrolled .nav-pill {
 
 .case-track {
   display: flex;
-  gap: 45px;
+  gap: 28px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  padding: 10px 8vw 30px 0;
+  padding: 8px 12% 24px 4px;
   scrollbar-width: none;
 }
 
@@ -3039,21 +3039,22 @@ body.is-scrolled .nav-pill {
 
 .case-slide {
   scroll-snap-align: start;
-  flex: 0 0 min(86vw, 920px);
+  flex: 0 0 min(88vw, 720px);
   background: #fff;
-  border-radius: 25px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.14);
-  padding: 25px;
+  border-radius: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 12px 32px -16px rgba(0, 0, 0, 0.10);
+  padding: 20px;
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
+  grid-template-columns: 1.2fr 0.8fr;
   grid-template-rows: auto auto;
-  gap: 24px;
+  gap: 16px;
   overflow: hidden;
 }
 
 .case-slide-primary {
-  min-height: 430px;
-  border-radius: 15px;
+  height: 300px;
+  min-height: 0;
+  border-radius: 14px;
   overflow: hidden;
   display: block;
   background: #f3f3f3;
@@ -3067,20 +3068,21 @@ body.is-scrolled .nav-pill {
   height: 100%;
   object-fit: cover;
   display: block;
-  border-radius: 15px;
+  border-radius: 14px;
 }
 
 .case-slide-stack {
   display: grid;
   grid-template-rows: 1fr 1fr;
-  gap: 18px;
-  min-height: 430px;
+  gap: 12px;
+  height: 300px;
+  min-height: 0;
 }
 
 .case-slide-stack figure {
   margin: 0;
   overflow: hidden;
-  border-radius: 15px;
+  border-radius: 14px;
   background: #f3f3f3;
 }
 
@@ -3090,53 +3092,62 @@ body.is-scrolled .nav-pill {
 
 .case-slide-meta {
   grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: 240px 1fr;
-  gap: 40px;
-  align-items: start;
-  padding-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 8px 4px 4px;
 }
 
 .case-slide-brand {
-  font-size: 20px;
+  font-size: 15px;
   font-weight: 800;
   line-height: 1.1;
   color: #1E5BFF;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
-.case-slide-stat { margin-bottom: 18px; }
+.case-slide-stat {
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  flex-wrap: wrap;
+}
 
 .case-slide-stat strong {
   display: block;
-  font-size: clamp(48px, 7vw, 75px);
+  font-size: clamp(38px, 5vw, 52px);
   line-height: 0.95;
   font-weight: 800;
-  letter-spacing: -0.06em;
+  letter-spacing: -0.04em;
   color: #111;
 }
 
 .case-slide-stat span {
   display: block;
-  margin-top: 10px;
+  font-size: 13px;
   text-transform: uppercase;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  color: #111;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #555;
 }
 
 .case-slide-copy {
-  max-width: 760px;
-  font-size: 22px;
-  line-height: 1.5;
-  color: #111;
-  margin: 0 0 24px;
+  max-width: 640px;
+  font-size: 16px;
+  line-height: 1.55;
+  color: #333;
+  margin: 2px 0 6px;
 }
 
 .case-slide-cta {
   color: #1E5BFF;
   font-weight: 800;
   text-decoration: none;
-  font-size: 17px;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
 .case-dots {
