@@ -484,3 +484,45 @@ const revealObserver = new IntersectionObserver(
 );
 
 revealTargets.forEach((target) => revealObserver.observe(target));
+
+/* ===== Case Slider ===== */
+document.querySelectorAll('[data-case-slider]').forEach((root) => {
+  const track = root.querySelector('.case-track');
+  const slides = Array.from(track.querySelectorAll('.case-slide'));
+  const prev = root.querySelector('[data-slider-prev]');
+  const next = root.querySelector('[data-slider-next]');
+  const dotsWrap = root.querySelector('.case-dots');
+  if (!track || slides.length === 0) return;
+
+  slides.forEach((_, i) => {
+    const b = document.createElement('button');
+    b.className = 'case-dot';
+    b.type = 'button';
+    b.setAttribute('aria-label', `Go to case ${i + 1}`);
+    b.addEventListener('click', () => {
+      slides[i].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+    });
+    dotsWrap && dotsWrap.appendChild(b);
+  });
+
+  const dots = dotsWrap ? Array.from(dotsWrap.querySelectorAll('.case-dot')) : [];
+
+  const update = () => {
+    const x = track.scrollLeft;
+    const w = track.clientWidth;
+    const idx = Math.round(x / w);
+    dots.forEach((d, i) => d.setAttribute('aria-current', i === idx ? 'true' : 'false'));
+    if (prev) prev.disabled = idx <= 0;
+    if (next) next.disabled = idx >= slides.length - 1;
+  };
+
+  prev && prev.addEventListener('click', () => {
+    track.scrollBy({ left: -track.clientWidth, behavior: 'smooth' });
+  });
+  next && next.addEventListener('click', () => {
+    track.scrollBy({ left: track.clientWidth, behavior: 'smooth' });
+  });
+  track.addEventListener('scroll', () => requestAnimationFrame(update), { passive: true });
+  window.addEventListener('resize', update);
+  update();
+});
