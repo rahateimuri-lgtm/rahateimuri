@@ -1,92 +1,58 @@
 const services = [
   {
     number: "01",
-    title: "Strategy & Content Planning",
+    title: "Social Media Strategy",
     image: "assets/service-red-pyramid.png",
     copy: [
-      "I develop <strong>tailored social media strategies</strong> that align with your <strong>brand goals</strong> and speak directly to your <strong>target audience</strong>.",
-      "From in-depth <strong>audience insights</strong> to structured <strong>content planning</strong>, I create a clear roadmap that ensures <strong>consistency</strong>, <strong>relevance</strong>, and <strong>long-term growth</strong>. <span class=\"desktop-extra\">Every piece of content is strategically designed to strengthen your <strong>brand presence</strong> and maximize <strong>engagement</strong> across platforms.</span>",
+      "Building multi-platform strategies that actually grow accounts, based on what the audience wants and a clear plan for what to post.",
     ],
   },
   {
     number: "02",
-    title: "Short-Form Content",
+    title: "Creative Direction",
     image: "assets/service-blue-cube.png",
     copy: [
-      "I create high-quality short-form content including Reels, TikToks, and carousel posts, designed to capture attention and drive engagement.",
-      "Combined with engaging captions and strong storytelling, each piece of content is crafted to strengthen your brand presence and deliver measurable results.",
+      "Leading the creative so content looks good, stays on brand, and feels like one voice across every platform.",
     ],
   },
   {
     number: "03",
-    title: "Publishing & Optimization",
+    title: "Production at Scale",
     image: "assets/service-green-cylinder.png",
     copy: [
-      "I ensure consistent publishing across all platforms with optimized timing and platform-specific adjustments to maximize reach and visibility.",
-      "By aligning content with the right timing and format, I help improve performance, increase engagement, and maintain a strong and active presence.",
+      "Blending in-house production, creators, freelancers and AI into a single high-volume content engine.",
     ],
   },
   {
     number: "04",
-    title: "Community Management",
+    title: "Viral Engineering",
     image: "assets/service-orange-sphere.png",
     copy: [
-      "I actively manage and engage with your audience through comments and messages to build trust, strengthen relationships, and create a loyal community around your brand.",
-      "By maintaining consistent interaction, I help increase engagement, improve brand perception, and turn followers into long-term customers.",
+      "Combining audience research, data and sharp hooks to make videos take off, even for hard-to-sell products.",
     ],
   },
   {
     number: "05",
-    title: "Analytics & Reporting",
+    title: "Influencer & UGC",
     image: "assets/service-purple-circle.png",
     copy: [
-      "I track and analyze key performance metrics to gain actionable insights and continuously optimize your content strategy.",
-      "Through data-driven decisions, I improve reach, increase engagement, and drive sustainable growth for your brand.",
+      "Running creator and influencer collaborations that bring in fresh content, with their performance tracked through dedicated codes and links.",
     ],
   },
   {
     number: "06",
-    title: "Paid Campaigns",
+    title: "Analytics & Reporting",
     image: "assets/service-yellow-heart.png",
     copy: [
-      "I create and manage highly targeted ad campaigns designed to increase visibility, drive qualified traffic, and generate measurable conversions.",
-      "Through continuous testing, audience refinement, and performance optimization, I ensure your budget delivers maximum ROI.",
+      "Tracking social performance with Sprout and revenue with promo codes, GA4, UTM and deeplinks, with clear reporting on both.",
     ],
   },
   {
     number: "07",
-    title: "Brand Identity",
+    title: "Leadership",
     image: "assets/service-orange-star.png",
     copy: [
-      "I combine aesthetic design with strategic thinking to build strong, memorable brand identities.",
-      "From visuals to messaging, every element is crafted to ensure consistency, recognition, and alignment with your business goals.",
-    ],
-  },
-  {
-    number: "08",
-    title: "Long-Form Video Editing",
-    image: "assets/service-blue-gem.png",
-    copy: [
-      "From raw footage to polished content, I create high-quality long-form videos designed for retention and impact.",
-      "With strategic thumbnails and optimized storytelling, I increase clicks, improve watch time, and support consistent channel growth.",
-    ],
-  },
-  {
-    number: "09",
-    title: "Website Design",
-    image: "assets/service-lime-cube.png",
-    copy: [
-      "I design clean, modern websites that reflect your brand and provide a clear, user-friendly experience.",
-      "I also support with ongoing updates, content changes, and maintenance to keep your website aligned with your brand and up to date.",
-    ],
-  },
-  {
-    number: "10",
-    title: "Visual Content",
-    image: "assets/service-yellow-pill.png",
-    copy: [
-      "I create high-quality visual content that aligns with your brand and enhances your overall online presence.",
-      "From social media graphics to marketing assets, I design visuals that are consistent, engaging, and tailored to your audience.",
+      "Hiring, training and organising teams and freelancers that deliver, and keeping their work tied to real goals.",
     ],
   },
 ];
