@@ -706,6 +706,50 @@ body.is-scrolled .nav-pill {
   overflow: hidden;
 }
 
+.tools-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: clamp(20px, 2.4vw, 36px) clamp(28px, 3.5vw, 56px);
+  align-items: center;
+  justify-items: center;
+  margin-top: clamp(28px, 4vw, 52px);
+}
+.tool-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: clamp(40px, 5vw, 64px);
+  width: 100%;
+}
+.tool-item img {
+  max-height: 100%;
+  max-width: 100%;
+  height: auto;
+  width: auto;
+  object-fit: contain;
+  filter: grayscale(1);
+  opacity: 0.85;
+  transition: opacity 200ms ease, filter 200ms ease;
+}
+.tool-item img:hover {
+  filter: none;
+  opacity: 1;
+}
+.tool-text {
+  font-size: clamp(16px, 1.4vw, 20px);
+  font-weight: 600;
+  color: #0a0a0a;
+  letter-spacing: -0.01em;
+}
+@media (max-width: 900px) {
+  .tools-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .tools-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
 .stack-bg {
   position: absolute;
   z-index: 0;
