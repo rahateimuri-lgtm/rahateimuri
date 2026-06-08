@@ -2688,7 +2688,7 @@ body.is-scrolled .nav-pill {
   }
 
   .footer-wordmark {
-    font-size: clamp(70px, 25vw, 140px);
+    font-size: clamp(40px, 14vw, 80px);
   }
 }
 
