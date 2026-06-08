@@ -234,7 +234,7 @@ body.is-scrolled .nav-pill {
 .hero-copy {
   position: relative;
   z-index: 6;
-  margin-top: clamp(92px, 10vw, 118px);
+  margin-top: clamp(20px, 3vw, 40px);
   text-align: center;
 }
 
