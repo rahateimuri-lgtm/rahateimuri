@@ -1997,6 +1997,40 @@ body.is-scrolled .nav-pill {
   text-transform: uppercase;
 }
 
+.contact-location {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 22px;
+  padding: 14px 20px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(102, 112, 255, 0.12), rgba(102, 112, 255, 0.04));
+  border: 1px solid rgba(102, 112, 255, 0.28);
+  color: var(--blue);
+  box-shadow: 0 8px 24px -16px rgba(102, 112, 255, 0.55);
+}
+
+.contact-location-pin {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.contact-location-label {
+  display: block;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6b6f99;
+  margin-bottom: 2px;
+}
+
+.contact-location-city {
+  display: block;
+  font-size: clamp(18px, 1.6vw, 22px);
+  font-weight: 700;
+  color: var(--blue);
+}
+
 .legal-hero {
   width: min(100%, 1220px);
 }
