@@ -729,13 +729,10 @@ body.is-scrolled .nav-pill {
   height: auto;
   width: auto;
   object-fit: contain;
-  filter: grayscale(1);
-  opacity: 0.85;
-  transition: opacity 200ms ease, filter 200ms ease;
+  transition: transform 200ms ease;
 }
 .tool-item img:hover {
-  filter: none;
-  opacity: 1;
+  transform: scale(1.06);
 }
 .tool-text {
   font-size: clamp(16px, 1.4vw, 20px);
