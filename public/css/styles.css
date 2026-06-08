@@ -7,8 +7,8 @@
   --soft: #f7f5ff;
   --soft-strong: #ece8fb;
   --line: #eeeaf8;
-  --accent: #f24b1f;
-  --accent-dark: #d83b14;
+  --accent: #1E5BFF;
+  --accent-dark: #1747cc;
   --green: #00cc99;
   --blue: #6670ff;
   --shadow: 0 24px 80px rgba(26, 18, 64, 0.1);
@@ -47,7 +47,7 @@ body {
 
 ::selection {
   color: #fff;
-  background: rgba(242, 75, 31, 0.92);
+  background: rgba(30, 91, 255, 0.92);
 }
 
 main {
@@ -78,7 +78,7 @@ button {
 }
 
 :focus-visible {
-  outline: 2px solid rgba(242, 75, 31, 0.72);
+  outline: 2px solid rgba(30, 91, 255, 0.72);
   outline-offset: 5px;
 }
 
@@ -170,7 +170,7 @@ body.is-scrolled .nav-pill {
 .nav-link.active {
   color: #fff;
   background: linear-gradient(180deg, #ff6536, var(--accent));
-  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.12), 0 8px 20px rgba(242, 75, 31, 0.22);
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.12), 0 8px 20px rgba(30, 91, 255, 0.22);
 }
 
 .nav-toggle {
@@ -695,7 +695,7 @@ body.is-scrolled .nav-pill {
 
 .small-pill:hover {
   --hover-lift: -2px;
-  box-shadow: 0 16px 36px rgba(242, 75, 31, 0.2);
+  box-shadow: 0 16px 36px rgba(30, 91, 255, 0.2);
 }
 
 .testimonials {
@@ -1136,7 +1136,7 @@ body.is-scrolled .nav-pill {
   color: #fff;
   border-color: transparent;
   background: linear-gradient(180deg, #ff6536, var(--accent));
-  box-shadow: 0 14px 34px rgba(242, 75, 31, 0.16);
+  box-shadow: 0 14px 34px rgba(30, 91, 255, 0.16);
 }
 
 .service-tab:hover {
@@ -1368,7 +1368,7 @@ body.is-scrolled .nav-pill {
 
 .case-page {
   background:
-    radial-gradient(circle at 18% 0%, rgba(242, 75, 31, 0.11), transparent 30rem),
+    radial-gradient(circle at 18% 0%, rgba(30, 91, 255, 0.11), transparent 30rem),
     radial-gradient(circle at 88% 8%, rgba(102, 112, 255, 0.13), transparent 34rem),
     #fff;
 }
