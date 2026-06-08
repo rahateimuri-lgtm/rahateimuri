@@ -526,7 +526,7 @@ body.is-scrolled .nav-pill {
   display: grid;
   width: min(890px, calc(100vw - 64px));
   max-width: 100%;
-  height: 176px;
+  height: 220px;
 }
 
 .statement-card {
