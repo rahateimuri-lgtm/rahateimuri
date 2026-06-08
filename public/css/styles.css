@@ -545,7 +545,7 @@ body.is-scrolled .nav-pill {
   overflow: visible;
   opacity: 0;
   transform: translateY(16px) scale(0.98);
-  transition: opacity 340ms ease, transform 340ms ease;
+  transition: opacity 700ms ease, transform 700ms ease;
   pointer-events: none;
 }
 
