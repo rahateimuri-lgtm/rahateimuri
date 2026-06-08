@@ -2712,8 +2712,7 @@ body.is-scrolled .nav-pill {
     padding-inline: 22px;
   }
 
-  .footer a,
-  .footer p:not(.footer-wordmark) {
+  .contact-simple a {
     font-size: 20px;
   }
 }
