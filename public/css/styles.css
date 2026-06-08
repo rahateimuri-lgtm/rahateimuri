@@ -1054,7 +1054,7 @@ body.is-scrolled .nav-pill {
   position: absolute;
   top: clamp(4px, 2.4vw, 24px);
   left: 0;
-  color: rgba(0, 0, 0, 0.042);
+  color: rgba(102, 112, 255, 0.10);
   font-size: clamp(118px, 16vw, 176px);
   font-weight: 800;
   line-height: 0.78;
