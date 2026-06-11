@@ -214,14 +214,61 @@ if (roles.length) {
 }
 
 const statementCards = [...document.querySelectorAll(".statement-card")];
-let statementIndex = 0;
+const aboutSection = document.querySelector("#about");
+const aboutDots = [...document.querySelectorAll("[data-about-dot]")];
+let aboutActiveIndex = 0;
 
-if (statementCards.length > 1) {
-  window.setInterval(() => {
-    statementCards[statementIndex].classList.remove("active");
-    statementIndex = (statementIndex + 1) % statementCards.length;
-    statementCards[statementIndex].classList.add("active");
-  }, 4600);
+const setAboutActive = (index) => {
+  if (index === aboutActiveIndex) return;
+  statementCards[aboutActiveIndex]?.classList.remove("active");
+  aboutDots[aboutActiveIndex]?.classList.remove("active");
+  aboutActiveIndex = index;
+  statementCards[aboutActiveIndex]?.classList.add("active");
+  aboutDots[aboutActiveIndex]?.classList.add("active");
+};
+
+if (statementCards.length > 1 && aboutSection?.classList.contains("about--scroll")) {
+  const isNarrow = () => window.matchMedia("(max-width: 720px)").matches;
+  let aboutFrame = 0;
+
+  const updateAboutFromScroll = () => {
+    aboutFrame = 0;
+    if (isNarrow()) {
+      // Mobile fallback — all cards visible, no scroll-driven swap.
+      statementCards.forEach((c) => c.classList.add("active"));
+      aboutDots.forEach((d) => d.classList.add("active"));
+      return;
+    }
+    const rect = aboutSection.getBoundingClientRect();
+    const scrollable = Math.max(1, aboutSection.offsetHeight - window.innerHeight);
+    const offset = Math.min(scrollable, Math.max(0, -rect.top));
+    const progress = offset / scrollable;
+    const idx = Math.min(
+      statementCards.length - 1,
+      Math.floor(progress * statementCards.length * 0.999)
+    );
+    setAboutActive(idx);
+  };
+
+  const scheduleAbout = () => {
+    if (aboutFrame) return;
+    aboutFrame = window.requestAnimationFrame(updateAboutFromScroll);
+  };
+
+  window.addEventListener("scroll", scheduleAbout, { passive: true });
+  window.addEventListener("resize", scheduleAbout);
+
+  aboutDots.forEach((dot, index) => {
+    dot.addEventListener("click", () => {
+      const scrollable = Math.max(1, aboutSection.offsetHeight - window.innerHeight);
+      const target =
+        aboutSection.offsetTop +
+        (scrollable * (index + 0.5)) / statementCards.length;
+      window.scrollTo({ top: target, behavior: prefersReducedMotion.matches ? "auto" : "smooth" });
+    });
+  });
+
+  updateAboutFromScroll();
 }
 
 const testimonialCards = [...document.querySelectorAll(".testimonial-card")];
@@ -511,3 +558,22 @@ document.querySelectorAll('[data-case-slider]').forEach((root) => {
   requestAnimationFrame(() => goTo(0, 'auto'));
   update();
 });
+
+/* ===== Floating CTA cluster visibility ===== */
+(() => {
+  const cluster = document.querySelector("[data-floating-cta]");
+  if (!cluster) return;
+  const hero = document.querySelector("#home");
+  const contact = document.querySelector("#contact");
+
+  const updateCluster = () => {
+    const pastHero = hero ? window.scrollY > hero.offsetHeight * 0.6 : true;
+    const contactRect = contact?.getBoundingClientRect();
+    const contactVisible = contactRect ? contactRect.top < window.innerHeight * 0.85 : false;
+    cluster.classList.toggle("is-visible", pastHero && !contactVisible);
+  };
+
+  window.addEventListener("scroll", updateCluster, { passive: true });
+  window.addEventListener("resize", updateCluster);
+  updateCluster();
+})();
