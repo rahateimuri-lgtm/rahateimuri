@@ -1809,6 +1809,16 @@ body.is-scrolled .nav-pill {
   letter-spacing: 0;
 }
 
+.case-original-lead {
+  max-width: 720px;
+  margin: 18px auto 0;
+  font-size: clamp(18px, 1.6vw, 22px);
+  font-weight: 400;
+  line-height: 1.45;
+  text-align: center;
+  color: #6e6e73;
+}
+
 .case-original-layout {
   display: grid;
   grid-template-columns: minmax(250px, 0.29fr) minmax(0, 0.71fr);
