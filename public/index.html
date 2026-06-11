@@ -19,7 +19,7 @@
     <meta name="twitter:description" content="Berlin-based Social Media Lead, Systems Builder & Creative Strategist. Work for David Bowie, Paul McCartney, Yousician — music, travel, lifestyle and app.">
     <meta name="twitter:image" content="https://rahateimuri.lovable.app/__l5e/assets-v1/f715b2e5-c256-4ede-bb1a-0ba2a61082e3/smg-cover.png">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="css/styles.css?v=20260611-cv1">
+    <link rel="stylesheet" href="css/styles.css?v=20260611-cv2">
   </head>
   <body>
     <header class="site-header" data-nav-shell>
@@ -326,16 +326,32 @@
         <p class="cv-intro">The full track record — read it here or grab the PDF.</p>
       </div>
       <div class="cv-tabs" data-cv-tabs role="tablist" aria-label="CV versions" hidden></div>
-      <div class="cv-toolbar">
-        <a class="cv-btn cv-btn--ghost" data-cv-open href="#" target="_blank" rel="noopener">Open in new tab ↗</a>
-        <a class="cv-btn cv-btn--ghost" data-cv-download href="#" download>Download PDF ↓</a>
-      </div>
-      <div class="cv-viewer" data-cv-viewer>
-        <iframe data-cv-frame title="Raha Teimuri CV" loading="lazy"></iframe>
-        <p class="cv-fallback">
-          If the preview doesn't load on your device,
-          <a data-cv-open-fallback href="#" target="_blank" rel="noopener">open the CV in a new tab</a>.
-        </p>
+      <div class="cv-reader" data-cv-reader>
+        <div class="cv-reader-toolbar" role="toolbar" aria-label="CV reader">
+          <div class="cv-tool-group">
+            <button class="cv-tool-btn" type="button" data-cv-prev aria-label="Previous page">◀</button>
+            <span class="cv-page-indicator"><span data-cv-page-current>1</span> / <span data-cv-page-total>—</span></span>
+            <button class="cv-tool-btn" type="button" data-cv-next aria-label="Next page">▶</button>
+          </div>
+          <div class="cv-tool-group">
+            <button class="cv-tool-btn" type="button" data-cv-zoom-out aria-label="Zoom out">−</button>
+            <span class="cv-zoom-indicator" data-cv-zoom>100%</span>
+            <button class="cv-tool-btn" type="button" data-cv-zoom-in aria-label="Zoom in">+</button>
+          </div>
+          <div class="cv-tool-group cv-tool-group--actions">
+            <a class="cv-tool-btn" data-cv-open href="#" target="_blank" rel="noopener" aria-label="Open in new tab">↗</a>
+            <a class="cv-tool-btn" data-cv-download href="#" download aria-label="Download PDF">↓</a>
+          </div>
+        </div>
+        <div class="cv-reader-stage" data-cv-pages tabindex="0" aria-label="CV pages">
+          <div class="cv-reader-loading" data-cv-loading>
+            <div class="cv-skeleton"></div>
+            <div class="cv-skeleton"></div>
+          </div>
+        </div>
+        <noscript>
+          <p class="cv-fallback">JavaScript is required to preview the CV. <a data-cv-open-fallback href="#" target="_blank" rel="noopener">Open the PDF directly</a>.</p>
+        </noscript>
       </div>
     </section>
 
@@ -359,6 +375,6 @@
       <p class="footer-wordmark">Raha</p>
     </footer>
 
-    <script src="js/main.js?v=20260611-cv1"></script>
+    <script src="js/main.js?v=20260611-cv2"></script>
   </body>
 </html>

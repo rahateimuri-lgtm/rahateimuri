@@ -578,7 +578,7 @@ document.querySelectorAll('[data-case-slider]').forEach((root) => {
   updateCluster();
 })();
 
-/* ===== CV viewer (extensible to multiple CVs) ===== */
+/* ===== CV in-page PDF reader (PDF.js, lazy-loaded) ===== */
 (() => {
   const CVS = [
     {
@@ -590,28 +590,170 @@ document.querySelectorAll('[data-case-slider]').forEach((root) => {
     // { id: "design", label: "CV — Design", file: "/__l5e/assets-v1/.../cv-design.pdf" },
   ];
 
-  const frame = document.querySelector("[data-cv-frame]");
+  const PDFJS_VERSION = "4.7.76";
+  const PDFJS_MODULE = `https://cdn.jsdelivr.net/npm/pdfjs-dist@${PDFJS_VERSION}/build/pdf.min.mjs`;
+  const PDFJS_WORKER = `https://cdn.jsdelivr.net/npm/pdfjs-dist@${PDFJS_VERSION}/build/pdf.worker.min.mjs`;
+
+  const reader = document.querySelector("[data-cv-reader]");
+  if (!reader) return;
+
+  const stage = reader.querySelector("[data-cv-pages]");
+  const loading = reader.querySelector("[data-cv-loading]");
   const tabsWrap = document.querySelector("[data-cv-tabs]");
   const openLinks = document.querySelectorAll("[data-cv-open], [data-cv-open-fallback]");
   const downloadLink = document.querySelector("[data-cv-download]");
-  if (!frame) return;
+  const prevBtn = reader.querySelector("[data-cv-prev]");
+  const nextBtn = reader.querySelector("[data-cv-next]");
+  const zoomOutBtn = reader.querySelector("[data-cv-zoom-out]");
+  const zoomInBtn = reader.querySelector("[data-cv-zoom-in]");
+  const zoomLabel = reader.querySelector("[data-cv-zoom]");
+  const currentLabel = reader.querySelector("[data-cv-page-current]");
+  const totalLabel = reader.querySelector("[data-cv-page-total]");
 
-  let active = 0;
+  // Wire static links right away so they work before PDF.js loads.
+  const setLinks = (file) => {
+    openLinks.forEach((a) => a.setAttribute("href", file));
+    if (downloadLink) downloadLink.setAttribute("href", file);
+  };
+  setLinks(CVS[0].file);
 
-  const apply = (i) => {
-    active = i;
+  // Smooth-scroll jump anchors
+  document.querySelectorAll("[data-cv-jump]").forEach((el) => el.setAttribute("href", "#cv"));
+
+  let pdfjsLib = null;
+  let pdfDoc = null;
+  let activeCv = 0;
+  let scale = 1; // user-set zoom multiplier on top of fit-width
+  let currentPage = 1;
+  let pageEls = []; // { wrapper, canvas, page, baseViewport }
+  let renderToken = 0;
+
+  const updateZoomLabel = () => {
+    if (zoomLabel) zoomLabel.textContent = `${Math.round(scale * 100)}%`;
+  };
+
+  const loadPdfJs = async () => {
+    if (pdfjsLib) return pdfjsLib;
+    pdfjsLib = await import(/* @vite-ignore */ PDFJS_MODULE);
+    pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJS_WORKER;
+    return pdfjsLib;
+  };
+
+  const clearStage = () => {
+    pageEls = [];
+    stage.querySelectorAll(".cv-page").forEach((n) => n.remove());
+  };
+
+  const showLoading = (on) => {
+    if (!loading) return;
+    loading.style.display = on ? "" : "none";
+  };
+
+  const showError = (msg) => {
+    clearStage();
+    showLoading(false);
+    const err = document.createElement("p");
+    err.className = "cv-fallback";
+    err.innerHTML = `${msg} <a href="${CVS[activeCv].file}" target="_blank" rel="noopener">Open the PDF directly ↗</a>`;
+    stage.appendChild(err);
+  };
+
+  const renderPage = async (entry) => {
+    const { page, canvas, wrapper } = entry;
+    const containerWidth = stage.clientWidth - 32; // padding
+    const unscaled = page.getViewport({ scale: 1 });
+    const fitScale = Math.max(0.2, containerWidth / unscaled.width);
+    const cssScale = fitScale * scale;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const viewport = page.getViewport({ scale: cssScale * dpr });
+    canvas.width = Math.floor(viewport.width);
+    canvas.height = Math.floor(viewport.height);
+    canvas.style.width = `${Math.floor(viewport.width / dpr)}px`;
+    canvas.style.height = `${Math.floor(viewport.height / dpr)}px`;
+    wrapper.style.width = canvas.style.width;
+    const ctx = canvas.getContext("2d");
+    await page.render({ canvasContext: ctx, viewport }).promise;
+  };
+
+  const renderAll = async () => {
+    const token = ++renderToken;
+    for (const entry of pageEls) {
+      if (token !== renderToken) return;
+      await renderPage(entry);
+    }
+  };
+
+  const buildPages = async () => {
+    clearStage();
+    showLoading(true);
+    const total = pdfDoc.numPages;
+    if (totalLabel) totalLabel.textContent = String(total);
+    for (let i = 1; i <= total; i++) {
+      const page = await pdfDoc.getPage(i);
+      const wrapper = document.createElement("div");
+      wrapper.className = "cv-page";
+      wrapper.dataset.pageNumber = String(i);
+      const canvas = document.createElement("canvas");
+      wrapper.appendChild(canvas);
+      stage.appendChild(wrapper);
+      pageEls.push({ page, canvas, wrapper });
+    }
+    showLoading(false);
+    await renderAll();
+    setupPageObserver();
+  };
+
+  let pageObserver = null;
+  const setupPageObserver = () => {
+    pageObserver?.disconnect();
+    pageObserver = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) {
+          const n = Number(visible.target.dataset.pageNumber);
+          if (n && n !== currentPage) {
+            currentPage = n;
+            if (currentLabel) currentLabel.textContent = String(n);
+          }
+        }
+      },
+      { root: stage, threshold: [0.25, 0.5, 0.75] }
+    );
+    pageEls.forEach((e) => pageObserver.observe(e.wrapper));
+  };
+
+  const scrollToPage = (n) => {
+    const target = pageEls[n - 1]?.wrapper;
+    if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  const loadCv = async (i) => {
+    activeCv = i;
     const cv = CVS[i];
     if (!cv) return;
-    frame.setAttribute("src", `${cv.file}#view=FitH&toolbar=1`);
-    openLinks.forEach((a) => a.setAttribute("href", cv.file));
-    if (downloadLink) downloadLink.setAttribute("href", cv.file);
+    setLinks(cv.file);
     if (tabsWrap) {
       tabsWrap.querySelectorAll(".cv-tab").forEach((t, idx) => {
         t.classList.toggle("is-active", idx === i);
       });
     }
+    try {
+      clearStage();
+      showLoading(true);
+      const lib = await loadPdfJs();
+      pdfDoc = await lib.getDocument({ url: cv.file }).promise;
+      currentPage = 1;
+      if (currentLabel) currentLabel.textContent = "1";
+      await buildPages();
+    } catch (err) {
+      console.error("CV reader failed", err);
+      showError("The in-page reader couldn't load.");
+    }
   };
 
+  // Tabs (multi-CV)
   if (tabsWrap && CVS.length > 1) {
     tabsWrap.hidden = false;
     CVS.forEach((cv, i) => {
@@ -620,15 +762,54 @@ document.querySelectorAll('[data-case-slider]').forEach((root) => {
       b.className = "cv-tab" + (i === 0 ? " is-active" : "");
       b.textContent = cv.label;
       b.setAttribute("role", "tab");
-      b.addEventListener("click", () => apply(i));
+      b.addEventListener("click", () => loadCv(i));
       tabsWrap.appendChild(b);
     });
   }
 
-  apply(0);
+  // Toolbar wiring
+  prevBtn?.addEventListener("click", () => scrollToPage(Math.max(1, currentPage - 1)));
+  nextBtn?.addEventListener("click", () => scrollToPage(Math.min(pageEls.length, currentPage + 1)));
 
-  // Smooth-scroll any [data-cv-jump] to #cv (relies on existing anchor handler too)
-  document.querySelectorAll("[data-cv-jump]").forEach((el) => {
-    el.setAttribute("href", "#cv");
+  let zoomTimer = 0;
+  const scheduleRerender = () => {
+    window.clearTimeout(zoomTimer);
+    zoomTimer = window.setTimeout(renderAll, 120);
+  };
+  const setZoom = (next) => {
+    scale = Math.min(2.5, Math.max(0.5, Math.round(next * 100) / 100));
+    updateZoomLabel();
+    scheduleRerender();
+  };
+  zoomOutBtn?.addEventListener("click", () => setZoom(scale - 0.15));
+  zoomInBtn?.addEventListener("click", () => setZoom(scale + 0.15));
+  updateZoomLabel();
+
+  // Keyboard nav (when reader focused)
+  stage.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight" || e.key === "PageDown") { e.preventDefault(); scrollToPage(currentPage + 1); }
+    else if (e.key === "ArrowLeft" || e.key === "PageUp") { e.preventDefault(); scrollToPage(currentPage - 1); }
+    else if (e.key === "+" || e.key === "=") { e.preventDefault(); setZoom(scale + 0.15); }
+    else if (e.key === "-" || e.key === "_") { e.preventDefault(); setZoom(scale - 0.15); }
   });
+
+  // Re-render on container width changes (debounced)
+  let resizeTimer = 0;
+  const ro = new ResizeObserver(() => {
+    window.clearTimeout(resizeTimer);
+    resizeTimer = window.setTimeout(renderAll, 150);
+  });
+  ro.observe(stage);
+
+  // Lazy-load PDF.js when reader nears viewport
+  const trigger = new IntersectionObserver(
+    (entries) => {
+      if (entries.some((e) => e.isIntersecting)) {
+        trigger.disconnect();
+        loadCv(0);
+      }
+    },
+    { rootMargin: "400px 0px" }
+  );
+  trigger.observe(reader);
 })();

@@ -1,46 +1,53 @@
-# Plan — Hosted CV + embedded viewer + button system
+# Plan — Custom in-page PDF reader (PDF.js)
 
-You uploaded one CV (`Raha Teimuri — CV.pdf`). I'll wire it up now and design the system so additional CVs can drop in later without refactoring.
+Right now the CV section uses a plain `<iframe>` pointing at the PDF, which delegates to the browser's built-in PDF viewer. That looks foreign on iOS Safari (won't render inline at all), Firefox (its own dark UI), and Chrome (Google's grey chrome). Replacing it with **PDF.js** gives a real internal reader that matches your site.
 
-## 1. Host the PDF
-- Upload `Raha_Teimuri_-_CV.pdf` to the Lovable CDN via `lovable-assets` → produces a stable URL like `/__l5e/assets-v1/<id>/Raha_Teimuri_-_CV.pdf`.
-- Store a small registry in `public/js/main.js`:
-  ```js
-  const CVS = [
-    { id: 'main', label: 'CV', file: '<cdn-url>' }
-    // future: { id: 'design', label: 'CV — Design', file: '...' }
-  ];
-  ```
-- When more CVs are added later, the UI auto-switches from single button → tabbed selector.
+## What changes
 
-## 2. New `#cv` section (embedded viewer)
-- Add a dedicated section under About / before Contact:
-  - Title: *Curriculum Vitae* (matches site's Public Sans + Instrument Serif italic emphasis on "Vitae")
-  - One-line intro
-  - **Tab strip** (hidden when only 1 CV) to switch CVs
-  - **Embedded viewer**: `<iframe>` with the CV PDF, ~80vh tall, rounded border matching site tokens, lazy-loaded
-  - Fallback note + link for browsers that block inline PDFs (iOS Safari)
-- All existing CTAs (`floating-cta`, `inline-cta`, About card 3 pill) repoint from the Adobe Acrobat URL to `#cv` (smooth-scroll to the viewer) instead of opening external.
+Replace the `<iframe>` inside `#cv` with a PDF.js-powered reader rendered into `<canvas>` elements, wrapped in custom UI styled with your existing tokens (Public Sans, accent `#1E5BFF`, rounded soft surfaces).
 
-## 3. Fitting buttons (your ask)
-Three button styles, each with a clear job — no duplication of intent:
+### Reader UI
+```text
+┌────────────────────────────────────────────────────┐
+│  [◀ Prev]   Page  3 / 4   [Next ▶]   ⊖  100%  ⊕  ↗ │  ← toolbar
+├────────────────────────────────────────────────────┤
+│                                                    │
+│           [ rendered PDF page canvas ]             │  ← scrollable page stack
+│                                                    │
+│           [ rendered PDF page canvas ]             │
+│                                                    │
+└────────────────────────────────────────────────────┘
+```
 
-| Placement | Label | Style | Action |
-|---|---|---|---|
-| About card 3 (primary pill, existing) | **Read my CV →** | Filled pill, accent | Scroll to `#cv` |
-| Inside `#cv` viewer toolbar | **Open in new tab ↗** · **Download PDF ↓** | Two ghost buttons side by side | `target=_blank` / `download` attr |
-| Floating cluster (bottom-right, existing) | **CV** · **Contact** | Compact, translucent | Scroll to `#cv` / `#contact` |
-| Inline CTAs after Projects + Stack (existing) | *"Curious about my background? → Read the CV"* | Quiet text-link | Scroll to `#cv` |
-| Footer / Contact section (new) | **View CV** secondary, **Get in touch** primary | Paired buttons | Scroll to `#cv` / mailto |
+- **Continuous scroll** of all pages (one canvas per page), like Apple's Preview — feels native to the site, not a popup.
+- **Toolbar**: Prev / Next, page indicator (`3 / 4`), zoom −/+, "Open in new tab ↗" and "Download ↓" (existing buttons absorbed into the toolbar).
+- **Active-page tracking** via `IntersectionObserver` — the page number updates as you scroll.
+- **Keyboard**: ← / → page nav, `+` / `−` zoom (only when the reader is focused).
+- **Loading state**: skeleton blocks while pages render.
+- **Mobile**: pinch-zoom uses native gesture (canvas scales via CSS); toolbar collapses to icon-only.
+- **Multiple CVs**: the existing `CVS` registry stays; switching tabs re-loads the document into the same reader.
 
-All buttons reuse existing CSS tokens — no new color decisions. Labels are short, action-led, and each placement has a distinct visual weight so the page doesn't feel button-spammed.
+### Technical approach
+- Load `pdfjs-dist` via ESM CDN (`https://cdn.jsdelivr.net/npm/pdfjs-dist@4/+esm`) using a dynamic `import()` so the ~300KB library only loads when the user scrolls near `#cv` (IntersectionObserver trigger). No bundler changes needed since the site is plain HTML/CSS/JS.
+- Render each page with `page.render({ canvasContext, viewport })` at devicePixelRatio for crispness.
+- Re-render on zoom change (debounced) and on container resize (debounced via ResizeObserver).
+- Text layer overlay (PDF.js `TextLayer`) so the CV stays **selectable + searchable** (Cmd/Ctrl-F via browser find works on the visible text).
+- Graceful fallback: if PDF.js fails to load (offline, CSP), fall back to the current `<iframe>` + download link.
 
-## 4. Files to touch
-- `lovable-assets create` → `src/assets/raha-cv.pdf.asset.json` (new pointer)
-- `public/index.html` + `src/site/index.html` — add `<section id="cv">` with viewer + toolbar buttons; add paired buttons in Contact section; update all `href`s on existing CTAs to `#cv`
-- `public/css/styles.css` — `.cv-section`, `.cv-tabs`, `.cv-viewer` (iframe wrapper), `.cv-toolbar` ghost button variant, `.contact-actions` paired button row
-- `public/js/main.js` — `CVS` registry, render tabs, swap iframe `src` on tab click, smooth-scroll handlers
-- Cache-bust CSS/JS query string
+### Files to touch
+- `public/index.html` + `src/site/index.html` — replace the `<iframe>` block inside `#cv` with the new toolbar + `<div data-cv-pages>` container; keep `[data-cv-open]` / `[data-cv-download]` (move them into the toolbar).
+- `public/css/styles.css` — add `.cv-reader`, `.cv-reader-toolbar`, `.cv-page`, `.cv-page canvas`, `.cv-text-layer`, loading/skeleton styles, mobile collapse rules. Reuse `.cv-btn` variants.
+- `public/js/main.js` — new self-contained IIFE that:
+  1. Lazy-loads `pdfjs-dist` on `#cv` near-viewport
+  2. Renders all pages of the active CV into the container
+  3. Wires toolbar buttons, keyboard, IntersectionObserver page tracking
+  4. Re-renders on tab switch (multi-CV future-proof)
+- Bump cache-bust query to `v=20260611-cv2`.
 
-## 5. Open question
-You mentioned *"multiple CVs in English"* but only one PDF is attached. I'll build the system to support N CVs and wire up this one now. **Upload the others when ready** (with a short label for each — e.g. "General", "Design", "Engineering") and I'll add them to the registry — no code restructure needed.
+## Out of scope
+- Annotations, signing, printing UI (the browser's print still works).
+- A library/sidebar for switching between CVs beyond the existing tab strip.
+- Dark mode for the PDF (rendered as-is).
+
+## Open question
+None — going with continuous scroll + zoom + page indicator (the standard Preview-style reader). If you want a single-page-at-a-time mode instead, say so before I build and I'll swap the layout.
