@@ -577,3 +577,58 @@ document.querySelectorAll('[data-case-slider]').forEach((root) => {
   window.addEventListener("resize", updateCluster);
   updateCluster();
 })();
+
+/* ===== CV viewer (extensible to multiple CVs) ===== */
+(() => {
+  const CVS = [
+    {
+      id: "main",
+      label: "CV",
+      file: "/__l5e/assets-v1/b3844ba6-53e1-4364-992c-c47975d5633c/Raha_Teimuri_CV.pdf",
+    },
+    // Add more CVs here, e.g.:
+    // { id: "design", label: "CV — Design", file: "/__l5e/assets-v1/.../cv-design.pdf" },
+  ];
+
+  const frame = document.querySelector("[data-cv-frame]");
+  const tabsWrap = document.querySelector("[data-cv-tabs]");
+  const openLinks = document.querySelectorAll("[data-cv-open], [data-cv-open-fallback]");
+  const downloadLink = document.querySelector("[data-cv-download]");
+  if (!frame) return;
+
+  let active = 0;
+
+  const apply = (i) => {
+    active = i;
+    const cv = CVS[i];
+    if (!cv) return;
+    frame.setAttribute("src", `${cv.file}#view=FitH&toolbar=1`);
+    openLinks.forEach((a) => a.setAttribute("href", cv.file));
+    if (downloadLink) downloadLink.setAttribute("href", cv.file);
+    if (tabsWrap) {
+      tabsWrap.querySelectorAll(".cv-tab").forEach((t, idx) => {
+        t.classList.toggle("is-active", idx === i);
+      });
+    }
+  };
+
+  if (tabsWrap && CVS.length > 1) {
+    tabsWrap.hidden = false;
+    CVS.forEach((cv, i) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "cv-tab" + (i === 0 ? " is-active" : "");
+      b.textContent = cv.label;
+      b.setAttribute("role", "tab");
+      b.addEventListener("click", () => apply(i));
+      tabsWrap.appendChild(b);
+    });
+  }
+
+  apply(0);
+
+  // Smooth-scroll any [data-cv-jump] to #cv (relies on existing anchor handler too)
+  document.querySelectorAll("[data-cv-jump]").forEach((el) => {
+    el.setAttribute("href", "#cv");
+  });
+})();
