@@ -2565,6 +2565,12 @@ body.is-scrolled .nav-pill {
     text-align: left;
   }
 
+  .case-original-lead {
+    margin: 14px 0 0;
+    font-size: 17px;
+    text-align: left;
+  }
+
   .case-original-layout {
     grid-template-columns: 1fr;
     gap: 30px;
