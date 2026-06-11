@@ -19,7 +19,7 @@
     <meta name="twitter:description" content="Berlin-based Social Media Lead, Systems Builder & Creative Strategist. Work for David Bowie, Paul McCartney, Yousician — music, travel, lifestyle and app.">
     <meta name="twitter:image" content="https://rahateimuri.lovable.app/__l5e/assets-v1/f715b2e5-c256-4ede-bb1a-0ba2a61082e3/smg-cover.png">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="css/styles.css?v=20260611-cta1">
+    <link rel="stylesheet" href="css/styles.css?v=20260611-cv1">
   </head>
   <body>
     <header class="site-header" data-nav-shell>
@@ -36,6 +36,7 @@
           <a class="nav-link" href="#projects">Projects</a>
           <a class="nav-link" href="#stack">Stack</a>
           <a class="nav-link" href="#services">What I Do</a>
+          <a class="nav-link" href="#cv">CV</a>
           <a class="nav-link" href="#contact">Contact</a>
         </div>
       </nav>
@@ -89,7 +90,7 @@
               </article>
               <article class="statement-card">
                 <p>I set the strategy, direct the creative, and lead the people who bring it to life, backed by data and AI built into how I work. My focus is simple: content that performs and growth I can prove.</p>
-                <a class="small-pill" href="https://acrobat.adobe.com/id/urn%3Aaaid%3Asc%3AEU%3Ad04d3f15-c218-47ed-8ce2-c4fb103d9d66/?annonBboxWorkflow=false&filetype=application%2Fpdf" target="_blank" rel="noopener">Read My CV</a>
+                <a class="small-pill" href="#cv" data-cv-jump>Read my CV →</a>
               </article>
             </div>
           </div>
@@ -258,7 +259,7 @@
 
       <p class="inline-cta">
         Want the full story?
-        <a href="https://acrobat.adobe.com/id/urn%3Aaaid%3Asc%3AEU%3Ad04d3f15-c218-47ed-8ce2-c4fb103d9d66/?annonBboxWorkflow=false&filetype=application%2Fpdf" target="_blank" rel="noopener">Read my CV ↗</a>
+        <a href="#cv" data-cv-jump>Read my CV →</a>
         <span class="inline-cta-sep">·</span>
         <a href="#contact">or get in touch →</a>
       </p>
@@ -319,8 +320,27 @@
 
     </main>
 
+    <section class="cv-section section-pad" id="cv" aria-labelledby="cv-title">
+      <div class="cv-head">
+        <h2 id="cv-title">Curriculum <em>Vitae</em></h2>
+        <p class="cv-intro">The full track record — read it here or grab the PDF.</p>
+      </div>
+      <div class="cv-tabs" data-cv-tabs role="tablist" aria-label="CV versions" hidden></div>
+      <div class="cv-toolbar">
+        <a class="cv-btn cv-btn--ghost" data-cv-open href="#" target="_blank" rel="noopener">Open in new tab ↗</a>
+        <a class="cv-btn cv-btn--ghost" data-cv-download href="#" download>Download PDF ↓</a>
+      </div>
+      <div class="cv-viewer" data-cv-viewer>
+        <iframe data-cv-frame title="Raha Teimuri CV" loading="lazy"></iframe>
+        <p class="cv-fallback">
+          If the preview doesn't load on your device,
+          <a data-cv-open-fallback href="#" target="_blank" rel="noopener">open the CV in a new tab</a>.
+        </p>
+      </div>
+    </section>
+
     <div class="floating-cta" data-floating-cta aria-label="Quick actions">
-      <a href="https://acrobat.adobe.com/id/urn%3Aaaid%3Asc%3AEU%3Ad04d3f15-c218-47ed-8ce2-c4fb103d9d66/?annonBboxWorkflow=false&filetype=application%2Fpdf" target="_blank" rel="noopener">CV ↗</a>
+      <a href="#cv" data-cv-jump>CV</a>
       <a href="#contact">Contact</a>
     </div>
 
@@ -330,11 +350,15 @@
         <a href="mailto:Rahateimuri@gmail.com">Rahateimuri@gmail.com</a>
         <a href="tel:+393895617848">+39 389 561 7848</a>
         <a href="https://www.linkedin.com/in/rahateimuri/" target="_blank" rel="noopener">LinkedIn</a>
+        <div class="contact-actions">
+          <a class="cv-btn cv-btn--ghost" href="#cv" data-cv-jump>View CV</a>
+          <a class="cv-btn cv-btn--primary" href="mailto:Rahateimuri@gmail.com">Get in touch →</a>
+        </div>
         <a class="contact-back-home" href="#home">↑ Back to top</a>
       </div>
       <p class="footer-wordmark">Raha</p>
     </footer>
 
-    <script src="js/main.js?v=20260611-cta1"></script>
+    <script src="js/main.js?v=20260611-cv1"></script>
   </body>
 </html>
