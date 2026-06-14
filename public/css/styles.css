@@ -3544,6 +3544,25 @@ body.is-scrolled .nav-pill {
 .about.about--slider {
   display: block;
 }
+.about-slider-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+.about-heading {
+  margin: 0;
+  color: #1E5BFF;
+  font-size: clamp(54px, 8vw, 96px);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+}
+@media (max-width: 720px) {
+  .about-slider-head { gap: 16px; }
+  .about-heading { font-size: clamp(44px, 12vw, 64px); }
+}
 .about-track {
   display: flex;
   gap: 36px;
