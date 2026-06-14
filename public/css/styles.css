@@ -3619,18 +3619,18 @@ body.is-scrolled .nav-pill {
   margin-top: clamp(20px, 3vw, 32px);
 }
 .about-dots button {
-  width: 36px;
-  height: 4px;
+  width: 9px;
+  height: 9px;
   padding: 0;
   border: 0;
-  border-radius: 4px;
-  background: rgba(28, 22, 60, 0.18);
+  border-radius: 999px;
+  background: rgba(30, 91, 255, 0.25);
   cursor: pointer;
   transition: background 240ms ease, width 240ms ease;
 }
 .about-dots button.active {
-  width: 60px;
-  background: #1c163c;
+  width: 28px;
+  background: #1E5BFF;
 }
 @media (max-width: 720px) {
   .about-slide {
