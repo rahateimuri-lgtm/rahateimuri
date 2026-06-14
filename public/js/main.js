@@ -213,62 +213,56 @@ if (roles.length) {
   roles[0].classList.add("active");
 }
 
-const statementCards = [...document.querySelectorAll(".statement-card")];
-const aboutSection = document.querySelector("#about");
+const aboutTrack = document.querySelector("[data-about-track]");
+const aboutSlides = aboutTrack ? [...aboutTrack.querySelectorAll(".about-slide")] : [];
 const aboutDots = [...document.querySelectorAll("[data-about-dot]")];
+const aboutPrev = document.querySelector("[data-about-prev]");
+const aboutNext = document.querySelector("[data-about-next]");
 let aboutActiveIndex = 0;
 
 const setAboutActive = (index) => {
-  if (index === aboutActiveIndex) return;
-  statementCards[aboutActiveIndex]?.classList.remove("active");
-  aboutDots[aboutActiveIndex]?.classList.remove("active");
   aboutActiveIndex = index;
-  statementCards[aboutActiveIndex]?.classList.add("active");
-  aboutDots[aboutActiveIndex]?.classList.add("active");
+  aboutDots.forEach((d, i) => d.classList.toggle("active", i === index));
+  if (aboutPrev) aboutPrev.disabled = index <= 0;
+  if (aboutNext) aboutNext.disabled = index >= aboutSlides.length - 1;
 };
 
-if (statementCards.length > 1 && aboutSection?.classList.contains("about--scroll")) {
-  const isNarrow = () => window.matchMedia("(max-width: 720px)").matches;
-  let aboutFrame = 0;
+const scrollAboutTo = (index) => {
+  if (!aboutTrack || !aboutSlides[index]) return;
+  const slide = aboutSlides[index];
+  const target =
+    slide.offsetLeft - (aboutTrack.clientWidth - slide.clientWidth) / 2;
+  aboutTrack.scrollTo({
+    left: target,
+    behavior: prefersReducedMotion.matches ? "auto" : "smooth",
+  });
+};
 
-  const updateAboutFromScroll = () => {
-    aboutFrame = 0;
-    if (isNarrow()) {
-      // Mobile fallback — all cards visible, no scroll-driven swap.
-      statementCards.forEach((c) => c.classList.add("active"));
-      aboutDots.forEach((d) => d.classList.add("active"));
-      return;
-    }
-    const rect = aboutSection.getBoundingClientRect();
-    const scrollable = Math.max(1, aboutSection.offsetHeight - window.innerHeight);
-    const offset = Math.min(scrollable, Math.max(0, -rect.top));
-    const progress = offset / scrollable;
-    const idx = Math.min(
-      statementCards.length - 1,
-      Math.floor(progress * statementCards.length * 0.999)
-    );
-    setAboutActive(idx);
-  };
+if (aboutTrack && aboutSlides.length) {
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting && e.intersectionRatio > 0.6) {
+          const idx = aboutSlides.indexOf(e.target);
+          if (idx !== -1) setAboutActive(idx);
+        }
+      });
+    },
+    { root: aboutTrack, threshold: [0.6, 0.9] }
+  );
+  aboutSlides.forEach((s) => io.observe(s));
 
-  const scheduleAbout = () => {
-    if (aboutFrame) return;
-    aboutFrame = window.requestAnimationFrame(updateAboutFromScroll);
-  };
-
-  window.addEventListener("scroll", scheduleAbout, { passive: true });
-  window.addEventListener("resize", scheduleAbout);
-
+  aboutPrev?.addEventListener("click", () =>
+    scrollAboutTo(Math.max(0, aboutActiveIndex - 1))
+  );
+  aboutNext?.addEventListener("click", () =>
+    scrollAboutTo(Math.min(aboutSlides.length - 1, aboutActiveIndex + 1))
+  );
   aboutDots.forEach((dot, index) => {
-    dot.addEventListener("click", () => {
-      const scrollable = Math.max(1, aboutSection.offsetHeight - window.innerHeight);
-      const target =
-        aboutSection.offsetTop +
-        (scrollable * (index + 0.5)) / statementCards.length;
-      window.scrollTo({ top: target, behavior: prefersReducedMotion.matches ? "auto" : "smooth" });
-    });
+    dot.addEventListener("click", () => scrollAboutTo(index));
   });
 
-  updateAboutFromScroll();
+  setAboutActive(0);
 }
 
 const testimonialCards = [...document.querySelectorAll(".testimonial-card")];
