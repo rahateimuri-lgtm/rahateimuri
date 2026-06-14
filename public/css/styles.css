@@ -3541,30 +3541,63 @@ body.is-scrolled .nav-pill {
 }
 
 /* ===== Scroll-driven About section ===== */
-.about.about--scroll {
+.about.about--slider {
   display: block;
-  min-height: 320vh;
-  padding-top: 0;
-  padding-bottom: 0;
 }
-.about--scroll .about-sticky {
-  position: sticky;
-  top: 0;
+.about-track {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  min-height: 100vh;
-  padding-top: clamp(120px, 14vw, 168px);
-  padding-bottom: clamp(40px, 6vw, 72px);
+  gap: 36px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scroll-padding-inline: max(24px, calc((100% - min(92vw, 1080px)) / 2));
+  padding: 8px max(24px, calc((100% - min(92vw, 1080px)) / 2)) 36px;
+  scrollbar-width: none;
+  margin-inline: calc(50% - 50vw);
 }
-.about--scroll .about-sticky > h2 {
-  margin-bottom: clamp(50px, 8vw, 88px);
+.about-track::-webkit-scrollbar { display: none; }
+
+.about-slide {
+  scroll-snap-align: center;
+  flex: 0 0 min(92vw, 1080px);
+  box-sizing: border-box;
+  min-height: 280px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  padding: clamp(36px, 5vw, 56px) clamp(28px, 4vw, 56px) clamp(56px, 6vw, 72px);
+  border: 18px solid rgba(247, 245, 255, 0.85);
+  border-radius: 40px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: var(--shadow);
 }
+
+.about-slide p {
+  width: 100%;
+  max-width: 790px;
+  margin: 0;
+  color: #3f3f3f;
+  font-size: clamp(18px, 1.55vw, 21px);
+  line-height: 1.32;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.about-slide .small-pill {
+  position: absolute;
+  bottom: -22px;
+  left: 50%;
+  min-height: 42px;
+  padding: 0 20px;
+  font-size: 14px;
+  translate: -50% 0;
+}
+
 .about-dots {
   display: flex;
   gap: 10px;
   justify-content: center;
-  margin-top: clamp(36px, 5vw, 56px);
+  margin-top: clamp(20px, 3vw, 32px);
 }
 .about-dots button {
   width: 36px;
@@ -3581,28 +3614,11 @@ body.is-scrolled .nav-pill {
   background: #1c163c;
 }
 @media (max-width: 720px) {
-  .about.about--scroll {
-    min-height: auto;
-  }
-  .about--scroll .about-sticky {
-    position: static;
-    min-height: auto;
-  }
-  .about--scroll .statement-track {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-    height: auto;
-  }
-  .about--scroll .statement-card {
-    grid-area: auto;
-    position: relative;
-    opacity: 1;
-    transform: none;
-    pointer-events: auto;
-  }
-  .about-dots {
-    display: none;
+  .about-slide {
+    border-width: 12px;
+    border-radius: 28px;
+    padding: 28px 22px 48px;
+    min-height: 240px;
   }
 }
 
