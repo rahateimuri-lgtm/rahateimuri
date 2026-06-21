@@ -3554,14 +3554,14 @@ body.is-scrolled .nav-pill {
 .about-heading {
   margin: 0;
   color: #1E5BFF;
-  font-size: clamp(54px, 8vw, 96px);
+  font-size: clamp(36px, 4.2vw, 56px);
   line-height: 0.95;
   letter-spacing: -0.04em;
   font-weight: 700;
 }
 @media (max-width: 720px) {
   .about-slider-head { gap: 16px; }
-  .about-heading { font-size: clamp(44px, 12vw, 64px); }
+  .about-heading { font-size: clamp(32px, 9vw, 44px); }
 }
 .about-track {
   display: flex;
@@ -3569,25 +3569,26 @@ body.is-scrolled .nav-pill {
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  scroll-padding-inline: max(24px, calc((100% - min(92vw, 1080px)) / 2));
-  padding: 8px max(24px, calc((100% - min(92vw, 1080px)) / 2)) 36px;
+  scroll-padding-inline: 0;
+  padding: 8px 0 36px;
   scrollbar-width: none;
-  margin-inline: calc(50% - 50vw);
 }
 .about-track::-webkit-scrollbar { display: none; }
 
 .about-slide {
   scroll-snap-align: center;
-  flex: 0 0 min(92vw, 1080px);
+  flex: 0 0 100%;
+  max-width: 1080px;
+  margin-inline: auto;
   box-sizing: border-box;
   min-height: 280px;
   display: grid;
   place-items: center;
   position: relative;
   padding: clamp(36px, 5vw, 56px) clamp(28px, 4vw, 56px) clamp(56px, 6vw, 72px);
-  border: 18px solid rgba(247, 245, 255, 0.85);
-  border-radius: 40px;
-  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background: var(--cream);
   box-shadow: var(--shadow);
 }
 
@@ -3634,8 +3635,6 @@ body.is-scrolled .nav-pill {
 }
 @media (max-width: 720px) {
   .about-slide {
-    border-width: 12px;
-    border-radius: 28px;
     padding: 28px 22px 48px;
     min-height: 240px;
   }
