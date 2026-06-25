@@ -1,0 +1,57 @@
+<!-- =====================================================================
+     REFERENCE COMPONENT · VideoLoop
+     Self-hosted muted loop preview that links out to the source post.
+     - autoplay + muted + loop + playsinline  (mobile-safe autoplay)
+     - preload="none" + lazy start via IntersectionObserver (perf)
+     - poster shows instantly; reduced-motion users see ONLY the poster
+     - the whole loop is wrapped in a link to the original TikTok/IG post
+     Drop this inside a ProjectCard's media slot.
+     ===================================================================== -->
+
+<a href="https://vm.tiktok.com/ZNdU9wsjN/" target="_blank" rel="noopener"
+   aria-label="Watch the 24.7M-view campaign on TikTok"
+   style="display:block; position:relative; height:220px; overflow:hidden;
+          border-radius: inherit; background: var(--ink);">
+
+  <video class="video-loop"
+         muted loop playsinline preload="none"
+         poster="/img/viral-cappuccino.jpg"
+         style="width:100%; height:100%; object-fit:cover; display:block;">
+    <source data-src="/video/viral-video.webm" type="video/webm">
+    <source data-src="/video/viral-video.mp4"  type="video/mp4">
+  </video>
+
+  <!-- play affordance sticker -->
+  <span style="position:absolute; bottom:12px; left:12px;
+               font-family: var(--font-mono); font-size:12px; text-transform:uppercase;
+               color: var(--ink); background: var(--lime);
+               border:2px solid var(--ink); padding:6px 11px; border-radius:999px;">
+    ▶ 24.7M views</span>
+</a>
+
+<script>
+/* Lazy-load + autoplay only when in view; honor reduced-motion. */
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var vids = document.querySelectorAll('video.video-loop');
+  if (reduce || !('IntersectionObserver' in window)) return; // poster stays
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      var v = entry.target;
+      if (entry.isIntersecting) {
+        if (!v.dataset.loaded) {
+          v.querySelectorAll('source[data-src]').forEach(function (s) { s.src = s.dataset.src; });
+          v.load();
+          v.dataset.loaded = '1';
+        }
+        v.play().catch(function () {});
+      } else {
+        v.pause();
+      }
+    });
+  }, { threshold: 0.25 });
+
+  vids.forEach(function (v) { io.observe(v); });
+})();
+</script>

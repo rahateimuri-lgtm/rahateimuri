@@ -1,0 +1,40 @@
+---
+import { getCollection } from 'astro:content';
+import ProjectCard from './ProjectCard.astro';
+
+const projects = (await getCollection('projects')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const featured = projects.filter((p) => p.data.featured);
+const grid = projects.filter((p) => !p.data.featured);
+---
+
+<section id="work" class="section work">
+  <div class="wrap">
+    <div class="work-head">
+      <span class="label" style="color:var(--accent)">// Selected work</span>
+      <h2 class="section-title">The work plays here. <br />No clicking out to see it.</h2>
+    </div>
+
+    <div class="work-list">
+      {featured.map((p, i) => <ProjectCard entry={p} index={i} />)}
+      <div class="work-grid">
+        {grid.map((p, i) => <ProjectCard entry={p} index={i + 1} />)}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .work-head { margin-bottom: 34px; }
+  .section-title { margin-top: 10px; }
+  .work-list { display: flex; flex-direction: column; gap: var(--space-3); }
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-3);
+  }
+  @media (max-width: 760px) {
+    .work-grid { grid-template-columns: 1fr; }
+  }
+</style>

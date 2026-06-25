@@ -1,0 +1,85 @@
+---
+import { Image } from 'astro:assets';
+import cvPreview from '../assets/cv-preview.png';
+import { site } from '../data/site';
+---
+
+<section id="cv" class="section cv">
+  <div class="wrap cv-grid">
+    <div class="cv-doc" data-reveal>
+      <a href={site.cv} download class="cv-frame" aria-label="Download Raha Teimuri's CV (PDF)">
+        <Image
+          src={cvPreview}
+          alt="First page of Raha Teimuri's CV"
+          widths={[320, 480, 640]}
+          sizes="(max-width: 760px) 70vw, 360px"
+          loading="lazy"
+          class="cv-img"
+        />
+        <span class="cv-badge">PDF · 1 page</span>
+      </a>
+    </div>
+
+    <div class="cv-copy" data-reveal>
+      <span class="label" style="color:var(--accent)">// CV</span>
+      <h2 class="section-title-alt cv-h">The whole story, on <span class="hl">one page</span>.</h2>
+      <p class="cv-p">
+        Four years of social leadership across Europe: the roles, the numbers, the tools.
+        Downloads instantly, no sign-up, no broken link.
+      </p>
+      <div class="cv-cta">
+        <a href={site.cv} download class="btn btn-primary">↓ Download CV</a>
+        <a href="#contact" class="btn">Get in touch</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cv-grid {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: var(--space-5);
+    align-items: center;
+  }
+  .cv-doc { display: flex; justify-content: center; }
+  .cv-frame {
+    position: relative;
+    display: block;
+    width: 100%;
+    max-width: 360px;
+    border: var(--bw) solid var(--ink);
+    border-radius: 12px;
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    background: var(--surface);
+    transform: rotate(-2.4deg);
+    transition: transform var(--t-press), box-shadow var(--t-press);
+  }
+  .cv-frame:hover {
+    transform: rotate(0deg) translate(3px, 3px);
+    box-shadow: 4px 4px 0 var(--ink);
+  }
+  .cv-img { width: 100%; height: auto; display: block; }
+  .cv-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    background: var(--accent);
+    color: #fff;
+    border: 2px solid var(--ink);
+    padding: 5px 10px;
+    border-radius: var(--r-pill);
+  }
+  .cv-h { margin: 12px 0 16px; }
+  .cv-p { font-size: var(--t-body-lg); line-height: 1.6; max-width: 48ch; margin: 0 0 22px; }
+  .cv-cta { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  @media (max-width: 760px) {
+    .cv-grid { grid-template-columns: 1fr; gap: 34px; }
+  }
+</style>

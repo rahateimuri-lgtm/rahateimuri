@@ -1,0 +1,259 @@
+/* =====================================================================
+   GLOBAL STYLESHEET - Raha Teimuri portfolio
+   Order matters: Tailwind first, then the canonical design tokens, then
+   motion. tokens.css / motion.css are the source of truth and are NEVER
+   redefined here (only bridged into Tailwind + given base/component CSS).
+   ===================================================================== */
+@import 'tailwindcss';
+@import './tokens.css';
+@import './motion.css';
+
+/* ---------------------------------------------------------------------
+   Self-hosted fonts (Fontsource Latin subsets, copied to /public/fonts).
+   Declared with the exact family names tokens.css already references, so
+   the locked --font-* tokens resolve with no override. font-display:swap
+   keeps text visible while the file loads (good FCP/LCP).
+   --------------------------------------------------------------------- */
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url('/fonts/bricolage-grotesque-wght.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/fonts/space-grotesk-wght.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Space Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/space-mono-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Space Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/space-mono-700.woff2') format('woff2');
+}
+
+/* ---------------------------------------------------------------------
+   Tailwind v4 theme bridge - exposes the tokens as utility names
+   (bg-accent, text-ink, font-display, shadow-sticker, rounded-pill…)
+   so utilities and raw CSS variables never drift.
+   --------------------------------------------------------------------- */
+@theme {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-lime: var(--lime);
+  --color-pink: var(--pink);
+
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+
+  --radius-pill: 999px;
+  --radius-card: 24px;
+  --radius-card-sm: 22px;
+  --radius-badge: 14px;
+
+  --shadow-sticker-sm: 4px 4px 0 var(--ink);
+  --shadow-sticker: 5px 5px 0 var(--ink);
+  --shadow-sticker-lg: 8px 8px 0 var(--ink);
+  --shadow-sticker-accent: 5px 5px 0 var(--accent);
+
+  --ease-pop: cubic-bezier(0.2, 0.9, 0.25, 1.1);
+}
+
+/* =====================================================================
+   BASE
+   ===================================================================== */
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* lock page scroll while the mobile menu is open */
+html.m-lock, html.m-lock body { overflow: hidden; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--t-body);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 0.92;
+  margin: 0;
+  text-wrap: balance;
+}
+
+p { text-wrap: pretty; }
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: none; }
+
+img, video { max-width: 100%; display: block; }
+
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* =====================================================================
+   LAYOUT PRIMITIVES
+   ===================================================================== */
+.wrap { max-width: var(--maxw); margin-inline: auto; }
+
+.section {
+  padding: var(--space-section-y) var(--space-section-x);
+}
+.section-tight { padding: 64px var(--space-section-x); }
+
+.label {
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.section-title {
+  font-size: var(--t-h2);
+}
+.section-title-alt { font-size: var(--t-h2-alt); }
+
+.stroke-word {
+  -webkit-text-stroke: 3px var(--ink);
+  color: transparent;
+  paint-order: stroke fill;
+}
+
+/* lime highlight sticker around a single word */
+.hl {
+  background: var(--lime);
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+  padding: 0 0.18em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+/* =====================================================================
+   BUTTONS - sticker, press-in on hover
+   ===================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55em;
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  padding: 14px 22px;
+  border: var(--bw) solid var(--ink);
+  border-radius: var(--r-pill);
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: transform var(--t-press), box-shadow var(--t-press), background var(--t-press);
+}
+.btn:hover {
+  background: var(--lime);
+  transform: translate(3px, 3px);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent); }
+.btn-ink {
+  background: var(--ink);
+  color: var(--bg);
+  box-shadow: var(--shadow-accent);
+}
+.btn-ink:hover { background: var(--ink); box-shadow: 2px 2px 0 var(--accent); }
+
+/* =====================================================================
+   CHIPS / PILLS
+   ===================================================================== */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: var(--t-chip);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 8px 14px;
+  border: var(--bw-sm) solid var(--ink);
+  border-radius: var(--r-pill);
+  background: var(--surface);
+}
+
+/* =====================================================================
+   CARDS - sticker
+   ===================================================================== */
+.card {
+  background: var(--surface);
+  border: var(--bw) solid var(--ink);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow);
+}
+
+/* =====================================================================
+   MARQUEE
+   ===================================================================== */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  animation: marquee 24s linear infinite;
+}
+.marquee-rev .marquee-track { animation: marquee 18s linear infinite reverse; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+
+/* =====================================================================
+   STICKER SHAPES (ambient hero decoration)
+   ===================================================================== */
+.sticker { position: absolute; pointer-events: none; }
+.sticker-outline {
+  filter:
+    drop-shadow(2px 0 0 var(--ink)) drop-shadow(-2px 0 0 var(--ink))
+    drop-shadow(0 2px 0 var(--ink)) drop-shadow(0 -2px 0 var(--ink));
+}
+
+/* =====================================================================
+   SCROLL REVEAL - elements rest VISIBLE (no JS = nothing hidden)
+   ===================================================================== */
+[data-reveal].is-in {
+  animation: popIn 0.6s var(--ease-pop) both;
+}
+
+/* =====================================================================
+   REDUCED MOTION - stop ambient/marquee/reveal animation
+   ===================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track,
+  [data-reveal].is-in,
+  .sticker > * {
+    animation: none !important;
+  }
+}

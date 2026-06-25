@@ -1,0 +1,69 @@
+/* =====================================================================
+   RAHA TEIMURI — DESIGN SYSTEM TOKENS  ·  "Sticker Editorial" (Y2K)
+   Palette: LOCKED — Cobalt
+   Single source of truth. Import this first; everything reads from here.
+   ===================================================================== */
+
+:root {
+  /* ---- COLOR (locked) -------------------------------------------------- */
+  --bg:        #F4F1E9;   /* warm paper — page background                  */
+  --surface:   #FFFFFF;   /* cards, chips, nav                             */
+  --ink:       #141318;   /* near-black — text, borders, sticker outlines  */
+  --accent:    #2C3BF5;   /* COBALT — primary accent, links, key stats     */
+  --accent-2:  #FF5A3C;   /* coral — secondary stat / highlight            */
+  --lime:      #C8F23D;   /* lime — hover fills, sparkles, ticker marks     */
+  --pink:      #FF8FB1;   /* pink — tertiary sticker fill                   */
+
+  /* convenience aliases used by some components */
+  --accent2:   var(--accent-2);
+
+  /* ---- TYPOGRAPHY ------------------------------------------------------ */
+  --font-display: 'Bricolage Grotesque', sans-serif;  /* headings, wordmark */
+  --font-body:    'Space Grotesk', sans-serif;        /* body, UI           */
+  --font-mono:    'Space Mono', monospace;            /* eyebrows, labels   */
+
+  /* fluid type scale (clamp: min, preferred, max) */
+  --t-wordmark: clamp(96px, 21vw, 300px); /* hero RAHA           weight 800 */
+  --t-display:  clamp(40px, 7vw, 92px);   /* contact headline    weight 800 */
+  --t-h2:       clamp(40px, 6vw, 76px);   /* section title       weight 800 */
+  --t-h2-alt:   clamp(34px, 5vw, 64px);   /* secondary section   weight 800 */
+  --t-h3:       clamp(20px, 2.4vw, 30px); /* card / service head weight 700 */
+  --t-stat:     clamp(48px, 6vw, 82px);   /* big stat number     weight 800 */
+  --t-body-lg:  18px;                     /* lead paragraph      1.6 leading */
+  --t-body:     16px;                     /* body                1.55        */
+  --t-small:    15px;
+  --t-label:    13px;                     /* mono eyebrow — .14em / UPPER     */
+  --t-chip:     12px;                     /* mono chip                        */
+
+  /* ---- SPACING --------------------------------------------------------- */
+  --space-section-y: 90px;  /* vertical padding per section */
+  --space-section-x: 6vw;   /* horizontal page gutter       */
+  --space-1: 8px;
+  --space-2: 14px;
+  --space-3: 24px;
+  --space-4: 34px;
+  --space-5: 48px;
+  --maxw: 1180px;           /* content max-width            */
+
+  /* ---- RADII ----------------------------------------------------------- */
+  --r-pill: 999px;          /* nav, buttons, chips, link pills */
+  --r-card: 24px;           /* large cards                     */
+  --r-card-sm: 22px;        /* grid cards                      */
+  --r-badge: 14px;          /* small badges / stat stickers    */
+
+  /* ---- BORDERS --------------------------------------------------------- */
+  --bw: 3px;                /* default sticker border (cards, buttons, nav) */
+  --bw-sm: 2px;             /* small chips, document skeleton               */
+  --bw-ring: 6px;           /* ring sticker shape                           */
+
+  /* ---- SHADOWS (the sticker signature — hard, zero blur) --------------- */
+  --shadow-sm:     4px 4px 0 var(--ink);
+  --shadow:        5px 5px 0 var(--ink);
+  --shadow-lg:     8px 8px 0 var(--ink);
+  --shadow-accent: 5px 5px 0 var(--accent);   /* on dark/ink buttons        */
+  /* hover = "press in": shadow 2px 2px 0 + transform translate(3px,3px)    */
+
+  /* ---- MOTION ---------------------------------------------------------- */
+  --ease-pop: cubic-bezier(.2,.9,.25,1.1);
+  --t-press: .12s ease;     /* button / card hover                          */
+}

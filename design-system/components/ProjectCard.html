@@ -1,0 +1,78 @@
+<!-- =====================================================================
+     REFERENCE COMPONENT · ProjectCard
+     Build target: match this exactly. Two variants below.
+     Tokens via tokens.css. Hover = lift + slight rotate + bigger shadow.
+     The media slot is where VideoLoop (see VideoLoop.html) goes; the
+     tinted placeholder shown here is the fallback before a clip exists.
+     ===================================================================== -->
+
+<!-- ---------- A) GRID CARD (default) ---------- -->
+<article class="project-card" style="
+    border: var(--bw,3px) solid var(--ink);
+    border-radius: var(--r-card-sm,22px);
+    box-shadow: var(--shadow,5px 5px 0 var(--ink));
+    overflow: hidden;
+    background: var(--surface);
+    transition: transform .15s ease, box-shadow .15s ease;">
+  <!-- MEDIA: drop a VideoLoop here. Placeholder = tinted band + mono label -->
+  <div style="
+      position: relative; height: 220px;
+      background: var(--pink);
+      display: flex; align-items: center; justify-content: center;
+      background-image: repeating-linear-gradient(45deg, rgba(0,0,0,.12) 0 2px, transparent 2px 16px);">
+    <span style="
+        font-family: var(--font-mono); font-size: var(--t-chip,12px);
+        text-transform: uppercase; color: var(--ink);
+        background: var(--surface); border: var(--bw-sm,2px) solid var(--ink);
+        padding: 8px 13px; border-radius: var(--r-pill,999px);">▶ Rome travel reels</span>
+  </div>
+  <!-- BODY: stat number (accent or coral) → title → one-liner -->
+  <div style="padding: var(--space-3,24px);">
+    <div style="font-family: var(--font-display); font-weight: 800; font-size: 44px; line-height: .9; color: var(--accent-2);">+1M</div>
+    <h3 style="font-family: var(--font-display); font-weight: 700; font-size: 21px; margin: 6px 0 10px;">Social Growth · from zero</h3>
+    <p style="font-size: var(--t-small,15px); line-height: 1.5; margin: 0;">
+      Six accounts for a travel &amp; lifestyle brand across TikTok, Instagram &amp; YouTube.
+      Owned strategy, content, community and growth.</p>
+  </div>
+</article>
+
+<!-- Hover state (apply with :hover in real CSS):
+     transform: translate(-2px,-2px) rotate(-.6deg);
+     box-shadow: 10px 10px 0 var(--ink);
+     Alternate odd/even cards between rotate(-.6deg) and rotate(.6deg). -->
+<style>
+  .project-card:hover {
+    transform: translate(-2px,-2px) rotate(-.6deg);
+    box-shadow: 10px 10px 0 var(--ink);
+  }
+</style>
+
+
+<!-- ---------- B) FEATURED CARD (hero case, e.g. Monetization) ---------- -->
+<article style="
+    display: grid; grid-template-columns: 1fr 1fr;
+    border: var(--bw,3px) solid var(--ink);
+    border-radius: var(--r-card,24px);
+    box-shadow: var(--shadow-lg,8px 8px 0 var(--ink));
+    overflow: hidden; background: var(--surface);">
+  <div style="
+      position: relative; min-height: 340px; background: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      background-image: repeating-linear-gradient(45deg, rgba(0,0,0,.16) 0 2px, transparent 2px 16px);">
+    <span style="font-family: var(--font-mono); font-size: var(--t-label,13px); text-transform: uppercase; color: var(--surface); background: var(--ink); padding: 10px 16px; border-radius: var(--r-pill,999px);">▶ Video loop — sales-80k.mp4</span>
+    <span style="position: absolute; top: 16px; left: 16px; font-family: var(--font-mono); font-size: 12px; background: var(--lime); border: var(--bw-sm,2px) solid var(--ink); padding: 5px 10px; border-radius: var(--r-pill,999px); font-weight: 700;">HERO CASE</span>
+  </div>
+  <div style="padding: 34px 32px;">
+    <div style="font-family: var(--font-display); font-weight: 800; font-size: clamp(48px,6vw,82px); line-height: .9; color: var(--accent);">€80K<span style="font-size: .45em; color: var(--ink);">+/yr</span></div>
+    <h3 style="font-family: var(--font-display); font-weight: 700; font-size: 24px; margin: 8px 0 12px;">Monetization · direct bookings</h3>
+    <p style="font-size: var(--t-body,16px); line-height: 1.55; margin: 0 0 18px;">
+      Social drove €80K+ in direct bookings a year, tracked end-to-end with promo codes, UTM,
+      GA4 &amp; Rezdy. Two viral videos booked <strong>€40K in 48 hours</strong>.</p>
+    <!-- mono tag chips -->
+    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+      <span style="font-family: var(--font-mono); font-size: 12px; border: var(--bw-sm,2px) solid var(--ink); border-radius: var(--r-pill,999px); padding: 5px 11px;">Promo codes</span>
+      <span style="font-family: var(--font-mono); font-size: 12px; border: var(--bw-sm,2px) solid var(--ink); border-radius: var(--r-pill,999px); padding: 5px 11px;">GA4</span>
+      <span style="font-family: var(--font-mono); font-size: 12px; border: var(--bw-sm,2px) solid var(--ink); border-radius: var(--r-pill,999px); padding: 5px 11px;">Rezdy</span>
+    </div>
+  </div>
+</article>

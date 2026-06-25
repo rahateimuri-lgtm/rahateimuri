@@ -1,0 +1,142 @@
+---
+import VideoLoop from './VideoLoop.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  entry: CollectionEntry<'projects'>;
+  index?: number;
+}
+const { entry, index = 0 } = Astro.props;
+const d = entry.data;
+const href = `/work/${entry.id}/`;
+const statColorVar =
+  d.statColor === 'accent-2' ? 'var(--accent-2)' : d.statColor === 'ink' ? 'var(--ink)' : 'var(--accent)';
+const tilt = index % 2 === 0 ? '-0.6deg' : '0.6deg';
+const mediaTint = d.featured ? 'var(--accent)' : 'var(--pink)';
+---
+
+{d.featured ? (
+  <a href={href} class="pc pc-featured" style={`--tilt:${tilt}`} data-reveal>
+    <div class="pc-media pc-media-feat" style={`background:${mediaTint}`}>
+      <span class="pc-flag">HERO CASE</span>
+      <VideoLoop src={d.heroVideo} label={d.statValue + ' /yr'} alt={d.title} />
+    </div>
+    <div class="pc-body">
+      <div class="pc-stat" style={`color:${statColorVar}`}>
+        {d.statValue}<span class="pc-stat-unit">{d.statLabel}</span>
+      </div>
+      <h3 class="pc-title">{d.title}</h3>
+      <p class="pc-summary">{d.summary}</p>
+      <div class="pc-tags">
+        {d.tags.slice(0, 4).map((t) => <span class="chip">{t}</span>)}
+      </div>
+      <span class="pc-cta">Read the case →</span>
+    </div>
+  </a>
+) : (
+  <a href={href} class="pc pc-grid" style={`--tilt:${tilt}`} data-reveal>
+    <div class="pc-media" style={`background:${mediaTint}`}>
+      <VideoLoop src={d.heroVideo} alt={d.title} />
+    </div>
+    <div class="pc-body">
+      <div class="pc-stat" style={`color:${statColorVar}`}>{d.statValue}</div>
+      <h3 class="pc-title">{d.title}</h3>
+      <p class="pc-summary">{d.summary}</p>
+      <span class="pc-cta">Read the case →</span>
+    </div>
+  </a>
+)}
+
+<style>
+  .pc {
+    display: block;
+    background: var(--surface);
+    border: var(--bw) solid var(--ink);
+    border-radius: var(--r-card-sm);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    color: var(--ink);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .pc:hover {
+    transform: translate(-2px, -2px) rotate(var(--tilt));
+    box-shadow: 10px 10px 0 var(--ink);
+  }
+  .pc-media {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    background-image: repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.1) 0 2px, transparent 2px 16px);
+  }
+  .pc-body { padding: var(--space-3); }
+  .pc-stat {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(40px, 5vw, 52px);
+    line-height: 0.9;
+  }
+  .pc-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--t-h3);
+    margin: 6px 0 10px;
+  }
+  .pc-summary {
+    font-size: var(--t-small);
+    line-height: 1.5;
+    margin: 0;
+  }
+  .pc-cta {
+    display: inline-block;
+    margin-top: 14px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+  }
+  .pc:hover .pc-cta { text-decoration: underline; }
+
+  /* ---- featured ---- */
+  .pc-featured {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    border-radius: var(--r-card);
+    box-shadow: var(--shadow-lg);
+  }
+  .pc-featured:hover { box-shadow: 12px 12px 0 var(--ink); }
+  .pc-media-feat {
+    aspect-ratio: auto;
+    min-height: 360px;
+  }
+  .pc-flag {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    z-index: 2;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    background: var(--lime);
+    border: 2px solid var(--ink);
+    padding: 5px 11px;
+    border-radius: var(--r-pill);
+  }
+  .pc-featured .pc-body { padding: 34px 32px; display: flex; flex-direction: column; }
+  .pc-featured .pc-stat { font-size: var(--t-stat); }
+  .pc-stat-unit {
+    font-family: var(--font-display);
+    font-size: 0.4em;
+    font-weight: 700;
+    color: var(--ink);
+    margin-left: 6px;
+  }
+  .pc-featured .pc-title { font-size: clamp(22px, 2.6vw, 28px); }
+  .pc-featured .pc-summary { font-size: var(--t-body); line-height: 1.55; }
+  .pc-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+
+  @media (max-width: 760px) {
+    .pc-featured { grid-template-columns: 1fr; }
+    .pc-media-feat { min-height: 300px; aspect-ratio: 4 / 5; }
+  }
+</style>

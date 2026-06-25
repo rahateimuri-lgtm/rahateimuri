@@ -1,0 +1,82 @@
+---
+import { Image } from 'astro:assets';
+import portrait from '../assets/raha-portrait.jpg';
+import { site } from '../data/site';
+---
+
+<section id="about" class="section about">
+  <div class="wrap about-grid">
+    <div class="about-portrait" data-reveal>
+      <Image
+        src={portrait}
+        alt="Raha Teimuri, Social Media Lead"
+        widths={[360, 520, 720]}
+        sizes="(max-width: 760px) 80vw, 380px"
+        loading="lazy"
+        class="portrait-img"
+      />
+      <span class="portrait-tag">Raha Teimuri</span>
+    </div>
+
+    <div class="about-copy" data-reveal>
+      <span class="label" style="color:var(--accent)">// About</span>
+      <h2 class="section-title-alt about-h">
+        I set the strategy, direct the creative, and lead the
+        <span class="hl">people</span> who bring it to life.
+      </h2>
+      <p class="about-p">
+        Hi, I'm Raha. I'm a Social Media Lead who builds brands, teams and content engines that
+        scale. Over the past four years I've led social across Europe, growing a travel brand to
+        1M+ followers, building teams from scratch, and now heading social for Yousician and
+        GuitarTuna.
+      </p>
+      <p class="about-p">
+        I set the strategy, direct the creative, and lead the people who bring it to life, backed
+        by data and AI built into how I work. My focus is simple: content that performs and growth
+        I can prove.
+      </p>
+      <a href={site.cv} download class="btn btn-ink about-cv">Download CV</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-grid {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: var(--space-5);
+    align-items: center;
+  }
+  .about-portrait { position: relative; }
+  .portrait-img {
+    width: 100%;
+    height: auto;
+    border: var(--bw) solid var(--ink);
+    border-radius: var(--r-card);
+    box-shadow: var(--shadow-lg);
+    display: block;
+  }
+  .portrait-tag {
+    position: absolute;
+    bottom: 14px;
+    left: -10px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    background: var(--lime);
+    border: var(--bw) solid var(--ink);
+    box-shadow: var(--shadow-sm);
+    padding: 8px 14px;
+    border-radius: var(--r-pill);
+    transform: rotate(-3deg);
+  }
+  .about-h { margin: 12px 0 18px; }
+  .about-p { font-size: var(--t-body-lg); line-height: 1.65; margin: 0 0 16px; max-width: 60ch; }
+  .about-cv { margin-top: 10px; }
+
+  @media (max-width: 760px) {
+    .about-grid { grid-template-columns: 1fr; gap: 34px; }
+    .about-portrait { max-width: 340px; }
+  }
+</style>

@@ -1,0 +1,227 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import VideoLoop from '../../components/VideoLoop.astro';
+import { site } from '../../data/site';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const d = entry.data;
+const { Content } = await render(entry);
+
+const statColorVar =
+  d.statColor === 'accent-2' ? 'var(--accent-2)' : d.statColor === 'ink' ? 'var(--ink)' : 'var(--accent)';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CreativeWork',
+  name: d.title,
+  about: d.seoDescription,
+  creator: { '@type': 'Person', name: site.name, url: new URL('/', Astro.site).href },
+  url: new URL(`/work/${entry.id}/`, Astro.site).href,
+};
+---
+
+<Base title={d.seoTitle} description={d.seoDescription} jsonLd={jsonLd} active="work">
+  <article class="case">
+    <!-- header -->
+    <header class="case-head section">
+      <div class="wrap">
+        <a href="/#work" class="back">← All work</a>
+        <span class="label" style="color:var(--accent)">// Case study</span>
+        <div class="case-stat" style={`color:${statColorVar}`}>
+          {d.statValue}<span class="case-stat-unit">{d.statLabel}</span>
+        </div>
+        <h1 class="case-title">{d.title}</h1>
+        <p class="case-lead">{d.summary}</p>
+        <div class="case-tags">
+          {d.tags.map((t) => <span class="chip">{t}</span>)}
+        </div>
+      </div>
+    </header>
+
+    <!-- body + media -->
+    <div class="case-main section-tight">
+      <div class="wrap case-grid">
+        <div class="prose">
+          <Content />
+        </div>
+
+        <aside class="case-aside">
+          <div class="case-media">
+            <VideoLoop
+              src={d.heroVideo}
+              href={d.heroSourceUrl}
+              label={d.heroSourceLabel}
+              alt={`${d.title}: watch the source`}
+            />
+          </div>
+          {d.links.length > 0 && (
+            <div class="case-links">
+              <span class="label" style="color:var(--accent)">// Live links</span>
+              <ul>
+                {d.links.map((l) => (
+                  <li>
+                    <a href={l.href} target="_blank" rel="noopener" class="link-pill">
+                      <span class="lp-label">{l.label}</span>
+                      {l.meta && <span class="lp-meta">{l.meta}</span>}
+                      <span aria-hidden="true">↗</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </aside>
+      </div>
+    </div>
+
+    <!-- gallery -->
+    {d.gallery.length > 0 && (
+      <section class="case-gallery section-tight">
+        <div class="wrap">
+          <span class="label" style="color:var(--accent)">// Proof</span>
+          <div class="gallery-grid">
+            {d.gallery.map((g) => (
+              <figure class="gal-fig">
+                <img src={g.src} alt={g.alt} loading="lazy" decoding="async" />
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- CTA -->
+    <section class="case-cta section">
+      <div class="wrap case-cta-inner">
+        <h2 class="cta-h">Want results like this?</h2>
+        <div class="cta-row">
+          <a href={`mailto:${site.email}`} class="btn btn-primary">Get in touch</a>
+          <a href="/#work" class="btn">See more work</a>
+        </div>
+      </div>
+    </section>
+  </article>
+</Base>
+
+<style>
+  .case-head { padding-top: 120px; }
+  .back {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink);
+    margin-bottom: 22px;
+  }
+  .back:hover { color: var(--accent); }
+  .case-stat {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: var(--t-stat);
+    line-height: 0.9;
+    margin-top: 8px;
+  }
+  .case-stat-unit { font-size: 0.34em; color: var(--ink); margin-left: 8px; font-weight: 700; }
+  .case-title { font-size: var(--t-h2); margin: 6px 0 16px; }
+  .case-lead { font-size: var(--t-body-lg); line-height: 1.6; max-width: 60ch; margin: 0 0 22px; }
+  .case-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+
+  .case-grid {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: var(--space-5);
+    align-items: start;
+  }
+  .case-aside { position: sticky; top: 100px; display: flex; flex-direction: column; gap: 22px; }
+  .case-media {
+    aspect-ratio: 9 / 16;
+    max-height: 560px;
+    border: var(--bw) solid var(--ink);
+    border-radius: var(--r-card);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+  }
+  .case-links ul { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .link-pill {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: var(--bw-sm) solid var(--ink);
+    border-radius: var(--r-pill);
+    box-shadow: var(--shadow-sm);
+    padding: 11px 16px;
+    background: var(--surface);
+    color: var(--ink);
+    transition: transform var(--t-press), box-shadow var(--t-press), background var(--t-press);
+  }
+  .link-pill:hover { background: var(--lime); transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); }
+  .lp-label { font-weight: 600; font-size: 14px; flex: 1; }
+  .lp-meta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    opacity: 0.7;
+  }
+
+  /* prose */
+  .prose :global(h2) {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(26px, 3vw, 38px);
+    line-height: 1;
+    margin: 36px 0 14px;
+  }
+  .prose :global(h2:first-child) { margin-top: 0; }
+  .prose :global(p) { font-size: var(--t-body-lg); line-height: 1.7; margin: 0 0 16px; }
+  .prose :global(ul) { margin: 0 0 18px; padding-left: 0; list-style: none; }
+  .prose :global(li) {
+    position: relative;
+    padding-left: 28px;
+    margin-bottom: 12px;
+    font-size: var(--t-body-lg);
+    line-height: 1.6;
+  }
+  .prose :global(li)::before {
+    content: '✦';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+  .prose :global(strong) { background: var(--lime); padding: 0 4px; border-radius: 4px; }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: var(--space-3);
+    margin-top: 16px;
+  }
+  .gal-fig {
+    margin: 0;
+    border: var(--bw) solid var(--ink);
+    border-radius: var(--r-card-sm);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    background: var(--surface);
+  }
+  .gal-fig img { width: 100%; height: 100%; object-fit: cover; display: block; aspect-ratio: 4 / 5; }
+
+  .case-cta { background: var(--ink); color: var(--bg); text-align: center; }
+  .cta-h { color: var(--bg); font-size: var(--t-h2-alt); margin-bottom: 24px; }
+  .cta-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+  @media (max-width: 860px) {
+    .case-grid { grid-template-columns: 1fr; }
+    .case-aside { position: static; max-width: 420px; }
+  }
+</style>

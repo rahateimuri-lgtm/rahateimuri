@@ -19,9 +19,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: npm install -g bun
-      - run: bun install
-      - run: bun run build
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - run: pnpm install
+      - run: pnpm build
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

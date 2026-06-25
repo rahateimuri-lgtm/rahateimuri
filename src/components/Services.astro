@@ -1,0 +1,80 @@
+---
+import { services } from '../data/site';
+---
+
+<section id="services" class="services">
+  <div class="wrap">
+    <span class="label" style="color:var(--lime)">// What I do</span>
+    <h2 class="section-title services-title">Seven ways I move the number.</h2>
+
+    <div class="accordion" data-reveal>
+      {services.map((s, i) => (
+        <details open={i === 0}>
+          <summary>
+            <span class="svc-n">{s.n}</span>
+            <span class="svc-title">{s.title}</span>
+            <span class="svc-icon" aria-hidden="true">+</span>
+          </summary>
+          <p class="svc-body">{s.body}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .services {
+    background: var(--ink);
+    color: var(--bg);
+    padding: var(--space-section-y) var(--space-section-x);
+  }
+  .services-title { color: var(--bg); margin: 10px 0 30px; }
+  .accordion { border-top: 2px solid var(--bg); }
+  details { border-bottom: 2px solid var(--bg); }
+  summary {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 22px 4px;
+    cursor: pointer;
+    list-style: none;
+  }
+  summary::-webkit-details-marker { display: none; }
+  .svc-n {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--lime);
+    letter-spacing: 0.1em;
+    flex: none;
+    width: 34px;
+  }
+  .svc-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--t-h3);
+    flex: 1;
+  }
+  .svc-icon {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 1;
+    color: var(--lime);
+    transition: transform 0.18s ease;
+  }
+  details[open] .svc-icon { transform: rotate(45deg); }
+  .svc-body {
+    margin: 0;
+    padding: 0 4px 26px 54px;
+    max-width: 720px;
+    font-family: var(--font-body);
+    font-size: var(--t-body-lg);
+    line-height: 1.6;
+    opacity: 0.85;
+  }
+  summary:hover .svc-title { color: var(--lime); }
+  @media (max-width: 560px) {
+    .svc-body { padding-left: 4px; }
+    summary { gap: 12px; }
+  }
+</style>

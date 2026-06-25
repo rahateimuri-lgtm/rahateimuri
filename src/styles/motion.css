@@ -1,0 +1,57 @@
+/* =====================================================================
+   RAHA DESIGN SYSTEM - MOTION
+   Keyframes + the reduced-motion contract. Motion intensity: ~60/100.
+   Ambient drift + marquees + a sparkle cursor trail carry the energy;
+   reveals and hover "press" provide the punctuation.
+   ===================================================================== */
+
+/* --- ambient sticker drift (floating shapes) ------------------------- */
+@keyframes floatA { 0%,100% { transform: translate(0,0) rotate(0deg); }   50% { transform: translate(0,-22px) rotate(10deg); } }
+@keyframes floatB { 0%,100% { transform: translate(0,0) rotate(0deg); }   50% { transform: translate(0,18px) rotate(-12deg); } }
+@keyframes floatC { 0%,100% { transform: translate(0,0) rotate(-6deg); }  50% { transform: translate(14px,-14px) rotate(8deg); } }
+@keyframes spinSlow { to { transform: rotate(360deg); } }
+@keyframes twinkle { 0%,100% { transform: scale(1) rotate(0); opacity: 1; } 50% { transform: scale(.62) rotate(45deg); opacity: .55; } }
+
+/* --- hero wordmark gentle wobble ------------------------------------- */
+@keyframes breathe { 0%,100% { transform: rotate(-1.5deg); } 50% { transform: rotate(1.5deg); } }
+
+/* --- featured stat card bob ------------------------------------------ */
+@keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+
+/* --- marquee (proof bar + footer ticker) ----------------------------- */
+/* requires duplicated content; container width:max-content; translate -50% */
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* --- scroll reveal (added via IntersectionObserver, see note) -------- */
+@keyframes popIn {
+  0%   { transform: translateY(22px) scale(.96); opacity: .2; }
+  60%  { transform: translateY(-4px) scale(1.01); }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* Recommended durations (apply inline or via utility):
+   floating shapes : 6s–9s  ease-in-out infinite (stagger delays)
+   spinSlow        : 16s     linear infinite
+   twinkle         : 3.4s–4s ease-in-out infinite
+   breathe         : 6s      ease-in-out infinite
+   bob             : 5s      ease-in-out infinite
+   marquee (proof) : 24s     linear infinite
+   marquee (footer): 18s     linear infinite reverse
+   popIn (reveal)  : .6s     var(--ease-pop) both   (one-shot on enter)
+*/
+
+/* --- pause-on-hover for marquees ------------------------------------- */
+.marquee:hover { animation-play-state: paused; }
+
+/* =====================================================================
+   REDUCED MOTION - the contract
+   Disable all ambient motion, autoplay loops, marquees, and the cursor
+   trail (the trail script also checks this query).
+   ===================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+  }
+}

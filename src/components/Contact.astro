@@ -1,0 +1,103 @@
+---
+import { site } from '../data/site';
+const links = [
+  { label: site.email, href: `mailto:${site.email}`, meta: 'Email', dot: 'var(--accent)', ext: false },
+  { label: site.phoneDisplay, href: site.phoneHref, meta: 'Call / WhatsApp', dot: 'var(--accent-2)', ext: false },
+  { label: 'in/rahateimuri', href: site.linkedin, meta: 'LinkedIn', dot: 'var(--lime)', ext: true },
+];
+---
+
+<section id="contact" class="section contact">
+  <div class="wrap contact-inner">
+    <span class="label" style="color:var(--accent)">// Contact</span>
+    <h2 class="contact-h">
+      Let's make something <span class="stroke-word">that performs</span>.
+    </h2>
+    <p class="contact-sub">
+      Open to senior social &amp; creative roles across Europe. The fastest way to reach me:
+    </p>
+
+    <ul class="contact-links" data-reveal>
+      {links.map((l) => (
+        <li>
+          <a
+            class="contact-pill"
+            href={l.href}
+            target={l.ext ? '_blank' : undefined}
+            rel={l.ext ? 'noopener' : undefined}
+          >
+            <span class="cp-dot" style={`background:${l.dot}`}></span>
+            <span class="cp-meta">{l.meta}</span>
+            <span class="cp-label">{l.label}</span>
+            <span class="cp-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .contact { text-align: center; }
+  .contact-h {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: var(--t-display);
+    line-height: 0.95;
+    margin: 12px 0 16px;
+  }
+  .contact-sub {
+    max-width: 540px;
+    margin: 0 auto 32px;
+    font-size: var(--t-body-lg);
+    line-height: 1.6;
+  }
+  .contact-links {
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 560px;
+  }
+  .contact-pill {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-align: left;
+    background: var(--surface);
+    border: var(--bw) solid var(--ink);
+    /* full-pill at one row; becomes a tidy rounded card when it wraps */
+    border-radius: 32px;
+    box-shadow: var(--shadow);
+    padding: 16px 22px;
+    color: var(--ink);
+    transition: transform var(--t-press), box-shadow var(--t-press), background var(--t-press);
+  }
+  .contact-pill:hover {
+    background: var(--lime);
+    transform: translate(3px, 3px);
+    box-shadow: 2px 2px 0 var(--ink);
+  }
+  .cp-dot { width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--ink); flex: none; }
+  .cp-meta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.65;
+    flex: none;
+    width: 116px;
+  }
+  .cp-label { font-family: var(--font-body); font-weight: 600; font-size: 17px; flex: 1; }
+  .cp-arrow { font-size: 20px; }
+
+  @media (max-width: 520px) {
+    /* 2 clean rows: [dot · meta ........ arrow] then [value] */
+    .contact-pill { flex-wrap: wrap; column-gap: 10px; row-gap: 6px; padding: 16px 20px; }
+    .cp-meta { width: auto; order: 1; }
+    .cp-arrow { order: 2; margin-left: auto; }
+    .cp-label { order: 3; flex-basis: 100%; font-size: 18px; }
+  }
+</style>

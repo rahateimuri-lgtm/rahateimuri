@@ -1,0 +1,102 @@
+---
+/**
+ * Self-hosted muted loop preview that lazy-starts in view and (optionally)
+ * links out to the source post. Reduced-motion users see only the poster.
+ * Fills its container; the parent sets the aspect/size.
+ */
+interface Props {
+  /** basename in /public/video + /public/img/poster */
+  src: string;
+  href?: string;
+  label?: string;
+  /** accessible link/region label */
+  alt?: string;
+  poster?: string;
+  class?: string;
+}
+const { src, href, label, alt, poster, class: klass } = Astro.props;
+const posterSrc = poster ?? `/img/poster/${src}.jpg`;
+const videoSrc = `/video/${src}.mp4`;
+const Tag = href ? 'a' : 'div';
+const linkAttrs = href
+  ? { href, target: '_blank', rel: 'noopener', 'aria-label': alt ?? label ?? 'Watch the source video' }
+  : {};
+---
+
+<Tag class:list={['video-wrap', klass]} {...linkAttrs}>
+  <video
+    class="video-loop"
+    muted
+    loop
+    playsinline
+    preload="none"
+    poster={posterSrc}
+  >
+    <source data-src={videoSrc} type="video/mp4" />
+  </video>
+  {label && <span class="vl-badge">▶ {label}</span>}
+</Tag>
+
+<style>
+  .video-wrap {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: inherit;
+    background: var(--ink);
+  }
+  .video-loop {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+  .vl-badge {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink);
+    background: var(--lime);
+    border: 2px solid var(--ink);
+    padding: 6px 11px;
+    border-radius: var(--r-pill);
+  }
+  a.video-wrap .vl-badge { transition: transform var(--t-press); }
+  a.video-wrap:hover .vl-badge { transform: translate(2px, 2px); }
+</style>
+
+<script>
+  // Lazy-load + autoplay only when in view; honor reduced motion. Runs once.
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const vids = document.querySelectorAll<HTMLVideoElement>('video.video-loop');
+  if (!reduce && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const v = entry.target as HTMLVideoElement;
+          if (entry.isIntersecting) {
+            if (!v.dataset.loaded) {
+              v.querySelectorAll<HTMLSourceElement>('source[data-src]').forEach((s) => {
+                s.src = s.dataset.src as string;
+              });
+              v.load();
+              v.dataset.loaded = '1';
+            }
+            v.play().catch(() => {});
+          } else {
+            v.pause();
+          }
+        });
+      },
+      { threshold: 0.25 },
+    );
+    vids.forEach((v) => io.observe(v));
+  }
+</script>

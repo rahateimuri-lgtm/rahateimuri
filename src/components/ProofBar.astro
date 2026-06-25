@@ -1,0 +1,72 @@
+---
+import { proofBar } from '../data/site';
+const colorVar = (c: string) =>
+  c === 'accent' ? 'var(--accent)' : c === 'accent-2' ? 'var(--accent-2)' : 'var(--ink)';
+---
+
+<section class="proof marquee" aria-label="Key results">
+  <div class="marquee-track">
+    {[0, 1].map(() => (
+      <div class="proof-run" aria-hidden="true">
+        {proofBar.map((s) => (
+          <span class="proof-item">
+            <span class="proof-v">{s.value}</span>
+            <span class="proof-l">{s.label}</span>
+            <span class="proof-mark">✦</span>
+          </span>
+        ))}
+      </div>
+    ))}
+  </div>
+  <!-- accessible, non-animated copy for screen readers -->
+  <p class="sr-only">
+    1M+ followers from zero. 50M+ views. €80K per year in social-attributed bookings.
+    4 years leading social across Europe.
+  </p>
+</section>
+
+<style>
+  .proof {
+    background: var(--accent);
+    border-top: var(--bw) solid var(--ink);
+    border-bottom: var(--bw) solid var(--ink);
+    overflow: hidden;
+    padding: 18px 0;
+  }
+  .proof-run {
+    display: inline-flex;
+    align-items: baseline;
+    white-space: nowrap;
+  }
+  .proof-item {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 12px;
+    padding-right: 28px;
+    color: #fff;
+  }
+  .proof-v {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(28px, 4vw, 48px);
+    line-height: 1;
+  }
+  .proof-l {
+    font-family: var(--font-mono);
+    font-size: clamp(11px, 1.3vw, 14px);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+  .proof-mark { color: var(--lime); font-size: clamp(22px, 3vw, 34px); }
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+</style>

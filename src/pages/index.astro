@@ -1,0 +1,48 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import ProofBar from '../components/ProofBar.astro';
+import Work from '../components/Work.astro';
+import About from '../components/About.astro';
+import StackGrid from '../components/StackGrid.astro';
+import Services from '../components/Services.astro';
+import CVBlock from '../components/CVBlock.astro';
+import Contact from '../components/Contact.astro';
+import { site } from '../data/site';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.name,
+  jobTitle: 'Social Media Lead',
+  description: site.description,
+  email: `mailto:${site.email}`,
+  telephone: site.phoneHref.replace('tel:', ''),
+  url: new URL('/', Astro.site).href,
+  image: new URL(site.ogImage, Astro.site).href,
+  worksFor: { '@type': 'Organization', name: 'Yousician' },
+  knowsAbout: [
+    'Social Media Strategy',
+    'Creative Direction',
+    'Viral Video',
+    'Influencer Marketing',
+    'UGC',
+    'Growth',
+    'Analytics',
+  ],
+  sameAs: [site.linkedin],
+};
+
+const title = 'Raha Teimuri, Social Media Lead | 1M+ followers, €80K/yr, 50M+ views';
+---
+
+<Base title={title} jsonLd={jsonLd}>
+  <Hero />
+  <ProofBar />
+  <Work />
+  <About />
+  <StackGrid />
+  <Services />
+  <CVBlock />
+  <Contact />
+</Base>

@@ -1,0 +1,336 @@
+---
+interface Props {
+  active?: string | null;
+}
+const { active = null } = Astro.props;
+
+const items = [
+  { id: 'work', label: 'Work', href: '/#work' },
+  { id: 'about', label: 'About', href: '/#about' },
+  { id: 'stack', label: 'Stack', href: '/#stack' },
+  { id: 'services', label: 'Services', href: '/#services' },
+  { id: 'cv', label: 'CV', href: '/#cv' },
+  { id: 'contact', label: 'Contact', href: '/#contact' },
+];
+---
+
+<header class="nav" data-nav-root>
+  <!-- ===== DESKTOP: centered pill ===== -->
+  <nav class="nav-pill" aria-label="Primary">
+    <a href="/" class="nav-brand" aria-label="Raha Teimuri home">
+      RAHA<span aria-hidden="true">✦</span>
+    </a>
+    <ul>
+      {items.slice(0, 5).map((it) => (
+        <li>
+          <a
+            href={it.href}
+            class:list={['nav-link', { 'is-active': active === it.id }]}
+            aria-current={active === it.id ? 'page' : undefined}
+          >
+            {it.label}
+          </a>
+        </li>
+      ))}
+      <li>
+        <a
+          href="/#contact"
+          class:list={['nav-link nav-cta', { 'is-active': active === 'contact' }]}
+        >
+          Contact
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- ===== MOBILE: compact pill + hamburger (auto-hides on scroll) ===== -->
+  <div class="m-pill">
+    <a href="/" class="m-brand" aria-label="Raha Teimuri home">
+      RAHA<span aria-hidden="true">✦</span>
+    </a>
+    <button
+      type="button"
+      class="m-burger"
+      data-burger
+      aria-expanded="false"
+      aria-controls="m-menu"
+      aria-label="Open menu"
+    >
+      <span class="burger-box" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </span>
+    </button>
+  </div>
+
+  <!-- dropdown menu -->
+  <nav class="m-menu" id="m-menu" data-menu aria-label="Mobile">
+    <ul>
+      {items.map((it, i) => (
+        <li style={`--i:${i}`}>
+          <a
+            href={it.href}
+            class:list={[
+              'm-link',
+              { 'is-active': active === it.id },
+              { 'is-cta': it.id === 'contact' },
+            ]}
+            aria-current={active === it.id ? 'page' : undefined}
+          >
+            <span class="m-link-i" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+            {it.label}
+            <span class="m-link-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+
+  <button class="m-scrim" data-scrim tabindex="-1" aria-hidden="true"></button>
+</header>
+
+<style>
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 8000;
+    display: flex;
+    justify-content: center;
+    padding: 18px 14px 0;
+    pointer-events: none;
+  }
+
+  /* =========================== DESKTOP PILL =========================== */
+  .nav-pill {
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: calc(100vw - 28px);
+    background: var(--surface);
+    border: var(--bw) solid var(--ink);
+    border-radius: 32px;
+    box-shadow: var(--shadow);
+    padding: 8px 10px 8px 16px;
+  }
+  .nav-brand {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 20px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    line-height: 1;
+    padding-right: 6px;
+  }
+  .nav-brand span { color: var(--accent); margin-left: 2px; }
+  .nav-pill ul {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .nav-link {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink);
+    padding: 8px 14px;
+    border-radius: var(--r-pill);
+    border: 2px solid transparent;
+    transition: background var(--t-press), color var(--t-press);
+  }
+  .nav-link:hover { background: var(--lime); }
+  .nav-link.is-active { background: var(--accent); color: #fff; }
+  .nav-cta { border: 2px solid var(--ink); }
+  .nav-cta:hover { background: var(--lime); }
+  .nav-cta.is-active { background: var(--accent); color: #fff; border-color: var(--ink); }
+
+  /* =========================== MOBILE ================================ */
+  .m-pill,
+  .m-menu,
+  .m-scrim { display: none; }
+
+  .m-pill {
+    pointer-events: auto;
+    flex: 1;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    background: var(--surface);
+    border: var(--bw) solid var(--ink);
+    border-radius: var(--r-pill);
+    box-shadow: var(--shadow);
+    padding: 8px 8px 8px 18px;
+    transition: transform 0.32s var(--ease-pop);
+  }
+  .m-brand {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 21px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .m-brand span { color: var(--accent); margin-left: 2px; }
+
+  /* the quirky sticker hamburger */
+  .m-burger {
+    flex: none;
+    width: 46px;
+    height: 46px;
+    display: grid;
+    place-items: center;
+    background: var(--accent);
+    border: var(--bw) solid var(--ink);
+    border-radius: 14px;
+    box-shadow: 3px 3px 0 var(--ink);
+    cursor: pointer;
+    transition: transform var(--t-press), box-shadow var(--t-press), background var(--t-press), border-radius 0.3s var(--ease-pop);
+  }
+  .m-burger:active { transform: translate(3px, 3px); box-shadow: 0 0 0 var(--ink); }
+  .burger-box { display: block; width: 20px; height: 14px; position: relative; }
+  .burger-box span {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: #fff;
+    border-radius: 2px;
+    transition: transform 0.3s var(--ease-pop), opacity 0.2s ease, background 0.2s ease;
+  }
+  .burger-box span:nth-child(1) { top: 0; }
+  .burger-box span:nth-child(2) { top: 50%; transform: translateY(-50%); }
+  .burger-box span:nth-child(3) { bottom: 0; }
+
+  /* open state: cobalt -> lime, bars -> X, square -> rounder */
+  .m-burger[aria-expanded='true'] { background: var(--lime); border-radius: 50%; }
+  .m-burger[aria-expanded='true'] .burger-box span { background: var(--ink); }
+  .m-burger[aria-expanded='true'] .burger-box span:nth-child(1) { top: 50%; transform: translateY(-50%) rotate(45deg); }
+  .m-burger[aria-expanded='true'] .burger-box span:nth-child(2) { opacity: 0; transform: translateY(-50%) scaleX(0.2); }
+  .m-burger[aria-expanded='true'] .burger-box span:nth-child(3) { bottom: auto; top: 50%; transform: translateY(-50%) rotate(-45deg); }
+
+  /* dropdown menu */
+  .m-menu {
+    pointer-events: auto;
+    position: fixed;
+    top: 84px;
+    left: 14px;
+    right: 14px;
+    background: var(--surface);
+    border: var(--bw) solid var(--ink);
+    border-radius: var(--r-card);
+    box-shadow: var(--shadow-lg);
+    padding: 12px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px) scale(0.97);
+    transform-origin: top right;
+    transition: opacity 0.2s ease, transform 0.28s var(--ease-pop), visibility 0.2s;
+  }
+  .m-menu.is-open { opacity: 1; visibility: visible; transform: none; }
+  .m-menu ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  .m-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink);
+    background: var(--surface);
+    border: 2px solid var(--ink);
+    border-radius: var(--r-pill);
+    box-shadow: var(--shadow-sm);
+    padding: 14px 18px;
+    transition: transform var(--t-press), box-shadow var(--t-press), background var(--t-press);
+  }
+  .m-link:hover,
+  .m-link:focus-visible { background: var(--lime); transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--ink); }
+  .m-link.is-active { background: var(--accent); color: #fff; }
+  .m-link.is-cta { background: var(--ink); color: var(--bg); }
+  .m-link.is-cta:hover { background: var(--accent); color: #fff; }
+  .m-link-i { font-size: 11px; color: var(--accent); width: 22px; flex: none; }
+  .m-link.is-active .m-link-i,
+  .m-link.is-cta .m-link-i { color: var(--lime); }
+  .m-link-arrow { margin-left: auto; font-size: 16px; }
+
+  /* staggered reveal of items when menu opens */
+  .m-menu.is-open .m-link { animation: popIn 0.4s var(--ease-pop) both; animation-delay: calc(var(--i) * 0.035s); }
+
+  .m-scrim {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    border: 0;
+    padding: 0;
+    background: rgba(20, 19, 24, 0.22);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: auto;
+    transition: opacity 0.22s ease, visibility 0.22s;
+    cursor: pointer;
+  }
+  .m-scrim.is-open { opacity: 1; visibility: visible; }
+
+  /* show mobile / hide desktop below breakpoint */
+  @media (max-width: 900px) {
+    .nav-pill { display: none; }
+    /* no pill, no brand — just the sticky hamburger, pinned top-right */
+    .m-pill {
+      display: flex;
+      flex: 1;
+      justify-content: flex-end;
+      background: none;
+      border: 0;
+      box-shadow: none;
+      padding: 0;
+      pointer-events: none; /* let taps pass through the empty strip */
+    }
+    .m-brand { display: none; }
+    .m-burger { pointer-events: auto; }
+    /* menu/scrim stay rendered so open/close can animate via opacity+visibility */
+    .m-menu { display: block; }
+    .m-scrim { display: block; }
+  }
+</style>
+
+<script>
+  const root = document.querySelector('[data-nav-root]');
+  const burger = document.querySelector('[data-burger]');
+  const menu = document.querySelector('[data-menu]');
+  const scrim = document.querySelector('[data-scrim]');
+
+  if (root && burger && menu && scrim) {
+    const setOpen = (open: boolean) => {
+      burger.setAttribute('aria-expanded', String(open));
+      burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      menu.classList.toggle('is-open', open);
+      scrim.classList.toggle('is-open', open);
+      document.documentElement.classList.toggle('m-lock', open);
+      if (open) {
+        const first = menu.querySelector<HTMLAnchorElement>('a');
+        first?.focus({ preventScroll: true });
+      }
+    };
+    const isOpen = () => burger.getAttribute('aria-expanded') === 'true';
+
+    burger.addEventListener('click', () => setOpen(!isOpen()));
+    scrim.addEventListener('click', () => setOpen(false));
+    menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && isOpen()) {
+        setOpen(false);
+        (burger as HTMLElement).focus();
+      }
+    });
+  }
+</script>

@@ -1,0 +1,114 @@
+---
+import { site } from '../data/site';
+const year = 2026;
+const ticker = [
+  'AVAILABLE FOR SENIOR SOCIAL & CREATIVE ROLES',
+  'SOCIAL MEDIA LEAD',
+  '1M+ FOLLOWERS FROM ZERO',
+  '€80K/YR IN BOOKINGS',
+  '50M+ VIEWS',
+];
+---
+
+<footer class="footer">
+  <div class="marquee marquee-rev ticker" aria-hidden="true">
+    <div class="marquee-track">
+      {[0, 1].map(() => (
+        <span class="ticker-run">
+          {ticker.map((t) => (
+            <>
+              <span>{t}</span>
+              <span class="mark">✦</span>
+            </>
+          ))}
+        </span>
+      ))}
+    </div>
+  </div>
+
+  <div class="footer-body wrap">
+    <a href="/" class="foot-wordmark" aria-label="Raha Teimuri home">RAHA</a>
+
+    <div class="footer-row">
+      <a href="#main" class="back-top">↑ Back to top</a>
+      <p class="copy">© {year} {site.name}. Built fast, no template.</p>
+      <div class="foot-links">
+        <a href={`mailto:${site.email}`}>Email</a>
+        <a href={site.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: var(--bw) solid var(--ink);
+    background: var(--bg);
+    padding-bottom: 28px;
+  }
+  .ticker {
+    background: var(--lime);
+    border-bottom: var(--bw) solid var(--ink);
+    overflow: hidden;
+    padding: 12px 0;
+  }
+  .ticker-run {
+    display: inline-flex;
+    align-items: center;
+    gap: 22px;
+    padding-right: 22px;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+  .ticker-run .mark { color: var(--accent); }
+
+  .footer-body { padding: 40px var(--space-section-x) 0; text-align: center; }
+  .foot-wordmark {
+    display: block;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(80px, 22vw, 280px);
+    line-height: 0.82;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    -webkit-text-stroke: 0;
+  }
+  .foot-wordmark:hover { color: var(--accent); }
+
+  .footer-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    margin-top: 14px;
+    border-top: 2px solid var(--ink);
+    padding-top: 18px;
+  }
+  .back-top,
+  .foot-links a {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink);
+  }
+  .back-top:hover,
+  .foot-links a:hover { color: var(--accent); }
+  .copy {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    margin: 0;
+    color: var(--ink);
+    opacity: 0.7;
+  }
+  .foot-links { display: flex; gap: 18px; }
+  @media (max-width: 640px) {
+    .footer-row { justify-content: center; text-align: center; }
+  }
+</style>

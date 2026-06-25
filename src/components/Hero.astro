@@ -1,0 +1,180 @@
+---
+import { site } from '../data/site';
+const word = 'RAHA'.split('');
+const letterColors = ['var(--accent)', 'var(--pink)', 'var(--lime)', 'var(--accent-2)'];
+const heroStats = [
+  { v: '€80K', l: '/yr booked', c: 'var(--accent)', rot: '-3deg' },
+  { v: '1M+', l: 'followers', c: 'var(--accent-2)', rot: '2.4deg' },
+  { v: '50M+', l: 'views', c: 'var(--ink)', rot: '-1.6deg' },
+];
+---
+
+<section class="hero" aria-label="Intro">
+  <!-- ambient sticker shapes (decorative) -->
+  <div class="stickers" aria-hidden="true">
+    <span class="sticker s-circle" style="top:14%;left:6%"></span>
+    <span class="sticker s-ring" style="top:24%;right:8%"></span>
+    <span class="sticker s-diamond" style="bottom:20%;left:11%"></span>
+    <span class="sticker s-pill" style="top:9%;right:22%"></span>
+    <span class="sticker s-star sticker-outline" style="bottom:14%;right:12%"></span>
+    <span class="sticker s-sparkle sticker-outline" style="top:40%;left:3%"></span>
+    <span class="sticker s-sparkle s-sparkle-2 sticker-outline" style="bottom:30%;right:30%"></span>
+  </div>
+
+  <div class="hero-inner wrap">
+    <span class="chip hero-eyebrow">Social Media Lead · Europe</span>
+
+    <p class="hero-greet">Hi, I'm</p>
+
+    <h1 class="wordmark" aria-label="Raha">
+      {word.map((ch, i) => (
+        <span class="wm-letter" style={`color:${letterColors[i % letterColors.length]}`}>{ch}</span>
+      ))}
+    </h1>
+
+    <p class="hero-line">
+      I build <span class="hl">brands, teams &amp; content engines</span> that scale.<br />
+      Content that performs and growth I can prove.
+    </p>
+
+    <div class="hero-stats" role="list">
+      {heroStats.map((s) => (
+        <div class="hstat" role="listitem" style={`--rot:${s.rot}`}>
+          <span class="hstat-v" style={`color:${s.c}`}>{s.v}</span>
+          <span class="hstat-l">{s.l}</span>
+        </div>
+      ))}
+    </div>
+
+    <div class="hero-cta">
+      <a href="#work" class="btn btn-primary">See the work</a>
+      <a href={site.cv} download class="btn btn-ink">Download CV</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    padding: 120px var(--space-section-x) 70px;
+  }
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    width: 100%;
+  }
+  .hero-eyebrow { margin-bottom: 18px; }
+  .hero-greet {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 700;
+    font-size: clamp(22px, 3.2vw, 34px);
+    margin: 0;
+    color: var(--ink);
+  }
+  .wordmark {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: var(--t-wordmark);
+    line-height: 0.82;
+    letter-spacing: -0.02em;
+    margin: 2px 0 8px;
+    display: inline-block;
+    transform-origin: center;
+    animation: breathe 6s ease-in-out infinite;
+  }
+  .wm-letter {
+    -webkit-text-stroke: 4px var(--ink);
+    paint-order: stroke fill;
+    display: inline-block;
+  }
+  .hero-line {
+    max-width: 720px;
+    margin: 10px auto 0;
+    font-size: clamp(17px, 2vw, 22px);
+    line-height: 1.5;
+    font-weight: 500;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 30px 0 30px;
+  }
+  .hstat {
+    background: var(--surface);
+    border: var(--bw) solid var(--ink);
+    border-radius: var(--r-badge);
+    box-shadow: var(--shadow);
+    padding: 12px 20px;
+    transform: rotate(var(--rot));
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 116px;
+  }
+  .hstat-v {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(28px, 3.4vw, 40px);
+    line-height: 0.95;
+  }
+  .hstat-l {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 4px;
+  }
+  .hero-cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+  /* ---- ambient stickers ---- */
+  .stickers { position: absolute; inset: 0; z-index: 1; }
+  .sticker { display: block; }
+  .s-circle {
+    width: 72px; height: 72px; border-radius: 50%;
+    background: var(--pink); border: var(--bw) solid var(--ink); box-shadow: var(--shadow);
+    animation: floatA 7s ease-in-out infinite;
+  }
+  .s-ring {
+    width: 90px; height: 90px; border-radius: 50%;
+    border: var(--bw-ring) solid var(--accent); box-shadow: var(--shadow);
+    animation: floatB 8s ease-in-out infinite;
+  }
+  .s-diamond {
+    width: 58px; height: 58px; background: var(--lime);
+    border: var(--bw) solid var(--ink); box-shadow: var(--shadow);
+    transform: rotate(45deg); animation: floatC 9s ease-in-out infinite;
+  }
+  .s-pill {
+    width: 120px; height: 46px; border-radius: 999px;
+    background: var(--accent); border: var(--bw) solid var(--ink); box-shadow: var(--shadow);
+    animation: floatB 7.5s ease-in-out infinite;
+  }
+  .s-star {
+    width: 78px; height: 78px; background: var(--accent-2);
+    clip-path: polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+    animation: spinSlow 16s linear infinite;
+  }
+  .s-sparkle {
+    width: 44px; height: 44px; background: var(--lime);
+    clip-path: polygon(50% 0,58% 42%,100% 50%,58% 58%,50% 100%,42% 58%,0 50%,42% 42%);
+    animation: twinkle 3.6s ease-in-out infinite;
+  }
+  .s-sparkle-2 { background: var(--pink); animation-duration: 4s; }
+
+  @media (max-width: 640px) {
+    .sticker { transform: scale(0.7); }
+    .s-diamond { transform: rotate(45deg) scale(0.7); }
+    .s-pill, .s-ring { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .wordmark, .sticker { animation: none !important; }
+  }
+</style>
