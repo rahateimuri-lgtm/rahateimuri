@@ -13,14 +13,14 @@ export const site = {
 } as const;
 
 export const proofStats = [
-  '1M+ followers from zero',
+  '1M+ organic followers from zero',
   '50M+ views',
   '€80K/yr social-attributed bookings',
   '4 yrs leading social across Europe',
 ] as const;
 
 export const proofBar = [
-  { value: '1M+', label: 'followers, from zero', color: 'accent' },
+  { value: '1M+', label: 'organic followers, from zero', color: 'accent' },
   { value: '50M+', label: 'views', color: 'accent-2' },
   { value: '€80K', label: '/yr social-attributed bookings', color: 'ink' },
   { value: '4 yrs', label: 'leading social across Europe', color: 'accent' },
