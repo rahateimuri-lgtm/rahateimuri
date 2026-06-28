@@ -83,22 +83,6 @@ const jsonLd = {
       </div>
     </div>
 
-    <!-- gallery -->
-    {d.gallery.length > 0 && (
-      <section class="case-gallery section-tight">
-        <div class="wrap">
-          <span class="label" style="color:var(--accent)">// Proof</span>
-          <div class="gallery-grid">
-            {d.gallery.map((g) => (
-              <figure class="gal-fig">
-                <img src={g.src} alt={g.alt} loading="lazy" decoding="async" />
-              </figure>
-            ))}
-          </div>
-        </div>
-      </section>
-    )}
-
     <!-- CTA -->
     <section class="case-cta section">
       <div class="wrap case-cta-inner">
