@@ -28,7 +28,7 @@ const mediaTint = d.featured ? 'var(--accent)' : 'var(--pink)';
       <h3 class="pc-title">{d.title}</h3>
       <p class="pc-summary">{d.summary}</p>
       <div class="pc-tags">
-        {d.tags.slice(0, 4).map((t) => <span class="chip">{t}</span>)}
+        {d.tags.slice(0, 2).map((t) => <span class="chip">{t}</span>)}
       </div>
       <span class="pc-cta">Read the case →</span>
     </div>
