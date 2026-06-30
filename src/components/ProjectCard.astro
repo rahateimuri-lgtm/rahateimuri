@@ -125,11 +125,12 @@ const mediaTint = d.featured ? 'var(--accent)' : 'var(--pink)';
   .pc-featured .pc-body { padding: 34px 32px; display: flex; flex-direction: column; }
   .pc-featured .pc-stat { font-size: var(--t-stat); }
   .pc-stat-unit {
+    display: block;
     font-family: var(--font-display);
     font-size: 0.4em;
     font-weight: 700;
     color: var(--ink);
-    margin-left: 6px;
+    margin-top: 6px;
   }
   .pc-featured .pc-title { font-size: clamp(22px, 2.6vw, 28px); }
   .pc-featured .pc-summary { font-size: var(--t-body); line-height: 1.55; }
