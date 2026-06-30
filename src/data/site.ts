@@ -16,14 +16,14 @@ export const proofStats = [
   '1M+ organic followers from zero',
   '50M+ views',
   '€80K/yr social-attributed bookings',
-  '4 yrs leading social across Europe',
+  '5+ yrs leading social across Europe',
 ] as const;
 
 export const proofBar = [
   { value: '1M+', label: 'organic followers, from zero', color: 'accent' },
   { value: '50M+', label: 'views', color: 'accent-2' },
   { value: '€80K', label: '/yr social-attributed bookings', color: 'ink' },
-  { value: '4 yrs', label: 'leading social across Europe', color: 'accent' },
+  { value: '5+ yrs', label: 'leading social across Europe', color: 'accent' },
 ] as const;
 
 export const services = [
